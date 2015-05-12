@@ -170,7 +170,7 @@
                                         <?php
                                         $img_src = ($value->affiliate_avatar != "") ?
                                                 "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->affiliate_avatar :
-                                                base_url() . 'assets/img/default-avatar.png';
+                                                base_url() . 'assets/admin/img/default-avatar.png';
                                         ?>
                                         <tr>
                                             <td>

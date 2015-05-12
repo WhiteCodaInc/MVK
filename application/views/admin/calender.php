@@ -1478,7 +1478,7 @@
                         $('.e_user_name').text(data.name);
                         $url = (data.contact_avatar != null) ?
                                 "http://mikhailkuznetsov.s3.amazonaws.com/" + data.contact_avatar :
-                                "<?= base_url() . 'assets/img/default-avatar.png' ?>";
+                                "<?= base_url() . 'assets/admin/img/default-avatar.png' ?>";
                         $href = "<?= site_url() ?>admin/contacts/profile/" + data.user_id;
                         $('#e_user_img').attr('href', $href);
                         $('#e_user_img img').attr('src', $url);

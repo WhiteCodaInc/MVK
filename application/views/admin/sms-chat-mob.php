@@ -16,12 +16,12 @@
     <?php
     $from_src = ($contactInfo->contact_avatar != "") ?
             "http://mikhailkuznetsov.s3.amazonaws.com/" . $contactInfo->contact_avatar :
-            base_url() . 'assets/img/default-avatar.png';
+            base_url() . 'assets/admin/img/default-avatar.png';
 
     $avatar = $this->session->userdata('avatar');
     $to_src = ($avatar != "") ?
             "http://mikhailkuznetsov.s3.amazonaws.com/" . $avatar :
-            base_url() . 'assets/img/default-avatar.png';
+            base_url() . 'assets/admin/img/default-avatar.png';
     ?>
     <!-- Main content -->
     <section class="content">

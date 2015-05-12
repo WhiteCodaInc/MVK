@@ -20,7 +20,7 @@ $CI->load->library("common");
 
     $admin_img_src = ($avatar != "") ?
             "http://mikhailkuznetsov.s3.amazonaws.com/" . $avatar :
-            base_url() . 'assets/img/default-avatar.png';
+            base_url() . 'assets/admin/img/default-avatar.png';
     ?>
     <a href="<?= site_url() ?>admin/dashboard" class="logo">
         <!-- Add the class icon to your logo image or logo icon to add the margining -->
@@ -56,7 +56,7 @@ $CI->load->library("common");
                                     $img_src = "";
                                     $img_src = ($sms->contact_avatar != "") ?
                                             "http://mikhailkuznetsov.s3.amazonaws.com/" . $sms->contact_avatar :
-                                            base_url() . 'assets/img/default-avatar.png';
+                                            base_url() . 'assets/admin/img/default-avatar.png';
                                     ?>
                                     <li><!-- start message -->
                                         <a id="<?= $sms->sid ?>" href="<?= site_url() . 'admin/sms/inbox/' ?>">

@@ -46,7 +46,7 @@
                                     $img_src = "";
                                     $img_src = ($sms->contact_avatar != "") ?
                                             "http://mikhailkuznetsov.s3.amazonaws.com/" . $sms->contact_avatar :
-                                            base_url() . 'assets/img/default-avatar.png';
+                                            base_url() . 'assets/admin/img/default-avatar.png';
                                     ?>
                                     <tr id="<?= $sms->from ?>">
                                         <td style="width:15%">

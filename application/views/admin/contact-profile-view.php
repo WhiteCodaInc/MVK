@@ -24,7 +24,7 @@
     <?php
     $img_src = ($contact->contact_avatar != "") ?
             "http://mikhailkuznetsov.s3.amazonaws.com/" . $contact->contact_avatar :
-            base_url() . 'assets/img/default-avatar.png';
+            base_url() . 'assets/admin/img/default-avatar.png';
     ?>
     <!-- Main content -->
     <section class="content">

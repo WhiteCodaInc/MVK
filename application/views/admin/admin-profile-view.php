@@ -21,7 +21,7 @@
     <?php
     $img_src = ($profile->admin_avatar != "") ?
             "http://mikhailkuznetsov.s3.amazonaws.com/" . $profile->admin_avatar :
-            base_url() . 'assets/img/default-avatar.png';
+            base_url() . 'assets/admin/img/default-avatar.png';
     ?>
     <!-- Main content -->
     <section class="content">

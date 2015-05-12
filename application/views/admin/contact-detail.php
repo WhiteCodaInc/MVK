@@ -183,7 +183,7 @@
                                         <?php
                                         $img_src = ($value->contact_avatar != "") ?
                                                 "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->contact_avatar :
-                                                base_url() . 'assets/img/default-avatar.png';
+                                                base_url() . 'assets/admin/img/default-avatar.png';
                                         ?>
                                         <tr>
                                             <td >

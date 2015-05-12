@@ -8,7 +8,7 @@ $rule = $CI->common->getPermission();
 $avatar = $this->session->userdata('avatar');
 $img_src = ($avatar != "") ?
         "http://mikhailkuznetsov.s3.amazonaws.com/" . $avatar :
-        base_url() . 'assets/img/default-avatar.png';
+        base_url() . 'assets/admin/img/default-avatar.png';
 ?>
 <div class="wrapper row-offcanvas row-offcanvas-left">
     <!-- Left side column. contains the logo and sidebar -->
