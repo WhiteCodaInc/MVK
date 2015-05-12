@@ -20,9 +20,10 @@ class M_cms extends CI_Model {
         $this->load->library('amazons3');
         $this->load->library('common');
         $this->profileid = $this->session->userdata('profile_id');
-        $this->bucket = "mikhailkuznetsov";
-        $this->accessKey = "AKIAJWQAEAXONVCWQZKQ";
-        $this->secretKey = "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";
+        $this->config->load('aws');
+        $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
+        $this->accessKey = $this->encryption->decode($this->config->item('accessKey', 'aws'));
+        $this->secretKey = $this->encryption->decode($this->config->item('secretKey', 'aws'));
     }
 
     function getBlogDetail() {

@@ -30,9 +30,11 @@ class Backup extends CI_Controller {
         $this->load->library('amazons3');
 
         $this->profileid = $this->session->userdata('profile_id');
-        $this->bucket = "mikhailkuznetsov";
-        $this->accessKey = "AKIAJWQAEAXONVCWQZKQ";
-        $this->secretKey = "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";
+
+        $this->config->load('aws');
+        $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
+        $this->accessKey = $this->encryption->decode($this->config->item('accessKey', 'aws'));
+        $this->secretKey = $this->encryption->decode($this->config->item('secretKey', 'aws'));
 
         require_once APPPATH . 'third_party/mailgun-php/vendor/autoload.php';
         $this->mgClient = new Mailgun('key-acfdb718a88968c616bcea83e1020909');
