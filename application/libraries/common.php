@@ -8,7 +8,7 @@ use Mailgun\Mailgun;
 
 class Common {
 
-    private $_CI, $userid,$profile_id, $mgClient, $listAddress, $domain;
+    private $_CI, $userid, $profile_id, $mgClient, $listAddress, $domain;
 
     function __construct() {
 
@@ -19,13 +19,13 @@ class Common {
         $this->listAddress = 'mikhail@mg.mikhailkuznetsov.com';
         $this->domain = 'mg.mikhailkuznetsov.com';
 
-		$this->_CI->load->library('authex');
+        $this->_CI->load->library('authex');
         $this->_CI->load->library('twilio_api');
-		
+
         $this->_CI->load->helper('date');
         $this->_CI->load->helper('file');
         $this->userid = $this->_CI->session->userdata('userid');
-		$this->profile_id = $this->_CI->session->userdata('profileid');
+        $this->profile_id = $this->_CI->session->userdata('profileid');
     }
 
     function getCustomerInfo($customerid) {
@@ -64,10 +64,14 @@ class Common {
 //----------------------     General Setting  --------------------------------//
 
     function getMySqlDate($dt, $format) {
-        $date = str_replace('mm', 'm', $format);
-        $date = str_replace('dd', 'd', $date);
-        $date = str_replace('yyyy', 'Y', $date);
-        return DateTime::createFromFormat($date, $dt)->format('Y-m-d');
+        if ($this->validateDate($dt, 'Y-m-d')) {
+            return $dt;
+        } else {
+            $date = str_replace('mm', 'm', $format);
+            $date = str_replace('dd', 'd', $date);
+            $date = str_replace('yyyy', 'Y', $date);
+            return DateTime::createFromFormat($date, $dt)->format('Y-m-d');
+        }
     }
 
     function validateDate($dt, $format) {
@@ -121,9 +125,9 @@ class Common {
             return FALSE;
         }
     }
-	
-	//-----------------------------Admin Side Function--------------------------------//
-	function getAdminInfo() {
+
+    //-----------------------------Admin Side Function--------------------------------//
+    function getAdminInfo() {
         $query = $this->_CI->db->get_where('admin_profile', array('profile_id' => $this->profile_id));
         return $query->row();
     }
@@ -156,7 +160,8 @@ class Common {
             echo $query->row()->zodiac_name;
         }
     }
-	function sendSMS($to, $body) {
+
+    function sendSMS($to, $body) {
         $adminInfo = $this->getAdminInfo();
         try {
             $msg = $this->_CI->twilio->account->messages->create(
@@ -171,7 +176,8 @@ class Common {
             return FALSE;
         }
     }
-	function setToken($user) {
+
+    function setToken($user) {
 
         $tag = array(
             'FIRST_NAME' => $user->fname,
@@ -190,7 +196,8 @@ class Common {
         );
         return $tag;
     }
-	//------------------------Header Function---------------------------------//
+
+    //------------------------Header Function---------------------------------//
 
     function getTotalUnreadMsg() {
         $where = array(
@@ -210,9 +217,11 @@ class Common {
         $query = $this->_CI->db->get();
         return $query->result();
     }
-	function getPermission() {
+
+    function getPermission() {
         $adminInfo = $this->getAdminInfo();
-		$permission = $this->_CI->db->get_where('access_class', array('class_id' => $adminInfo->class_id));
+        $permission = $this->_CI->db->get_where('access_class', array('class_id' => $adminInfo->class_id));
         return $permission->row();
     }
+
 }

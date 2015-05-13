@@ -1076,7 +1076,7 @@
         });
 
         $('#edit').click(function () {
-
+            var id = $(this).prop('id');
             if ($('#editForm input[name="date"]').val().trim() == "") {
                 alertify.error("Please Select Date..!");
                 return false;
@@ -1101,12 +1101,14 @@
             }
             var data = CKEDITOR.instances['e_emailbody'].getData();
             $('#e_emailbody').val(data);
+            $('#' + id).prop('disabled', 'disabled');
             $.ajax({
                 type: 'POST',
                 data: $('#editForm').serialize(),
                 url: "<?= site_url() ?>admin/calender/updateEvent",
                 success: function (data, textStatus, jqXHR) {
                     $('#e_discard').trigger('click');
+                    $('#' + id).prop('disabled', false);
                     if (data == 1) {
                         $("#calendar").fullCalendar("refetchEvents");
                         alertify.success("Event has been successfully Updated..!");
@@ -1118,8 +1120,8 @@
         });
 
         $('#insert,#n_insert').click(function () {
-
-            if ($(this).attr("id") == "insert") {
+            var id = $(this).prop('id');
+            if (id == "insert") {
                 if ($("#rd_individual").prop("checked")) {
                     var cnt = $('#users').val();
                     if (cnt.trim() == "") {
@@ -1173,11 +1175,10 @@
                 }
             }
             var form = "";
-            $id = $(this).attr('id');
-            if ($id == "insert") {
+            if (id == "insert") {
                 var data = CKEDITOR.instances['emailbody'].getData();
                 $('#emailbody').val(data);
-            } else if ($id == "n_insert") {
+            } else if (id == "n_insert") {
                 var data = CKEDITOR.instances['n_emailbody'].getData();
                 $('#n_emailbody').val(data);
             }
@@ -1187,6 +1188,7 @@
                 form = "eventForm";
                 $('input[name="user_id"]').val(ids[contact.indexOf($('#users').val())]);
 <?php endif; ?>
+            $('#' + id).prop('disabled', 'disabled');
             $.ajax({
                 type: 'POST',
                 data: $('#' + form).serialize(),
@@ -1194,6 +1196,7 @@
                 success: function (data, textStatus, jqXHR) {
                     $('#discard').trigger('click');
                     $('#n_discard').trigger('click');
+                    $('#' + id).prop('disabled', false);
                     if (data == 1) {
                         $("#calendar").fullCalendar("refetchEvents");
                         alertify.success("Event has been successfully created..!");
