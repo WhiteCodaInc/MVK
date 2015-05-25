@@ -175,9 +175,13 @@ switch ($msg) {
             $(".effect").toggle("slide", options, 500);
         }
         $('#inbox-data-table tbody tr').click(function () {
-            $(this).find('span.status').removeClass('btn-danger');
-            $(this).find('span.status').addClass('btn-warning');
-            $(this).find('span.status').text("Read");
+            $msg = $(this).find('td.status > span').text();
+            if ($msg == "Unread") {
+                $(this).find('td.status > span').removeClass('btn-danger');
+                $(this).find('td.status > span').addClass('btn-warning');
+                $(this).find('td.status > span').text("Read");
+            }
+
             $(".effect").hide();
             var from = $(this).attr('id');
             $('#from').val(from);
@@ -198,20 +202,6 @@ switch ($msg) {
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-
-        /*$('#test').bind('click', function () {
-         var from = $('#from').val();
-         var msg = $('#reply').val();
-         $clone = $('#chat-box').children('div.out:first').clone();
-         $time = "<i class='fa fa-clock-o'></i>";
-         $time = $time + "<?= date('D,j M Y H:i:s') ?>";
-         $clone.find('small.text-muted').html($time);
-         $clone.find('span.body').html(msg);
-         $('#chat-box').append($clone);
-         
-         });*/
-
-
         $('button[name="send"]').bind('click', function () {
             var from = $('#from').val();
             var msg = $('#reply').val();
