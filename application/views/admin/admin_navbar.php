@@ -94,6 +94,12 @@ $img_src = ($avatar != "") ?
                                     <span>Contact Block List</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="<?= site_url() ?>admin/scrap">
+                                    <i class="fa-angle-double-right"></i>
+                                    <span>Scrap Contacts</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 <?php endif; ?>
