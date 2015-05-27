@@ -69,6 +69,8 @@ class Scrap extends CI_Controller {
 
     function addContact() {
         $post = $this->input->post();
+        print_r($post);
+        die();
         if (is_array($post) && count($post)) {
             $set = array(
                 'fname' => $post['fname'],

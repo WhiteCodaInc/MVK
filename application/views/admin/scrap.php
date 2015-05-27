@@ -220,8 +220,10 @@
             $.ajax({
                 type: 'POST',
                 data: {
+                    type: $('#type').val(),
                     fname: $('.fname').text(),
-                    lname: $('.lname').text()
+                    lname: $('.lname').text(),
+                    url: $('.picture').prop('src')
                 },
                 url: "<?= site_url() ?>admin/scrap/addContact",
                 success: function (data, textStatus, jqXHR) {
