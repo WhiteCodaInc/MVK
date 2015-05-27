@@ -79,8 +79,8 @@ class Scrap extends CI_Controller {
             $insertid = $this->db->insert_id();
 
             if ($post['type'] != "facebook") {
-                copy($post['url'], $img_url);
                 $img_url = FCPATH . "user.jpg";
+                copy($post['url'], $img_url);
             } else {
                 $img_url = FCPATH . "user.jpg";
             }
