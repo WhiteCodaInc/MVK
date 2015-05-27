@@ -115,6 +115,7 @@
 
         $('.contactInfo .cancel').click(function () {
             $('.contactInfo').hide();
+            $('span.successMsg').hide();
             $('#type').val("facebook");
             $('.save').show();
             $('#title').val("Facebook Username");
@@ -204,7 +205,6 @@
 
                     $('.parse .overlay').hide();
                     $('.parse .loading-img').hide();
-                    console.log();
                     var name = _html.find('h1.ProfileHeaderCard-name a').text().split(' ');
                     $('.parse').hide();
                     $('.fname').text(name[0]);
