@@ -116,6 +116,7 @@
         $('.contactInfo .cancel').click(function () {
             $('.contactInfo').hide();
             $('#type').val("facebook");
+            $('.save').show();
             $('#title').val("Facebook Username");
             $('#url').val('');
             $('.picture').prop('src', '#');
