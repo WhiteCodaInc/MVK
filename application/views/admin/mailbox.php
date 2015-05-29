@@ -1,6 +1,13 @@
 <!-- Normal Checkbox -->
 <!--<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/admin/css/checkbox.css"/>-->
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/admin/autocomplete/jquery-ui.css"/>
+
+<style type="text/css">
+    #inbox-data-table tr > td > a {
+        color: #444;
+    }
+</style>
+
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header no-margin" style="display: none">
@@ -86,7 +93,7 @@
                                     </div>
                                     <div class="table-responsive" id="data-panel">
                                         <!-- THE MESSAGES -->
-                                        <table id="inbox-data-table" class="table table-mailbox">
+                                        <table id="inbox-data-table" class="table">
                                             <thead >
                                                 <tr>
                                                     <th style="padding: 10px;">
