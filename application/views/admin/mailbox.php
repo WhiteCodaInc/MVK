@@ -26,7 +26,7 @@
                                 <!-- compose message btn -->
                                 <a id="compose" class="btn btn-block btn-primary" data-toggle="modal" data-target="#compose-mail"><i class="fa fa-pencil"></i> Compose Message</a>
                                 <!-- Navigation - folders-->
-                                <?php $type = $this->uri->segment(4); ?>
+                                <?php $type = $this->uri->segment(3); ?>
                                 <div style="margin-top: 15px;">
                                     <ul class="nav nav-pills nav-stacked">
                                         <li class="header">Folders</li>
@@ -336,6 +336,8 @@ switch ($msg) {
     function BindControls(ar1, ar2) {
         contact = ar1;
         ids = ar2;
+        console.log(contact);
+        console.log(ids);
         $('#users').autocomplete({
             source: ar1,
             minLength: 0,
