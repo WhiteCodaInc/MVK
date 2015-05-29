@@ -101,7 +101,7 @@
                                             </thead>
                                             <tbody>
                                                 <?php foreach ($email as $key => $value) { ?>
-                                                    <tr id="<?= $value['id'] ?>" style="<?= (!$value['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>" class="">
+                                                    <tr id="<?= $value['id'] ?>" style="<?= (!$value['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>">
                                                         <td class="small-col">
                                                             <input type="checkbox" name="email_id[]" value="<?= $value['id'] ?>" />
                                                         </td>
@@ -119,7 +119,6 @@
                                                             <?= $value['date'] ?>
                                                         </td>
                                                     </tr>
-
                                                 <?php } ?>
                                             </tbody>
 <!--                                            <tfoot>
@@ -143,7 +142,7 @@
         <!-- MAILBOX END -->
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
-</div><!-- ./wrapper -->
+<!--</div> ./wrapper -->
 
 <!-- COMPOSE MESSAGE MODAL -->
 <div class="modal fade" id="compose-mail" tabindex="-1" role="dialog" aria-hidden="true">
