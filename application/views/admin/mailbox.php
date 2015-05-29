@@ -26,7 +26,7 @@
                                 <!-- compose message btn -->
                                 <a id="compose" class="btn btn-block btn-primary" data-toggle="modal" data-target="#compose-mail"><i class="fa fa-pencil"></i> Compose Message</a>
                                 <!-- Navigation - folders-->
-                                <?php $type = $this->uri->segment(4); ?>
+                                <?php $type = $this->uri->segment(4);$email = array(); ?>
                                 <div style="margin-top: 15px;">
                                     <ul class="nav nav-pills nav-stacked">
                                         <li class="header">Folders</li>
