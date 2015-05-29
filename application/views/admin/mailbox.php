@@ -118,9 +118,9 @@
                                                         <td class="time">
                                                             <?= $value['date'] ?>
                                                         </td>
+                                                    </tr>
                                                 <span style="display: none" class="body<?= $value['id'] ?>"><?= $value['body'] ?></span>
                                                 <span style="display: none" class="to<?= $value['id'] ?>"><?= $value['to'] ?></span>
-                                                </tr>
                                             <?php } ?>
                                             </tbody>
                                             <tfoot>
