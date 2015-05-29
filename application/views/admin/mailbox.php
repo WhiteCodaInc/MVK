@@ -5,6 +5,7 @@
 <style type="text/css">
     #inbox-data-table tr > td > a {
         color: #444;
+        font-weight: 600
     }
 </style>
 
