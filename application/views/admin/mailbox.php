@@ -336,8 +336,6 @@ switch ($msg) {
     function BindControls(ar1, ar2) {
         contact = ar1;
         ids = ar2;
-        console.log(contact);
-        console.log(ids);
         $('#users').autocomplete({
             source: ar1,
             minLength: 0,
