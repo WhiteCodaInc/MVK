@@ -1,5 +1,5 @@
 <!-- Normal Checkbox -->
-<!--<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/admin/css/checkbox.css"/>-->
+<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/admin/css/checkbox.css"/>
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/admin/autocomplete/jquery-ui.css"/>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
@@ -26,38 +26,38 @@
                                 <!-- compose message btn -->
                                 <a id="compose" class="btn btn-block btn-primary" data-toggle="modal" data-target="#compose-mail"><i class="fa fa-pencil"></i> Compose Message</a>
                                 <!-- Navigation - folders-->
-                                <?php $type = $this->uri->segment(3); ?>
+                                <?php $type = $this->uri->segment(4); ?>
                                 <div style="margin-top: 15px;">
                                     <ul class="nav nav-pills nav-stacked">
                                         <li class="header">Folders</li>
                                         <li class="<?= ($type == "") ? "active" : "" ?>">
                                             <a href="<?= site_url() ?>admin/mailbox/inbox">
-                                                <i class="fa fa-inbox"></i> Inbox <?= ($folder[0]) ? "({$folder[0]})" : "" ?>
+                                                <i class="fa fa-inbox"></i> Inbox <?= (isset($folder[0]) && $folder[0]) ? "({$folder[0]})" : "" ?>
                                             </a>
                                         </li>
                                         <li class="<?= ($type == "Drafts") ? "active" : "" ?>">
                                             <a href="<?= site_url() ?>admin/mailbox/inbox/Drafts">
-                                                <i class="fa fa-pencil-square-o"></i> Drafts <?= ($folder[1]) ? "({$folder[1]})" : "" ?>
+                                                <i class="fa fa-pencil-square-o"></i> Drafts <?= (isset($folder[1]) && $folder[1]) ? "({$folder[1]})" : "" ?>
                                             </a>
                                         </li>
                                         <li class="<?= ($type == "Sent") ? "active" : "" ?>">
                                             <a href="<?= site_url() ?>admin/mailbox/inbox/Sent">
-                                                <i class="fa fa-mail-forward"></i> Sent <?= ($folder[4]) ? "({$folder[4]})" : "" ?>
+                                                <i class="fa fa-mail-forward"></i> Sent <?= (isset($folder[4]) && $folder[4]) ? "({$folder[4]})" : "" ?>
                                             </a>
                                         </li>
                                         <li class="<?= ($type == "Trash") ? "active" : "" ?>">
                                             <a href="<?= site_url() ?>admin/mailbox/inbox/Trash">
-                                                <i class="fa fa-trash-o"></i> Trash <?= ($folder[2]) ? "({$folder[2]})" : "" ?>
+                                                <i class="fa fa-trash-o"></i> Trash <?= (isset($folder[2]) && $folder[2]) ? "({$folder[2]})" : "" ?>
                                             </a>
                                         </li>
                                         <li class="<?= ($type == "Archive") ? "active" : "" ?>">
                                             <a href="<?= site_url() ?>admin/mailbox/inbox/Archive">
-                                                <i class="fa fa-folder"></i> Archive <?= ($folder[5]) ? "({$folder[5]})" : "" ?>
+                                                <i class="fa fa-folder"></i> Archive <?= (isset($folder[5]) && $folder[5]) ? "({$folder[5]})" : "" ?>
                                             </a>
                                         </li>
                                         <li class="<?= ($type == "Junk") ? "active" : "" ?>">
                                             <a href="<?= site_url() ?>admin/mailbox/inbox/Junk">
-                                                <i class="fa fa-folder"></i> Junk <?= ($folder[3]) ? "({$folder[3]})" : "" ?>
+                                                <i class="fa fa-folder"></i> Junk <?= (isset($folder[3]) && $folder[3]) ? "({$folder[3]})" : "" ?>
                                             </a>
                                         </li>
                                     </ul>
@@ -336,8 +336,7 @@ switch ($msg) {
     function BindControls(ar1, ar2) {
         contact = ar1;
         ids = ar2;
-        console.log(contact);
-        console.log(ids);
+
         $('#users').autocomplete({
             source: ar1,
             minLength: 0,
@@ -514,32 +513,7 @@ switch ($msg) {
             $('.close').trigger('click');
         });
 
-        /*$('button.send,button.draft').click(function () {
-         $('#load').css('display', 'block');
-         var val = $(this).val();
-         var body = CKEDITOR.instances['email_message'].getData();
-         $('#composeForm #email_message').text(body);
-         
-         $.ajax({
-         type: 'POST',
-         data: $('#composeForm').serialize(),
-         url: "<?= site_url() ?>admin/mailbox/send/" + val,
-         success: function (data, textStatus, jqXHR) {
-         $('#composeForm').trigger('reset');
-         $('#load').css('display', 'none');
-         $('.close').trigger('click');
-         if (data == 1) {
-         $('#composeForm').trigger('reset');
-         var msg = (val == "Send") ?
-         "Email has been successfully sent..!" :
-         "Email save as draft successfully..!";
-         alertify.success(msg);
-         } else {
-         alertify.error("Failed to sending Email..!");
-         }
-         }
-         });
-         });*/
+
         setTimeout(function () {
             $('.ui-autocomplete').css('z-index', '9999');
         }, 1000);
