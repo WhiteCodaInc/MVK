@@ -87,7 +87,7 @@
                                     <div class="table-responsive" id="data-panel">
                                         <!-- THE MESSAGES -->
                                         <table id="inbox-data-table" class="table table-mailbox">
-                                            <thead >
+                                            <thead>
                                                 <tr>
                                                     <th style="padding: 10px;">
                                                         <input type="checkbox"/>
