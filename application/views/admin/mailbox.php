@@ -122,14 +122,14 @@
 
                                                 <?php } ?>
                                             </tbody>
-                                            <tfoot>
+<!--                                            <tfoot>
                                                 <tr>
                                                     <th></th>
                                                     <th>From</th>
                                                     <th>Subject</th>
                                                     <th class="hidden-xs hidden-sm">Date</th>
                                                 </tr>
-                                            </tfoot>
+                                            </tfoot>-->
                                         </table>
                                     </div><!-- /.table-responsive -->
                                     <input type="hidden" name="type" value="<?= ($type == "") ? "Inbox" : $type ?>" />
