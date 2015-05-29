@@ -26,7 +26,9 @@
                                 <!-- compose message btn -->
                                 <a id="compose" class="btn btn-block btn-primary" data-toggle="modal" data-target="#compose-mail"><i class="fa fa-pencil"></i> Compose Message</a>
                                 <!-- Navigation - folders-->
-                                <?php $type = $this->uri->segment(4);$email = array(); ?>
+                                <?php
+                                $type = $this->uri->segment(4);
+                                ?>
                                 <div style="margin-top: 15px;">
                                     <ul class="nav nav-pills nav-stacked">
                                         <li class="header">Folders</li>
@@ -116,9 +118,9 @@
                                                         <td class="time">
                                                             <?= $value['date'] ?>
                                                         </td>
-                                                    </tr>
                                                 <span style="display: none" class="body<?= $value['id'] ?>"><?= $value['body'] ?></span>
                                                 <span style="display: none" class="to<?= $value['id'] ?>"><?= $value['to'] ?></span>
+                                                </tr>
                                             <?php } ?>
                                             </tbody>
                                             <tfoot>
