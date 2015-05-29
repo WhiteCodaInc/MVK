@@ -1,5 +1,5 @@
 <!-- Normal Checkbox -->
-<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/admin/css/checkbox.css"/>
+<!--<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/admin/css/checkbox.css"/>-->
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/admin/autocomplete/jquery-ui.css"/>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
