@@ -5,7 +5,7 @@
 <style type="text/css">
     #inbox-data-table tr > td > a {
         color: #444;
-        font-weight: 600
+        cursor: pointer;
     }
 </style>
 
@@ -112,12 +112,12 @@
                                                             <input type="checkbox" name="email_id[]" value="<?= $value['id'] ?>" />
                                                         </td>
                                                         <td class="name">
-                                                            <a style="cursor: pointer" data-toggle="modal" data-target="#mail-body" class="<?= $value['id'] ?>">
+                                                            <a style="font-weight: 600" data-toggle="modal" data-target="#mail-body" class="<?= $value['id'] ?>">
                                                                 <?= $value['from'] ?>
                                                             </a>
                                                         </td>
                                                         <td class="subject">
-                                                            <a style="cursor: pointer" data-toggle="modal" data-target="#mail-body" class="<?= $value['id'] ?>">
+                                                            <a data-toggle="modal" data-target="#mail-body" class="<?= $value['id'] ?>">
                                                                 <?= $value['subject'] ?>
                                                             </a>
                                                         </td>
