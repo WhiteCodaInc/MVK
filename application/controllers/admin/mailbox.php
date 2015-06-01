@@ -89,8 +89,9 @@ class Mailbox extends CI_Controller {
                             "In-Reply-To: {$mailHeader->in_reply_to}\r\n" .
                             "References: {$mailHeader->references}\r\n" .
                             "Return-Path: <vishal@mikhailkuznetsov.com>\r\n" .
+                            "Envelope-to: vishal@mikhailkuznetsov.com\r\n" .
                             "Content-Type: text/html; charset=ISO-8859-1\r\n";
-                    $rely = imap_mail("vishaltesting7@gmail.com", $mailHeader->subject, "I am Fine", $headers);
+                    $rely = imap_mail("vishaltesting7@gmail.com", $mailHeader->subject, "How Are You?", $headers);
                     if ($rely)
                         echo 'SEND';
                     else
