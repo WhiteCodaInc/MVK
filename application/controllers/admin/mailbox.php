@@ -85,16 +85,26 @@ class Mailbox extends CI_Controller {
         }
         $data['folder'] = $this->getInboxFolder();
         $threads = array();
-        foreach ($data['email'] as $key => $value) {
+        foreach ($data['email'] as $value) {
 
-            if (strpos($value['subject'], 'Re: ') !== false) {
-                echo substr($value['subject'], 4, strlen($value['subject']));
+            foreach ($data['email'] as $val) {
+                if ($val['subject'] == "Re: " . $value['subject'])
+                    break;
+                else {
+                    
+                }
             }
-            if (array_key_exists($value['subject'], $threads)) {
-                $threads[$value['subject']][] = $value;
-            } else {
-                $threads[$value['subject']][] = $value;
-            }
+
+//            if (strpos($value['subject'], 'Re: ') !== false) {
+//                $sub = substr($value['subject'], 4, strlen($value['subject']));
+//                if (array_key_exists($value['subject'], $threads) || array_key_exists($value['subject'], $threads)) {
+//                    $threads[$value['subject']][] = $value;
+//                } else {
+//                    $threads[$value['subject']][] = $value;
+//                }
+//            } else {
+//                
+//            }
         }
         echo '<pre>';
         print_r($threads);
