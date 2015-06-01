@@ -70,10 +70,14 @@ class Mailbox extends CI_Controller {
                 rsort($emails);
                 $data = array();
                 echo '<pre>';
+                $threds = imap_thread($this->stream);
+                print_r($threds);
+                die();
                 foreach ($emails as $key => $email_id) {
                     $mailHeader = @imap_headerinfo($this->stream, $email_id);
+
 //                    $mailHeader = @imap_header($this->stream, $email_id);
-                    print_r($mailHeader);
+//                    print_r($mailHeader);
 //                    print_r(imap_header($this->stream, $email_id));
 //                    $mailHeader = imap_fetchheader($this->stream, $email_id);
 //                    $header = "";
@@ -89,11 +93,11 @@ class Mailbox extends CI_Controller {
 //                            "References: {$mailHeader->references}\r\n" .
 //                            "Envelope-to: vishal@mikhailkuznetsov.com\r\n" .
                             "Content-Type: text/html; charset=ISO-8859-1\r\n";
-                    $rely = imap_mail("vishaltesting7@gmail.com", $mailHeader->subject, "How are you?", $headers);
-                    if ($rely)
-                        echo 'SEND';
-                    else
-                        echo 'FAILED';
+//                    $rely = imap_mail("vishaltesting7@gmail.com", $mailHeader->subject, "How are you?", $headers);
+//                    if ($rely)
+//                        echo 'SEND';
+//                    else
+//                        echo 'FAILED';
 //                    print_r(imap_fetchheader($this->stream, $email_id));
 //                    echo '<br>';
 //                    $data['email'][$key]['headerInfo'] = $mailHeader;
