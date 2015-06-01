@@ -77,11 +77,12 @@ class Mailbox extends CI_Controller {
 //                    print_r($mailHeader);
 //                    print_r(imap_header($this->stream, $email_id));
                     $mailHeader = imap_fetch_overview($this->stream, $email_id);
-                    $rely = imap_mail("vishaltesting7@gmail.com", "Reply To Vishal", "I am Fine", $mailHeader);
-                    if ($rely)
-                        echo 'SEND';
-                    else
-                        echo 'FAILED';
+                    print_r($mailHeader);
+//                    $rely = imap_mail("vishaltesting7@gmail.com", "Reply To Vishal", "I am Fine", $mailHeader);
+//                    if ($rely)
+//                        echo 'SEND';
+//                    else
+//                        echo 'FAILED';
 //                    print_r(imap_fetchheader($this->stream, $email_id));
 //                    echo '<br>';
 //                    $data['email'][$key]['headerInfo'] = $mailHeader;
