@@ -80,7 +80,8 @@ class Mailbox extends CI_Controller {
                     $header = "";
                     foreach ($mailHeader as $key => $value) {
 //                        $header .= "{$key}:{$value}\r\n";
-                        echo "{$key}:{$value}\r\n";
+                        // echo "{$key}:{$value}\r\n";
+                        print_r($value);
                     }
                     print_r($mailHeader);
                     echo $header;
