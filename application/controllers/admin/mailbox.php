@@ -84,11 +84,16 @@ class Mailbox extends CI_Controller {
             }
         }
         $data['folder'] = $this->getInboxFolder();
-        
-        
-        
+        $threads = array();
+        foreach ($data['email'] as $key => $value) {
+            if (array_key_exists($value['subject'], $threads)) {
+                $threads[$value['subject']][] = $value;
+            } else {
+                $threads[$value['subject']] = $value;
+            }
+        }
         echo '<pre>';
-        print_r($data);
+        print_r($threads);
         die();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
