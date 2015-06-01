@@ -82,7 +82,7 @@ class Mailbox extends CI_Controller {
 //                        $header .= "{$key}:{$value}\r\n";
 //                    }
                     print_r($mailHeader);
-//                    echo $header;
+                    echo $mailHeader;
 //                    $rely = imap_mail("vishaltesting7@gmail.com", "Reply To Vishal", "I am Fine", $header);
 //                    if ($rely)
 //                        echo 'SEND';
