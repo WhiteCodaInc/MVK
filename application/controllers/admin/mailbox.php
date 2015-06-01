@@ -72,8 +72,11 @@ class Mailbox extends CI_Controller {
                 echo '<pre>';
                 foreach ($emails as $key => $email_id) {
 //                    $mailHeader = @imap_headerinfo($this->stream, $email_id);
-                    $mailHeader = @imap_header($this->stream, $email_id);
-                    print_r($mailHeader);
+//                    $mailHeader = @imap_header($this->stream, $email_id);
+//                    print_r($mailHeader);
+                    print_r(imap_header($this->stream, $email_id));
+                    print_r(imap_fetch_overview($this->stream, $email_id));
+                    print_r(imap_fetchheader($this->stream, $email_id));
                     echo '<br>';
 //                    $data['email'][$key]['headerInfo'] = $mailHeader;
 //                    $overview = imap_fetch_overview($this->stream, $email_id, 0);
