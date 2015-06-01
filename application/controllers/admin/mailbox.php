@@ -112,7 +112,7 @@ class Mailbox extends CI_Controller {
                 $data['email'] = array();
             }
         }
-//        $data['folder'] = $this->getInboxFolder();
+        $data['folder'] = $this->getInboxFolder();
 //        print_r($data);
 //        die();
         $this->load->view('admin/admin_header');
