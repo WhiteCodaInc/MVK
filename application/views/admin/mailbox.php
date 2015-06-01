@@ -1,5 +1,5 @@
 <!-- Normal Checkbox -->
-<!--<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/admin/css/checkbox.css"/>-->
+<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/admin/css/checkbox.css"/>
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/admin/autocomplete/jquery-ui.css"/>
 
 <style type="text/css">
@@ -344,8 +344,6 @@ switch ($msg) {
     function BindControls(ar1, ar2) {
         contact = ar1;
         ids = ar2;
-        console.log(contact);
-        console.log(ids);
         $('#users').autocomplete({
             source: ar1,
             minLength: 0,
