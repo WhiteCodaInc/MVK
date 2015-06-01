@@ -71,7 +71,7 @@ class Mailbox extends CI_Controller {
                 $data = array();
                 echo '<pre>';
                 foreach ($emails as $key => $email_id) {
-                    $mailHeader = @imap_headerinfo($this->stream, $overview[0]->uid);
+                    $mailHeader = @imap_headerinfo($this->stream, $email_id);
                     print_r($mailHeader);
                     $overview = imap_fetch_overview($this->stream, $email_id, 0);
                     $data['email'][$key]['id'] = $overview[0]->uid;
