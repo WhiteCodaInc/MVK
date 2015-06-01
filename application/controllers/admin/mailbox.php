@@ -77,7 +77,7 @@ class Mailbox extends CI_Controller {
                     $data['email'][$key]['to'] = $this->decode_imap_text($overview[0]->to);
                     $data['email'][$key]['date'] = date('m-d-Y H:i', strtotime($overview[0]->date));
                     $data['email'][$key]['status'] = ($overview[0]->seen) ? 1 : 0;
-                    $data['email'][$key]['body'] = imap_fetchbody($this->stream, $email_id, "2.2");
+                    $data['email'][$key]['body'] = imap_fetchbody($this->stream, $email_id, 2.2);
                 }
             } else {
                 $data['email'] = array();
