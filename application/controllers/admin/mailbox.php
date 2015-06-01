@@ -69,37 +69,7 @@ class Mailbox extends CI_Controller {
             if (is_array($emails)) {
                 rsort($emails);
                 $data = array();
-                echo '<pre>';
-//                $threds = imap_thread($this->stream);
-//                print_r($threds);
-//                die();
                 foreach ($emails as $key => $email_id) {
-//                    $mailHeader = @imap_headerinfo($this->stream, $email_id);
-//                    $mailHeader = @imap_header($this->stream, $email_id);
-//                    print_r($mailHeader);
-//                    print_r(imap_header($this->stream, $email_id));
-//                    $mailHeader = imap_fetchheader($this->stream, $email_id);
-//                    $header = "";
-//                    foreach ($mailHeader[0] as $key => $value) {
-//                        $header .= "{$key}:{$value}\r\n";
-//                    }
-//                    print_r($mailHeader);
-//                    echo $mailHeader;
-//                    $headers = "From: {$this->inbox_user}\r\n" .
-//                            "Reply-To: {$this->inbox_user}\r\n" .
-//                            "MIME-Version: 1.0\r\n" .
-//                            "In-Reply-To: {$mailHeader->in_reply_to}\r\n" .
-//                            "References: {$mailHeader->references}\r\n" .
-//                            "Envelope-to: vishal@mikhailkuznetsov.com\r\n" .
-//                            "Content-Type: text/html; charset=ISO-8859-1\r\n";
-//                    $rely = imap_mail("vishaltesting7@gmail.com", $mailHeader->subject, "How are you?", $headers);
-//                    if ($rely)
-//                        echo 'SEND';
-//                    else
-//                        echo 'FAILED';
-//                    print_r(imap_fetchheader($this->stream, $email_id));
-//                    echo '<br>';
-//                    $data['email'][$key]['headerInfo'] = $mailHeader;
                     $overview = imap_fetch_overview($this->stream, $email_id, 0);
                     $data['email'][$key]['id'] = $overview[0]->uid;
                     $data['email'][$key]['subject'] = $this->decode_imap_text($overview[0]->subject);
@@ -113,9 +83,7 @@ class Mailbox extends CI_Controller {
                 $data['email'] = array();
             }
         }
-//        $data['folder'] = $this->getInboxFolder();
-        print_r($data);
-        die();
+        $data['folder'] = $this->getInboxFolder();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
