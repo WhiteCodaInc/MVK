@@ -88,10 +88,10 @@ class Mailbox extends CI_Controller {
         foreach ($data['email'] as $value) {
 
             foreach ($data['email'] as $val) {
-                if ($val['subject'] == "Re: " . $value['subject'])
-                    break;
-                else {
-                    
+                if ($val['subject'] == "Re: " . $value['subject']) {
+                    continue;
+                } else {
+                    echo $value['subject'] . '<br>';
                 }
             }
 
