@@ -72,8 +72,8 @@ class Mailbox extends CI_Controller {
                 echo '<pre>';
                 foreach ($emails as $key => $email_id) {
 
-//                    $mailHeader = @imap_headerinfo($this->stream, $email_id);
-                    $mailHeader = @imap_header($this->stream, $email_id);
+                    $mailHeader = @imap_headerinfo($this->stream, $email_id);
+//                    $mailHeader = @imap_header($this->stream, $email_id);
                     print_r($mailHeader);
                     print_r(imap_header($this->stream, $email_id));
 //                    $mailHeader = imap_fetchheader($this->stream, $email_id);
@@ -83,6 +83,11 @@ class Mailbox extends CI_Controller {
 //                    }
 //                    print_r($mailHeader);
 //                    echo $mailHeader;
+                    $headers = "From: {$this->inbox_user}\r\n" .
+                            "Reply-To: {$this->inbox_user}\r\n" .
+                            "MIME-Version: 1.0\r\n" .
+                            "In-Reply-To: {}\r\n" .
+                            "Content-Type: text/html; charset=ISO-8859-1\r\n";
 //                    $rely = imap_mail("vishaltesting7@gmail.com", "Reply To Vishal", "I am Fine", $mailHeader);
 //                    if ($rely)
 //                        echo 'SEND';
