@@ -69,26 +69,27 @@ class Mailbox extends CI_Controller {
             if (is_array($emails)) {
                 rsort($emails);
                 $data = array();
+                echo '<pre>';
                 foreach ($emails as $key => $email_id) {
                     $mailHeader = @imap_headerinfo($this->stream, $email_id);
-                    $data['email'][$key]['headerInfo'] = $mailHeader;
-                    $overview = imap_fetch_overview($this->stream, $email_id, 0);
-                    $data['email'][$key]['id'] = $overview[0]->uid;
-                    $data['email'][$key]['subject'] = $this->decode_imap_text($overview[0]->subject);
-                    $data['email'][$key]['from'] = $this->decode_imap_text($overview[0]->from);
-                    $data['email'][$key]['to'] = $this->decode_imap_text($overview[0]->to);
-                    $data['email'][$key]['date'] = date('m-d-Y H:i', strtotime($overview[0]->date));
-                    $data['email'][$key]['status'] = ($overview[0]->seen) ? 1 : 0;
-                    $data['email'][$key]['body'] = imap_fetchbody($this->stream, $email_id, 1);
+                    print_r($mailHeader);
+                    echo '<br>';
+//                    $data['email'][$key]['headerInfo'] = $mailHeader;
+//                    $overview = imap_fetch_overview($this->stream, $email_id, 0);
+//                    $data['email'][$key]['id'] = $overview[0]->uid;
+//                    $data['email'][$key]['subject'] = $this->decode_imap_text($overview[0]->subject);
+//                    $data['email'][$key]['from'] = $this->decode_imap_text($overview[0]->from);
+//                    $data['email'][$key]['to'] = $this->decode_imap_text($overview[0]->to);
+//                    $data['email'][$key]['date'] = date('m-d-Y H:i', strtotime($overview[0]->date));
+//                    $data['email'][$key]['status'] = ($overview[0]->seen) ? 1 : 0;
+//                    $data['email'][$key]['body'] = imap_fetchbody($this->stream, $email_id, 1);
                 }
             } else {
                 $data['email'] = array();
             }
         }
-//        imap_close($this->stream);
-        $data['folder'] = $this->getInboxFolder();
-        echo '<pre>';
-        print_r($data);
+//        $data['folder'] = $this->getInboxFolder();
+//        print_r($data);
         die();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
