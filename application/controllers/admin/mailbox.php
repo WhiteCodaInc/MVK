@@ -86,6 +86,7 @@ class Mailbox extends CI_Controller {
                 $data['email'] = array();
             }
         }
+        print_r($data);
         die();
 //        imap_close($this->stream);
         $data['folder'] = $this->getInboxFolder();
