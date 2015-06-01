@@ -86,13 +86,15 @@ class Mailbox extends CI_Controller {
         $data['folder'] = $this->getInboxFolder();
         $threads = array();
         foreach ($data['email'] as $value) {
-
+            $flag = TRUE;
             foreach ($data['email'] as $val) {
                 if ($val['subject'] == "Re: " . $value['subject']) {
-                    continue;
+                    $flag = FALSE;
+                    break;
                 }
             }
-            echo $value['subject'] . '<br>';
+            if ($flag)
+                echo $value['subject'] . '<br>';
 
 //            if (strpos($value['subject'], 'Re: ') !== false) {
 //                $sub = substr($value['subject'], 4, strlen($value['subject']));
