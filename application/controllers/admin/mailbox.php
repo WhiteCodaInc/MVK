@@ -78,10 +78,10 @@ class Mailbox extends CI_Controller {
 //                    print_r(imap_header($this->stream, $email_id));
                     $mailHeader = imap_fetch_overview($this->stream, $email_id);
                     $header = "";
-                    foreach ($mailHeader as $key => $value) {
+                    foreach ($mailHeader[0] as $key => $value) {
 //                        $header .= "{$key}:{$value}\r\n";
-                        // echo "{$key}:{$value}\r\n";
-                        print_r($value);
+                         echo "{$key}:{$value}\r\n";
+//                        print_r($value);
                     }
                     print_r($mailHeader);
                     echo $header;
