@@ -82,18 +82,18 @@ class Mailbox extends CI_Controller {
 //                    }
 //                    print_r($mailHeader);
 //                    echo $mailHeader;
-//                    $headers = "From: {$this->inbox_user}\r\n" .
-//                            "Reply-To: {$this->inbox_user}\r\n" .
-//                            "MIME-Version: 1.0\r\n" .
+                    $headers = "From: {$this->inbox_user}\r\n" .
+                            "Reply-To: {$this->inbox_user}\r\n" .
+                            "MIME-Version: 1.0\r\n" .
 //                            "In-Reply-To: {$mailHeader->in_reply_to}\r\n" .
 //                            "References: {$mailHeader->references}\r\n" .
 //                            "Envelope-to: vishal@mikhailkuznetsov.com\r\n" .
-//                            "Content-Type: text/html; charset=ISO-8859-1\r\n";
-//                    $rely = imap_mail("vishaltesting7@gmail.com", $mailHeader->subject, "I am Fine", $headers);
-//                    if ($rely)
-//                        echo 'SEND';
-//                    else
-//                        echo 'FAILED';
+                            "Content-Type: text/html; charset=ISO-8859-1\r\n";
+                    $rely = imap_mail("vishaltesting7@gmail.com", $mailHeader->subject, "How are you?", $headers);
+                    if ($rely)
+                        echo 'SEND';
+                    else
+                        echo 'FAILED';
 //                    print_r(imap_fetchheader($this->stream, $email_id));
 //                    echo '<br>';
 //                    $data['email'][$key]['headerInfo'] = $mailHeader;
