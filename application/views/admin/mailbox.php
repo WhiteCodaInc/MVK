@@ -499,7 +499,7 @@ switch ($msg) {
             $('#mail-body #from').text($('tr#' + id + ' td.name').text());
             $('#mail-body #date').text($('tr#' + id + ' td.time').text());
             $('#mail-body #to').text($('span.to' + id).text());
-            $('#mail-body #body').text($('span.body' + id).html());
+            $('#mail-body #body').text($('span.body' + id).text());
         });
 
         $('button.reply').click(function () {
@@ -509,7 +509,7 @@ switch ($msg) {
             $('#composeForm #msg_txt').show();
             $('#composeForm input[name="email_to"]').val($('tr#' + id + ' td.name').text().trim());
             $('#composeForm input[name="email_subject"]').val($('tr#' + id + ' td.subject').text().trim());
-            $('#composeForm #msg_txt p').text($('span.body' + id).html().trim());
+            $('#composeForm #msg_txt p').text($('span.body' + id).text().trim());
 //            CKEDITOR.instances['email_message'].setData($('span.body' + id).text().trim(), true);
 //            editor.setValue($('span.body' + id).text().trim(), true);
             $('a#compose').trigger('click');
