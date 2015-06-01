@@ -89,7 +89,7 @@ class Mailbox extends CI_Controller {
             if (array_key_exists($value['subject'], $threads)) {
                 $threads[$value['subject']][] = $value;
             } else {
-                $threads[$value['subject']] = $value;
+                $threads[$value['subject']][] = $value;
             }
         }
         echo '<pre>';
