@@ -81,6 +81,7 @@ class Mailbox extends CI_Controller {
                     foreach ($mailHeader as $key => $value) {
                         $header .= "{$key}:{$value}\r\n";
                     }
+                    print_r($mailHeader);
                     echo $header;
 //                    $rely = imap_mail("vishaltesting7@gmail.com", "Reply To Vishal", "I am Fine", $mailHeader);
 //                    if ($rely)
