@@ -91,11 +91,11 @@ class Mailbox extends CI_Controller {
                             "Return-Path: <vishal@mikhailkuznetsov.com>\r\n" .
                             "Envelope-to: vishal@mikhailkuznetsov.com\r\n" .
                             "Content-Type: text/html; charset=ISO-8859-1\r\n";
-                    $rely = imap_mail("vishaltesting7@gmail.com", $mailHeader->subject, "How Are You?", $headers);
-                    if ($rely)
-                        echo 'SEND';
-                    else
-                        echo 'FAILED';
+//                    $rely = imap_mail("vishaltesting7@gmail.com", $mailHeader->subject, "How Are You?", $headers);
+//                    if ($rely)
+//                        echo 'SEND';
+//                    else
+//                        echo 'FAILED';
 //                    print_r(imap_fetchheader($this->stream, $email_id));
 //                    echo '<br>';
 //                    $data['email'][$key]['headerInfo'] = $mailHeader;
