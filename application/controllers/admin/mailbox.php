@@ -94,19 +94,12 @@ class Mailbox extends CI_Controller {
                 }
             }
             if ($flag) {
-                if (array_key_exists($value['subject'], $threads)) {
-                    $threads[$value['subject']][] = $value;
-                } else {
-                    $threads[$value['subject']][] = $value;
-                }
+//                if (array_key_exists($value['subject'], $threads)) {
+                $threads[$value['subject']][] = $value;
+//                } else {
+//                    $threads[$value['subject']][] = $value;
+//                }
             }
-
-
-//            if (strpos($value['subject'], 'Re: ') !== false) {
-//                $sub = substr($value['subject'], 4, strlen($value['subject']));
-//            } else {
-//                
-//            }
         }
         echo '<pre>';
         print_r($threads);
