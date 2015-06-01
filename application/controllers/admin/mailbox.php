@@ -89,11 +89,11 @@ class Mailbox extends CI_Controller {
                             "In-Reply-To: {$mailHeader->in_reply_to}\r\n" .
                             "References: {$mailHeader->references}\r\n" .
                             "Content-Type: text/html; charset=ISO-8859-1\r\n";
-                    $rely = imap_mail("vishaltesting7@gmail.com", $mailHeader->subject, "I am Fine", $headers);
-                    if ($rely)
-                        echo 'SEND';
-                    else
-                        echo 'FAILED';
+//                    $rely = imap_mail("vishaltesting7@gmail.com", $mailHeader->subject, "I am Fine", $headers);
+//                    if ($rely)
+//                        echo 'SEND';
+//                    else
+//                        echo 'FAILED';
 //                    print_r(imap_fetchheader($this->stream, $email_id));
 //                    echo '<br>';
 //                    $data['email'][$key]['headerInfo'] = $mailHeader;
