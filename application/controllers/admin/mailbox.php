@@ -90,10 +90,9 @@ class Mailbox extends CI_Controller {
             foreach ($data['email'] as $val) {
                 if ($val['subject'] == "Re: " . $value['subject']) {
                     continue;
-                } else {
-                    echo $value['subject'] . '<br>';
                 }
             }
+            echo $value['subject'] . '<br>';
 
 //            if (strpos($value['subject'], 'Re: ') !== false) {
 //                $sub = substr($value['subject'], 4, strlen($value['subject']));
