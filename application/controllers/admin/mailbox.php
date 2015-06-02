@@ -123,7 +123,7 @@ class Mailbox extends CI_Controller {
             }
         }
         $threads = $this->makeThreads($mailbox, "AJAX");
-        print_r($threads);
+        print_r($threads[$subject]);
         die();
         echo json_encode($threads[$subject]);
     }
