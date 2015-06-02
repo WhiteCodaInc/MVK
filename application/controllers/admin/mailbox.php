@@ -94,8 +94,7 @@ class Mailbox extends CI_Controller {
                 }
             }
             if ($flag) {
-                if (!key_exists($value['subject'], $threads))
-                    $threads[$value['subject']][] = $value;
+                $threads[$value['subject']][] = $value;
             }
         }
         $data['threads'] = $threads;
