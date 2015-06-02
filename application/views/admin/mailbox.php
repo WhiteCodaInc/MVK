@@ -111,6 +111,7 @@
                                             <tbody>
                                                 <?php
                                                 foreach ($threads as $key => $mail) {
+                                                    $trid = str_replace(' ', '-', $key);
                                                     ?>
                                                     <tr id="<?= $key ?>" class="<?= $trid ?>" style="<?= (!$mail[0]['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>">
                                                         <td class="small-col">
@@ -532,7 +533,6 @@ switch ($msg) {
         $('button.reply').click(function () {
             $('.close').trigger('click');
             var val = $(this).val();
-            console.log(val);
             $('#composeForm input[name="email_to"]').val($('tr#' + val + ' td.name').text().trim());
             $('#composeForm input[name="email_subject"]').val($('tr#' + val + ' td.subject').text().trim());
             $('a#compose').trigger('click');
