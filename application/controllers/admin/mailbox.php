@@ -108,6 +108,8 @@ class Mailbox extends CI_Controller {
 
     function getConversation() {
         $subject = str_replace('-', ' ', $this->input->post('subject'));
+        echo $subject;
+        die();
         if (!$this->is_login())
             header('location:' . site_url() . 'admin/mailbox');
         $url = "{mail.mikhailkuznetsov.com:143/notls}INBOX";
