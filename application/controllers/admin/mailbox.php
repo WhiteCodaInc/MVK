@@ -111,6 +111,7 @@ class Mailbox extends CI_Controller {
             } else if (!$imap_obj->Nmsgs) {
                 $mailbox = array();
             } else {
+                $display = ($pos['type'] == "Sent") ? 1 : 2;
                 imap_reopen($this->stream, $url);
                 $emails = imap_search($this->stream, 'ALL');
                 if (is_array($emails)) {
