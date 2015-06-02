@@ -117,7 +117,7 @@
                                                     print_r($mail);
                                                     foreach ($mail as $key => $val) {
                                                         if (++$key != count($mail))
-                                                            $emailids .= $val['id'] . '';
+                                                            $emailids .= $val['id'] . '-';
                                                         else
                                                             $emailids .= $val['id'];
                                                     }
