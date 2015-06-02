@@ -113,6 +113,8 @@
                                                 $cnt = 0;
                                                 $emailids = "";
                                                 foreach ($threads as $key => $mail) {
+                                                    echo '<pre>';
+                                                    print_r($mail);
                                                     $trid = str_replace(' ', '-', $key);
                                                     foreach ($mail as $key => $value) {
                                                         if ($key != count($mail) - 1)
