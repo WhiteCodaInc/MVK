@@ -540,14 +540,7 @@ switch ($msg) {
                     });
                 }
             });
-            console.log(id);
-            return false;
             $('button.reply').attr('id', id);
-            $('#mail-body #subject').text($('tr#' + id + ' td.subject').text());
-            $('#mail-body #from').text($('tr#' + id + ' td.name').text());
-            $('#mail-body #date').text($('tr#' + id + ' td.time').text());
-            $('#mail-body #to').text($('span.to' + id).text());
-            $('#mail-body #body').text($('span.body' + id).text());
         });
 
         $('button.reply').click(function () {
