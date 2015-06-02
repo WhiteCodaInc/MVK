@@ -111,7 +111,7 @@ class Mailbox extends CI_Controller {
             } else if (!$imap_obj->Nmsgs) {
                 $mailbox = array();
             } else {
-                $display = ($pos['type'] == "Sent") ? 1 : 2;
+                $display = ($post['type'] == "Sent") ? 1 : 2;
                 imap_reopen($this->stream, $url);
                 $emails = imap_search($this->stream, 'ALL');
                 if (is_array($emails)) {
@@ -124,7 +124,7 @@ class Mailbox extends CI_Controller {
                         $mailbox[$key]['to'] = $this->decode_imap_text($overview[0]->to);
                         $mailbox[$key]['date'] = date('m-d-Y H:i', strtotime($overview[0]->date));
                         $mailbox[$key]['status'] = ($overview[0]->seen) ? 1 : 0;
-                        $mailbox[$key]['body'] = imap_fetchbody($this->stream, $email_id, 2);
+                        $mailbox[$key]['body'] = imap_fetchbody($this->stream, $email_id, $display);
                     }
                 }
             }
