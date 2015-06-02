@@ -503,8 +503,15 @@ switch ($msg) {
 
         $('td > a').click(function () {
             var id = $(this).parents('tr').prop('id');
+            $.ajax({
+                type: 'POST',
+                data: {subject: id},
+                url: "<?= site_url() ?>admin/mailbox/getConversation",
+                success: function (data, textStatus, jqXHR) {
+
+                }
+            });
             console.log(id);
-            return false;
             $('button.reply').attr('id', id);
             $('#mail-body #subject').text($('tr#' + id + ' td.subject').text());
             $('#mail-body #from').text($('tr#' + id + ' td.name').text());
