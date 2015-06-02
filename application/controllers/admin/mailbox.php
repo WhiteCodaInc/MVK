@@ -119,8 +119,6 @@ class Mailbox extends CI_Controller {
         } else {
             imap_reopen($this->stream, $url);
             $emails = imap_search($this->stream, 'SUBJECT "' . $subject . '"', SE_UID);
-            print_r($emails);
-            die();
             if (is_array($emails)) {
                 rsort($emails);
                 foreach ($emails as $key => $email_id) {
