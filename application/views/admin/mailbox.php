@@ -113,7 +113,7 @@
                                                 foreach ($threads as $key => $mail) {
                                                     $trid = str_replace(' ', '-', $key);
                                                     ?>
-                                                    <tr id="<?= $trid ?>" style="<?= (!$mail[0]['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>" class="">
+                                                    <tr  class="<?= $trid ?>" style="<?= (!$mail[0]['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>">
                                                         <td class="small-col">
                                                             <input type="checkbox" name="email_subject[]" value="<?= $trid ?>" />
                                                         </td>
@@ -131,9 +131,9 @@
                                                             <?= $mail[0]['date'] ?>
                                                         </td>
                                                     </tr>
-                                                <span style="display: none" class="body"><?= $mail[0]['body'] ?></span>
-                                                <span style="display: none" class="to"><?= $mail[0]['to'] ?></span>
-                                            <?php } ?>
+        <!--                                                <span style="display: none" class="body"><?= $mail[0]['body'] ?></span>
+                                                    <span style="display: none" class="to"><?= $mail[0]['to'] ?></span>-->
+                                                <?php } ?>
                                             </tbody>
                                             <tfoot>
                                                 <tr>
@@ -528,16 +528,16 @@ switch ($msg) {
                     });
                 }
             });
-            $('button.reply').attr('id', id);
+            $('button.reply').prop('value', id);
         });
 
         $('button.reply').click(function () {
             $('.close').trigger('click');
-            var id = $(this).attr('id');
+            var val = $(this).val();
 //            is_reply = true;
 //            $('#composeForm #msg_txt').show();
-            $('#composeForm input[name="email_to"]').val($('tr#' + id + ' td.name').text().trim());
-            $('#composeForm input[name="email_subject"]').val($('tr#' + id + ' td.subject').text().trim());
+            $('#composeForm input[name="email_to"]').val($('tr.' + id + ' td.name').text().trim());
+            $('#composeForm input[name="email_subject"]').val($('tr.' + id + ' td.subject').text().trim());
 //            $('#composeForm #msg_txt p').text($('span.body' + id).text().trim());
 //            CKEDITOR.instances['email_message'].setData($('span.body' + id).text().trim(), true);
 //            editor.setValue($('span.body' + id).text().trim(), true);
