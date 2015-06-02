@@ -85,6 +85,9 @@ class Mailbox extends CI_Controller {
         }
         $data['folder'] = $this->getInboxFolder();
         $data['threads'] = $this->makeThreads($mailbox);
+//        echo '<pre>';
+//        print_r($data);
+//        die();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -300,6 +303,9 @@ class Mailbox extends CI_Controller {
         if (!$this->inbox_user)
             header('location:' . site_url() . 'admin/mailbox');
         $post = $this->input->post();
+        echo '<pre>';
+        print_r($post);
+        die();
         if (!$this->stream) {
             echo imap_last_error();
         } else if (count($post['email_id'])) {
@@ -307,18 +313,7 @@ class Mailbox extends CI_Controller {
                     "{mail.mikhailkuznetsov.com:143/notls}INBOX.{$post['type']}" :
                     "{mail.mikhailkuznetsov.com:143/notls}INBOX";
             imap_reopen($this->stream, $url);
-            $emails = imap_search($this->stream, 'ALL');
-            if (is_array($emails)) {
-                rsort($emails);
-                $data = array();
-                foreach ($emails as $key => $email_id) {
-                    $overview = imap_fetch_overview($this->stream, $email_id, 0);
-                    $mailbox[$key]['id'] = $overview[0]->uid;
-                    $mailbox[$key]['subject'] = $this->decode_imap_text($overview[0]->subject);
-                }
-            } else {
-                $mailbox = array();
-            }
+
             switch ($post['submit']) {
 //                case "unread":
 //                    foreach ($post['email_id'] as $email_id) {
