@@ -506,7 +506,7 @@ switch ($msg) {
                     $.each(json, function (i, item) {
                         $acordian = $('#accordion .demo').clone();
                         $acordian.removeClass('demo');
-                        $acordian.prop('display', 'block');
+                        $acordian.removeAttr('style');
                         $acordian.find('h4 > a').prop('href', "#collapse" + item.id);
                         $acordian.find('#collapseOne .box-body').text(item.body);
                         $acordian.find('h4 > a').text(item.from);
