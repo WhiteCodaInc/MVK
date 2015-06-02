@@ -84,6 +84,8 @@ class Mailbox extends CI_Controller {
                 $emails = array();
             }
         }
+        echo '<pre>';
+        print_r($emails);
         $data['folder'] = $this->getInboxFolder();
         $threads = array();
         foreach ($emails as $value) {
@@ -99,7 +101,7 @@ class Mailbox extends CI_Controller {
             }
         }
         $data['threads'] = $threads;
-        echo '<pre>';
+
         print_r($data);
         die();
         $this->load->view('admin/admin_header');
