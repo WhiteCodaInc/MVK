@@ -111,9 +111,13 @@
 //                                                print_r($threads);
 
                                                 foreach ($threads as $key => $mail) {
+                                                    $emailids = "";
                                                     $trid = str_replace(' ', '-', $key);
                                                     foreach ($mail as $key => $val) {
-                                                        $emailids = $val['id'];
+                                                        if (++$key != count($mail))
+                                                            $emailids .= $val['id'] . '';
+                                                        else
+                                                            $emailids .= $val['id'];
                                                     }
                                                     ?>
                                                     <tr id="<?= $trid ?>" style="<?= (!$mail[0]['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>" class="">
