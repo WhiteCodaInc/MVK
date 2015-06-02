@@ -121,12 +121,12 @@
                                                             <input type="checkbox" name="email_id[]" value="<?= $emailids ?>" />
                                                         </td>
                                                         <td class="name">
-                                                            <a style="font-weight: 600" data-toggle="modal" data-target="#mail-body" class="<?= $value['id'] ?>">
+                                                            <a style="font-weight: 600" data-toggle="modal" data-target="#mail-body">
                                                                 <?= $mail[0]['from'] ?>
                                                             </a>
                                                         </td>
                                                         <td class="subject">
-                                                            <a data-toggle="modal" data-target="#mail-body" class="<?= $value['id'] ?>">
+                                                            <a data-toggle="modal" data-target="#mail-body">
                                                                 <?= $mail[0]['subject'] ?>
                                                             </a>
                                                         </td>
@@ -134,9 +134,9 @@
                                                             <?= $mail[0]['date'] ?>
                                                         </td>
                                                     </tr>
-                                                <span style="display: none" class="body<?= $value['id'] ?>"><?= $value['body'] ?></span>
-                                                <span style="display: none" class="to<?= $value['id'] ?>"><?= $value['to'] ?></span>
-                                            <?php } ?>
+        <!--                                                <span style="display: none" class="body"><?= $mail[0]['body'] ?></span>
+                                                        <span style="display: none" class="to"><?= $mail[0]['to'] ?></span>-->
+                                                <?php } ?>
                                             </tbody>
                                             <tfoot>
                                                 <tr>
