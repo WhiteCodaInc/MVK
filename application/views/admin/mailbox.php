@@ -292,11 +292,13 @@
                                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">
                                             Collapsible Group Item #1
                                         </a>
+                                        <div id="time">
+                                            06-02-2015 01:00
+                                        </div>
                                     </h4>
                                 </div>
                                 <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;">
                                     <div class="box-body">
-
                                     </div>
                                 </div>
                             </div>
