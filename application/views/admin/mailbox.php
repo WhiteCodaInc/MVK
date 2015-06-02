@@ -502,7 +502,7 @@ switch ($msg) {
 
         $('td > a').click(function () {
             var id = $(this).parents('tr').prop('id');
-//            $('#accordion').children('div.demo:not').remove();
+            $('#accordion').children().not('div.demo').remove();
             $.ajax({
                 type: 'POST',
                 data: {subject: id},
