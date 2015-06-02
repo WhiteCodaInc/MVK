@@ -94,13 +94,14 @@ class Mailbox extends CI_Controller {
                 }
             }
             if ($flag) {
-                $threads[$value['subject']][] = $value;
+                if (!key_exists($value['subject'], $threads))
+                    $threads[$value['subject']][] = $value;
             }
         }
         $data['threads'] = $threads;
-//        echo '<pre>';
-//        print_r($data);
-//        die();
+        echo '<pre>';
+        print_r($data);
+        die();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');

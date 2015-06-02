@@ -110,25 +110,28 @@
                                                 echo '<pre>';
                                                 print_r($threads);
 
-                                                foreach ($threads as $key => $value) {
-                                                    $id = str_replace(' ', '-', $key);
+                                                foreach ($threads as $key => $mail) {
+                                                    $trid = str_replace(' ', '-', $key);
+                                                    foreach ($mail as $key => $val) {
+                                                        $emailids = $val['id'];
+                                                    }
                                                     ?>
-                                                    <tr id="<?= $id ?>" style="<?= (!$value['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>" class="">
+                                                    <tr id="<?= $trid ?>" style="<?= (!$mail[0]['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>" class="">
                                                         <td class="small-col">
-                                                            <input type="checkbox" name="email_id[]" value="<?= $value['id'] ?>" />
+                                                            <input type="checkbox" name="email_id[]" value="<?= $emailids ?>" />
                                                         </td>
                                                         <td class="name">
                                                             <a style="font-weight: 600" data-toggle="modal" data-target="#mail-body" class="<?= $value['id'] ?>">
-                                                                <?= $value['from'] ?>
+                                                                <?= $mail[0]['from'] ?>
                                                             </a>
                                                         </td>
                                                         <td class="subject">
                                                             <a data-toggle="modal" data-target="#mail-body" class="<?= $value['id'] ?>">
-                                                                <?= $value['subject'] ?>
+                                                                <?= $mail[0]['subject'] ?>
                                                             </a>
                                                         </td>
                                                         <td class="time">
-                                                            <?= $value['date'] ?>
+                                                            <?= $mail[0]['date'] ?>
                                                         </td>
                                                     </tr>
                                                 <span style="display: none" class="body<?= $value['id'] ?>"><?= $value['body'] ?></span>
