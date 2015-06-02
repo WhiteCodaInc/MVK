@@ -283,7 +283,7 @@
                 <h4 class="modal-title"><i class="fa fa-envelope-o"></i> View Email</h4>
             </div>
             <div class="modal-body">
-                <div class="box box-solid">
+                <div class="box box-solid conversation">
                     <div class="box-body" style="min-height: 200px;height: auto;">
                         <div class="box-group" id="accordion">
                             <div class="panel box box-primary demo" style="display: none">
@@ -503,6 +503,8 @@ switch ($msg) {
         });
 
         $('td > a').click(function () {
+            $('.conversation .loading-img').show();
+            $('.conversation .overlay').show();
             var id = $(this).parents('tr').prop('id');
             $('#accordion').children().not('div.demo').remove();
             $.ajax({
@@ -510,6 +512,8 @@ switch ($msg) {
                 data: {subject: id},
                 url: "<?= site_url() ?>admin/mailbox/getConversation",
                 success: function (data, textStatus, jqXHR) {
+                    $('.conversation .loading-img').hide();
+                    $('.conversation .overlay').hide();
                     var json = JSON.parse(data);
                     $.each(json, function (i, item) {
                         $acordian = $('#accordion .demo').clone();
