@@ -517,6 +517,7 @@ switch ($msg) {
                         $acordian.find('#collapseOne .box-body').text(item.body);
                         $acordian.find('h4 > a').html(item.from);
                         $acordian.find('#collapseOne').prop('id', "collapse" + item.id);
+                        $acordian.find('#time').text(item.date);
                         $('#accordion .demo').before($acordian);
                     });
                 }
