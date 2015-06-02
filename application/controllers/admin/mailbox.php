@@ -159,10 +159,8 @@ class Mailbox extends CI_Controller {
     }
 
     function send() {
-
         $to = "";
         $emails = "";
-
         if (!$this->inbox_user)
             header('location:' . site_url() . 'admin/mailbox');
 
@@ -306,7 +304,9 @@ class Mailbox extends CI_Controller {
         if (!$this->inbox_user)
             header('location:' . site_url() . 'admin/mailbox');
         $post = $this->input->post();
-
+        echo '<pre>';
+        print_r($post);
+        die();
         if (!$this->stream) {
             echo imap_last_error();
         } else if (count($post['email_id'])) {
