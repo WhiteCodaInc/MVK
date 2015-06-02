@@ -84,10 +84,7 @@ class Mailbox extends CI_Controller {
             }
         }
         $data['folder'] = $this->getInboxFolder();
-        $data['threads'] = $this->makeThreads($mailbox, "NORMAL");
-//        echo '<pre>';
-//        print_r($data);
-//        die();
+        $data['threads'] = $this->makeThreads($mailbox);
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -124,14 +121,14 @@ class Mailbox extends CI_Controller {
                     }
                 }
             }
-            $threads = $this->makeThreads($mailbox, "AJAX");
+            $threads = $this->makeThreads($mailbox);
             echo json_encode(array_reverse($threads[$subject]));
         } else {
             header('location:' . site_url() . 'admin/mailbox/inbox');
         }
     }
 
-    function makeThreads($mailbox, $type) {
+    function makeThreads($mailbox) {
         $threads = array();
         foreach ($mailbox as $value) {
             $flag = TRUE;
@@ -142,8 +139,7 @@ class Mailbox extends CI_Controller {
                 }
             }
             if ($flag) {
-                if ($type == "AJAX" || !key_exists($value['subject'], $threads))
-                    $threads[$value['subject']][] = $value;
+                $threads[$value['subject']][] = $value;
             }
         }
         return $threads;
@@ -304,9 +300,6 @@ class Mailbox extends CI_Controller {
         if (!$this->inbox_user)
             header('location:' . site_url() . 'admin/mailbox');
         $post = $this->input->post();
-        echo '<pre>';
-        print_r($post);
-        die();
         if (!$this->stream) {
             echo imap_last_error();
         } else if (count($post['email_id'])) {
@@ -314,7 +307,18 @@ class Mailbox extends CI_Controller {
                     "{mail.mikhailkuznetsov.com:143/notls}INBOX.{$post['type']}" :
                     "{mail.mikhailkuznetsov.com:143/notls}INBOX";
             imap_reopen($this->stream, $url);
-
+            $emails = imap_search($this->stream, 'ALL');
+            if (is_array($emails)) {
+                rsort($emails);
+                $data = array();
+                foreach ($emails as $key => $email_id) {
+                    $overview = imap_fetch_overview($this->stream, $email_id, 0);
+                    $mailbox[$key]['id'] = $overview[0]->uid;
+                    $mailbox[$key]['subject'] = $this->decode_imap_text($overview[0]->subject);
+                }
+            } else {
+                $mailbox = array();
+            }
             switch ($post['submit']) {
 //                case "unread":
 //                    foreach ($post['email_id'] as $email_id) {

@@ -111,12 +111,19 @@
                                             <tbody>
                                                 <?php
                                                 $cnt = 0;
+                                                $emailids = "";
                                                 foreach ($threads as $key => $mail) {
                                                     $trid = str_replace(' ', '-', $key);
+                                                    foreach ($mail as $key => $value) {
+                                                        if ($key != count($mail))
+                                                            $emailids .= $value->id . '-';
+                                                        else
+                                                            $emailids .= $value->id;
+                                                    }
                                                     ?>
                                                     <tr id="<?= ++$cnt ?>" class="<?= $trid ?>" style="<?= (!$mail[0]['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>">
                                                         <td class="small-col">
-                                                            <input type="checkbox" name="email_subject[]" value="<?= $trid ?>" />
+                                                            <input type="checkbox" name="email_id[]" value="<?= $emailids ?>" />
                                                         </td>
                                                         <td class="name">
                                                             <a style="font-weight: 600" data-toggle="modal" data-target="#mail-body">
