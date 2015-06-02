@@ -503,7 +503,7 @@ switch ($msg) {
         $('td > a').click(function () {
             $('.conversation .loading-img').show();
             $('.conversation .overlay').show();
-            var id = $(this).parents('tr').prop('id');
+            var id = $(this).parents('tr').prop('class');
             $('#accordion').children().not('div.demo').remove();
             $.ajax({
                 type: 'POST',
