@@ -116,12 +116,12 @@
                                                     echo '<pre>';
                                                     print_r($mail);
                                                     $trid = str_replace(' ', '-', $key);
-                                                    foreach ($mail as $key => $value) {
-                                                        if ($key != count($mail) - 1)
-                                                            $emailids .= $value['id'] . '-';
-                                                        else
-                                                            $emailids .= $value['id'];
-                                                    }
+//                                                    foreach ($mail as $key => $value) {
+//                                                        if ($key != count($mail) - 1)
+//                                                            $emailids .= $value['id'] . '-';
+//                                                        else
+//                                                            $emailids .= $value['id'];
+//                                                    }
                                                     ?>
                                                     <tr id="<?= ++$cnt ?>" class="<?= $trid ?>" style="<?= (!$mail[0]['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>">
                                                         <td class="small-col">
