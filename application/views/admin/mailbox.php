@@ -502,7 +502,9 @@ switch ($msg) {
         });
 
         $('td > a').click(function () {
-            var id = $(this).attr('class');
+            var id = $(this).parents('tr');
+            console.log(id);
+            return false;
             $('button.reply').attr('id', id);
             $('#mail-body #subject').text($('tr#' + id + ' td.subject').text());
             $('#mail-body #from').text($('tr#' + id + ' td.name').text());
