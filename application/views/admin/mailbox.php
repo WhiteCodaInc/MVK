@@ -7,6 +7,9 @@
         color: #444;
         cursor: pointer;
     }
+    #accordion .box-title{
+        font-size: 15px
+    }
 </style>
 
 <aside class="right-side">
