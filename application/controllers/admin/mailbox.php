@@ -305,7 +305,6 @@ class Mailbox extends CI_Controller {
         $post = $this->input->post();
         echo '<pre>';
         print_r($post);
-        die();
         if (!$this->stream) {
             echo imap_last_error();
         } else if (count($post['email_id'])) {
