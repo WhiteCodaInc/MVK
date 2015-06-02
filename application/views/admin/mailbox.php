@@ -111,9 +111,8 @@
                                             <tbody>
                                                 <?php
                                                 foreach ($threads as $key => $mail) {
-                                                    $trid = str_replace(' ', '_', $key);
                                                     ?>
-                                                    <tr  class="<?= $trid ?>" style="<?= (!$mail[0]['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>">
+                                                    <tr id="<?= $key ?>" class="<?= $trid ?>" style="<?= (!$mail[0]['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>">
                                                         <td class="small-col">
                                                             <input type="checkbox" name="email_subject[]" value="<?= $trid ?>" />
                                                         </td>
@@ -503,11 +502,12 @@ switch ($msg) {
         $('td > a').click(function () {
             $('.conversation .loading-img').show();
             $('.conversation .overlay').show();
-            var id = $(this).parents('tr').prop('class');
+            var cls = $(this).parents('tr').prop('class');
+            var id = $(this).parents('tr').prop('id');
             $('#accordion').children().not('div.demo').remove();
             $.ajax({
                 type: 'POST',
-                data: {subject: id},
+                data: {subject: cls},
                 url: "<?= site_url() ?>admin/mailbox/getConversation",
                 success: function (data, textStatus, jqXHR) {
                     $('.conversation .loading-img').hide();
@@ -533,8 +533,8 @@ switch ($msg) {
             $('.close').trigger('click');
             var val = $(this).val();
             console.log(val);
-            $('#composeForm input[name="email_to"]').val($('tr.' + val + ' td.name').text().trim());
-            $('#composeForm input[name="email_subject"]').val($('tr.' + val + ' td.subject').text().trim());
+            $('#composeForm input[name="email_to"]').val($('tr#' + val + ' td.name').text().trim());
+            $('#composeForm input[name="email_subject"]').val($('tr#' + val + ' td.subject').text().trim());
             $('a#compose').trigger('click');
         });
 
