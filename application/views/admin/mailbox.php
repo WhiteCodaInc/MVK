@@ -284,7 +284,7 @@
             </div>
             <div class="modal-body">
                 <div class="box box-solid">
-                    <div class="box-body">
+                    <div class="box-body" style="min-height: 200px;height: auto;">
                         <div class="box-group" id="accordion">
                             <div class="panel box box-primary demo" style="display: none">
                                 <div class="box-header">
