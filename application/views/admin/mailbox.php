@@ -106,7 +106,11 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php foreach ($email as $key => $value) { ?>
+                                                <?php
+                                                foreach ($threads as $key => $value) {
+                                                    echo '<pre>';
+                                                    print_r($key);
+                                                    ?>
                                                     <tr id="<?= $value['id'] ?>" style="<?= (!$value['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>" class="">
                                                         <td class="small-col">
                                                             <input type="checkbox" name="email_id[]" value="<?= $value['id'] ?>" />
