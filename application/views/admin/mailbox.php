@@ -107,8 +107,8 @@
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                echo '<pre>';
-                                                print_r($threads);
+//                                                echo '<pre>';
+//                                                print_r($threads);
 
                                                 foreach ($threads as $key => $mail) {
                                                     $trid = str_replace(' ', '-', $key);
