@@ -420,10 +420,16 @@ class Mailbox extends CI_Controller {
         foreach ($boxes as $box) {
             imap_reopen($this->stream, $box);
             $emails = imap_search($this->stream, "ALL");
-            if (is_array($emails))
-                $folder[] = count($emails);
-            else
+            $mailbox = array();
+            if (is_array($emails)) {
+                foreach ($emails as $key => $email_id) {
+                    $overview = imap_fetch_overview($this->stream, $email_id, 0);
+                    $mailbox[$key]['subject'] = $this->decode_imap_text($overview[0]->subject);
+                }
+                $folder[] = count($this->makeThreads($mailbox, "NORMAL"));
+            } else {
                 $folder[] = 0;
+            }
         }
 //        imap_close($this->stream);
         return $folder;
