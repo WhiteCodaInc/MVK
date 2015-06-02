@@ -340,8 +340,8 @@ class Mailbox extends CI_Controller {
 //                            imap_mail_move($this->stream, $email_id, 'INBOX.Trash', CP_UID);
 ////                            echo 'TRASH';
 //                        }
-                        die();
                     }
+                    die();
                     break;
                 case "spam":
                     foreach ($post['email_id'] as $email_id) {
