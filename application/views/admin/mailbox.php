@@ -114,15 +114,16 @@
 
                                                 foreach ($threads as $key => $mail) {
                                                     $emailids = "";
+                                                    ++$cnt;
                                                     $trid = str_replace(' ', '-', $key);
                                                     foreach ($mail as $key => $value) {
-                                                        if (++$key != count($mail) - 1)
+                                                        if ($cnt != count($mail))
                                                             $emailids .= $value['id'] . '-';
                                                         else
                                                             $emailids .= $value['id'];
                                                     }
                                                     ?>
-                                                    <tr id="<?= ++$cnt ?>" class="<?= $trid ?>" style="<?= (!$mail[0]['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>">
+                                                    <tr id="<?= $cnt ?>" class="<?= $trid ?>" style="<?= (!$mail[0]['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>">
                                                         <td class="small-col">
                                                             <input type="checkbox" name="email_id[]" value="<?= $emailids ?>" />
                                                         </td>
