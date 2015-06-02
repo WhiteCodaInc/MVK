@@ -110,10 +110,11 @@
                                             </thead>
                                             <tbody>
                                                 <?php
+                                                $cnt = 0;
                                                 foreach ($threads as $key => $mail) {
                                                     $trid = str_replace(' ', '-', $key);
                                                     ?>
-                                                    <tr id="<?= $key ?>" class="<?= $trid ?>" style="<?= (!$mail[0]['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>">
+                                                    <tr id="<?= ++$cnt ?>" class="<?= $trid ?>" style="<?= (!$mail[0]['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>">
                                                         <td class="small-col">
                                                             <input type="checkbox" name="email_subject[]" value="<?= $trid ?>" />
                                                         </td>
