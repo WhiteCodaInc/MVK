@@ -304,10 +304,10 @@
                             </div>
                         </div>
                     </div><!-- /.box-body -->
+                    <div class="overlay"></div>
+                    <div class="loading-img"></div>
                 </div>
             </div>
-            <div class="overlay"></div>
-            <div class="loading-img"></div>
             <div class="modal-footer clearfix">
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
                 <button type="button"  class="btn btn-primary pull-left reply"><i class="fa fa-mail-reply"></i> Reply</button>
