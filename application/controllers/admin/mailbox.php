@@ -85,9 +85,9 @@ class Mailbox extends CI_Controller {
         }
         $data['folder'] = $this->getInboxFolder();
         $data['threads'] = $this->makeThreads($mailbox, "NORMAL");
-        echo '<pre>';
-        print_r($data);
-        die();
+//        echo '<pre>';
+//        print_r($data);
+//        die();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -123,8 +123,7 @@ class Mailbox extends CI_Controller {
             }
         }
         $threads = $this->makeThreads($mailbox, "AJAX");
-        print_r($threads[$subject]);
-        die();
+        echo json_encode($threads[$subject]);
     }
 
     function makeThreads($mailbox, $type) {
