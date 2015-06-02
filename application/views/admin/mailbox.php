@@ -111,7 +111,7 @@
                                             <tbody>
                                                 <?php
                                                 foreach ($threads as $key => $mail) {
-                                                    $trid = str_replace(' ', '-', $key);
+                                                    $trid = str_replace(' ', '_', $key);
                                                     ?>
                                                     <tr  class="<?= $trid ?>" style="<?= (!$mail[0]['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>">
                                                         <td class="small-col">
