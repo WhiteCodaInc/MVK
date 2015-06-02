@@ -330,13 +330,18 @@ class Mailbox extends CI_Controller {
 //                    print_r($post);
 //                    die();
                     foreach ($post['email_id'] as $email_id) {
-                        if ($post['type'] == "Trash") {
-                            imap_delete($this->stream, $email_id, FT_UID);
-//                            echo 'DELETE';
-                        } else {
-                            imap_mail_move($this->stream, $email_id, 'INBOX.Trash', CP_UID);
-//                            echo 'TRASH';
+                        $ids = explode('-', $email_id);
+                        foreach ($ids as $value) {
+                            echo $value . '<br>';
                         }
+//                        if ($post['type'] == "Trash") {
+//                            imap_delete($this->stream, $email_id, FT_UID);
+////                            echo 'DELETE';
+//                        } else {
+//                            imap_mail_move($this->stream, $email_id, 'INBOX.Trash', CP_UID);
+////                            echo 'TRASH';
+//                        }
+                        die();
                     }
                     break;
                 case "spam":
