@@ -502,7 +502,7 @@ switch ($msg) {
         });
 
         $('td > a').click(function () {
-            var id = $(this).parents('tr');
+            var id = $(this).parents('tr').prop('id');
             console.log(id);
             return false;
             $('button.reply').attr('id', id);
