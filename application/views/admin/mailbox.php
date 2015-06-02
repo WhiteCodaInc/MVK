@@ -517,7 +517,7 @@ switch ($msg) {
             $('#accordion').children().not('div.demo').remove();
             $.ajax({
                 type: 'POST',
-                data: {subject: cls},
+                data: {subject: cls, type: $('input[name="type"]').val()},
                 url: "<?= site_url() ?>admin/mailbox/getConversation",
                 success: function (data, textStatus, jqXHR) {
                     $('.conversation .loading-img').hide();

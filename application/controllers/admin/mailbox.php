@@ -98,10 +98,13 @@ class Mailbox extends CI_Controller {
     function getConversation() {
         if (!$this->is_login())
             header('location:' . site_url() . 'admin/mailbox');
-        $sub = $this->input->post('subject');
-        if ($sub != "") {
-            $subject = str_replace('-', ' ', $sub);
-            $url = "{mail.mikhailkuznetsov.com:143/notls}INBOX";
+        $post = $this->input->post();
+
+        if ($post['subject'] != "") {
+            $subject = str_replace('-', ' ', $post['subject']);
+            $url = ($post['type'] != "Inbox") ?
+                    "{mail.mikhailkuznetsov.com:143/notls}INBOX.{$post['type']}" :
+                    "{mail.mikhailkuznetsov.com:143/notls}INBOX";
             $imap_obj = imap_check($this->stream);
             if (!$imap_obj) {
                 $mailbox = array();
