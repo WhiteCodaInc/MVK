@@ -288,11 +288,11 @@
                         <div class="box-group" id="accordion">
                             <div class="panel box box-primary demo" style="display: none">
                                 <div class="box-header">
-                                    <h4 class="box-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">
+                                    <h4 style="width: 100%" class="box-title">
+                                        <a style="float: left" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">
                                             Collapsible Group Item #1
                                         </a>
-                                        <div id="time">
+                                        <div style="text-align: right" id="time">
                                             06-02-2015 01:00
                                         </div>
                                     </h4>
