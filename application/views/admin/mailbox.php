@@ -116,9 +116,9 @@
                                                     $trid = str_replace(' ', '-', $key);
                                                     foreach ($mail as $key => $value) {
                                                         if ($key != count($mail))
-                                                            $emailids .= $value->id . '-';
+                                                            $emailids .= $value['id'] . '-';
                                                         else
-                                                            $emailids .= $value->id;
+                                                            $emailids .= $value['id'];
                                                     }
                                                     ?>
                                                     <tr id="<?= ++$cnt ?>" class="<?= $trid ?>" style="<?= (!$mail[0]['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>">
