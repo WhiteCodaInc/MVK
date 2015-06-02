@@ -532,13 +532,9 @@ switch ($msg) {
         $('button.reply').click(function () {
             $('.close').trigger('click');
             var val = $(this).val();
-//            is_reply = true;
-//            $('#composeForm #msg_txt').show();
+            console.log(val);
             $('#composeForm input[name="email_to"]').val($('tr.' + val + ' td.name').text().trim());
             $('#composeForm input[name="email_subject"]').val($('tr.' + val + ' td.subject').text().trim());
-//            $('#composeForm #msg_txt p').text($('span.body' + id).text().trim());
-//            CKEDITOR.instances['email_message'].setData($('span.body' + id).text().trim(), true);
-//            editor.setValue($('span.body' + id).text().trim(), true);
             $('a#compose').trigger('click');
         });
 
