@@ -115,6 +115,7 @@
                                                 foreach ($threads as $key => $mail) {
                                                     $emailids = "";
                                                     ++$cnt;
+                                                    echo count($mail);
                                                     $trid = str_replace(' ', '-', $key);
                                                     foreach ($mail as $key => $value) {
                                                         if ($cnt != count($mail))
@@ -453,7 +454,7 @@ switch ($msg) {
             return false;
         }
     });
-
+    
     $('input[name="option"]').change(function () {
         var val = $(this).val();
         if (val == "new") {
@@ -468,14 +469,14 @@ switch ($msg) {
 
 <script type="text/javascript">
     $(document).ready(function () {
-
+        
         $('#rd_individual').trigger('click');
-
+        
         $('#discard').click(function () {
             $('#msg_txt').hide();
             $('#composeForm').trigger('reset');
         });
-
+        
         $('#user').change(function () {
             var user = $(this).val();
             $('#rd_individual').removeAttr('checked');
@@ -509,7 +510,7 @@ switch ($msg) {
                     break;
             }
         });
-
+        
         $('td > a').click(function () {
             $('.conversation .loading-img').show();
             $('.conversation .overlay').show();
@@ -539,7 +540,7 @@ switch ($msg) {
             });
             $('button.reply').prop('value', id);
         });
-
+        
         $('button.reply').click(function () {
             $('.close').trigger('click');
             var val = $(this).val();
@@ -547,12 +548,12 @@ switch ($msg) {
             $('#composeForm input[name="email_subject"]').val($('tr#' + val + ' td.subject').text().trim());
             $('a#compose').trigger('click');
         });
-
+        
         $('#composeForm').on('submit', function () {
             $('input[name="user_id"]').val(ids[contact.indexOf($('#users').val())]);
             $('.close').trigger('click');
         });
-
+        
         /*$('button.send,button.draft').click(function () {
          $('#load').css('display', 'block');
          var val = $(this).val();
@@ -582,6 +583,6 @@ switch ($msg) {
         setTimeout(function () {
             $('.ui-autocomplete').css('z-index', '9999');
         }, 1000);
-
+        
     });
 </script>
