@@ -115,7 +115,7 @@
                                                 foreach ($threads as $key => $mail) {
                                                     $trid = str_replace(' ', '-', $key);
                                                     foreach ($mail as $key => $value) {
-                                                        if (++$key != count($mail))
+                                                        if ($key != count($mail) - 1)
                                                             $emailids .= $value['id'] . '-';
                                                         else
                                                             $emailids .= $value['id'];
