@@ -131,9 +131,9 @@
                                                             <?= $mail[0]['date'] ?>
                                                         </td>
                                                     </tr>
-        <!--                                                <span style="display: none" class="body"><?= $mail[0]['body'] ?></span>
-                                                        <span style="display: none" class="to"><?= $mail[0]['to'] ?></span>-->
-                                                <?php } ?>
+                                                <span style="display: none" class="body"><?= $mail[0]['body'] ?></span>
+                                                <span style="display: none" class="to"><?= $mail[0]['to'] ?></span>
+                                            <?php } ?>
                                             </tbody>
                                             <tfoot>
                                                 <tr>
@@ -244,12 +244,12 @@
                             <input name="email_subject" type="text" class="form-control" placeholder="Email Subject">
                         </div>
                     </div>
-                    <div id="msg_txt" class="form-group" style="display: none">
-                        <div class="input-group">
-                            <label>Message</label>
-                            <p></p>
-                        </div>
-                    </div>
+                    <!--                    <div id="msg_txt" class="form-group" style="display: none">
+                                            <div class="input-group">
+                                                <label>Message</label>
+                                                <p></p>
+                                            </div>
+                                        </div>-->
                     <div class="form-group">
                         <textarea name="message" id="email_message" class="form-control" placeholder="Message" style="height: 120px;"></textarea>
                     </div>
@@ -535,10 +535,10 @@ switch ($msg) {
             $('.close').trigger('click');
             var id = $(this).attr('id');
 //            is_reply = true;
-            $('#composeForm #msg_txt').show();
+//            $('#composeForm #msg_txt').show();
             $('#composeForm input[name="email_to"]').val($('tr#' + id + ' td.name').text().trim());
             $('#composeForm input[name="email_subject"]').val($('tr#' + id + ' td.subject').text().trim());
-            $('#composeForm #msg_txt p').text($('span.body' + id).text().trim());
+//            $('#composeForm #msg_txt p').text($('span.body' + id).text().trim());
 //            CKEDITOR.instances['email_message'].setData($('span.body' + id).text().trim(), true);
 //            editor.setValue($('span.body' + id).text().trim(), true);
             $('a#compose').trigger('click');
