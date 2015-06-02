@@ -497,7 +497,7 @@ switch ($msg) {
 
         $('td > a').click(function () {
             var id = $(this).parents('tr').prop('id');
-            $('#accordion').children('div.demo:not').remove();
+//            $('#accordion').children('div.demo:not').remove();
             $.ajax({
                 type: 'POST',
                 data: {subject: id},
