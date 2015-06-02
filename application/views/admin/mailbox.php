@@ -502,9 +502,9 @@ switch ($msg) {
                 data: {subject: id},
                 url: "<?= site_url() ?>admin/mailbox/getConversation",
                 success: function (data, textStatus, jqXHR) {
-//                    json = JSON.parse(data);
-                    $.each(data, function (index, res) {
-//                        console.log(res.id);
+                    var json = JSON.parse(data);
+                    $.each(json, function (i, item) {
+                        console.log(json[i].id);
                     });
                 }
             });
