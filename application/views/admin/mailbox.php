@@ -131,9 +131,9 @@
                                                             <?= $mail[0]['date'] ?>
                                                         </td>
                                                     </tr>
-        <!--                                                <span style="display: none" class="body"><?= $mail[0]['body'] ?></span>
-                                                    <span style="display: none" class="to"><?= $mail[0]['to'] ?></span>-->
-                                                <?php } ?>
+                                                <span style="display: none" class="body"><?= $mail[0]['body'] ?></span>
+                                                <span style="display: none" class="to"><?= $mail[0]['to'] ?></span>
+                                            <?php } ?>
                                             </tbody>
                                             <tfoot>
                                                 <tr>
