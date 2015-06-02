@@ -69,10 +69,8 @@ class Mailbox extends CI_Controller {
             if (is_array($emails)) {
                 rsort($emails);
                 $data = array();
-                echo '<pre>';
                 foreach ($emails as $key => $email_id) {
                     $overview = imap_fetch_overview($this->stream, $email_id, 0);
-                    print_r($overview);
                     $mailbox[$key]['id'] = $overview[0]->uid;
                     $mailbox[$key]['subject'] = $this->decode_imap_text($overview[0]->subject);
                     $mailbox[$key]['from'] = $this->decode_imap_text($overview[0]->from);
@@ -87,7 +85,7 @@ class Mailbox extends CI_Controller {
         }
         $data['folder'] = $this->getInboxFolder();
         $data['threads'] = $this->makeThreads($mailbox);
-//        echo '<pre>';
+        echo '<pre>';
         print_r($data);
         die();
         $this->load->view('admin/admin_header');
