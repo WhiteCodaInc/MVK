@@ -509,7 +509,7 @@ switch ($msg) {
                         $acordian.removeAttr('style');
                         $acordian.find('h4 > a').prop('href', "#collapse" + item.id);
                         $acordian.find('#collapseOne .box-body').text(item.body);
-                        $acordian.find('h4 > a').text(item.from);
+                        $acordian.find('h4 > a').html(item.from);
                         $acordian.find('#collapseOne').prop('id', "collapse" + item.id);
                         $('#accordion .demo').before($acordian);
                     });
