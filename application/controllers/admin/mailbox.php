@@ -97,8 +97,9 @@ class Mailbox extends CI_Controller {
                 $threads[$value['subject']][] = $value;
             }
         }
+        $data['threads'] = $threads;
         echo '<pre>';
-        print_r($threads);
+        print_r($data);
         die();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
