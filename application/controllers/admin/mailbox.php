@@ -77,7 +77,7 @@ class Mailbox extends CI_Controller {
                     $mailbox[$key]['to'] = $this->decode_imap_text($overview[0]->to);
                     $mailbox[$key]['date'] = date('m-d-Y H:i', strtotime($overview[0]->date));
                     $mailbox[$key]['status'] = ($overview[0]->seen) ? 1 : 0;
-                    $mailbox[$key]['body'] = imap_fetchbody($this->stream, $email_id, 1);
+                    $mailbox[$key]['body'] = imap_fetchbody($this->stream, $email_id, 2);
                 }
             } else {
                 $mailbox = array();
@@ -85,9 +85,9 @@ class Mailbox extends CI_Controller {
         }
         $data['folder'] = $this->getInboxFolder();
         $data['threads'] = $this->makeThreads($mailbox);
-        echo '<pre>';
-        print_r($data);
-        die();
+//        echo '<pre>';
+//        print_r($data);
+//        die();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
