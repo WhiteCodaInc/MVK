@@ -304,6 +304,8 @@
                             </div>
                         </div>
                     </div><!-- /.box-body -->
+                    <div class="overlay"></div>
+                    <div class="loading-img"></div>
                 </div>
             </div>
             <div class="modal-footer clearfix">
