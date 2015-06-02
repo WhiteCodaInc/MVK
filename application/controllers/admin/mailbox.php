@@ -309,7 +309,7 @@ class Mailbox extends CI_Controller {
         $post = $this->input->post();
         if (!$this->stream) {
             echo imap_last_error();
-        } else if (count($post['email_id'])) {
+        } else if (isset($post['email_id']) && count($post['email_id'])) {
             $url = ($post['type'] != "Inbox") ?
                     "{mail.mikhailkuznetsov.com:143/notls}INBOX.{$post['type']}" :
                     "{mail.mikhailkuznetsov.com:143/notls}INBOX";
