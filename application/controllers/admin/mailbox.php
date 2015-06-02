@@ -123,13 +123,14 @@ class Mailbox extends CI_Controller {
                 rsort($emails);
                 foreach ($emails as $key => $email_id) {
                     $overview = imap_fetch_overview($this->stream, $email_id, 0);
-                    $mailbox[$key]['id'] = $overview[0]->uid;
-                    $mailbox[$key]['subject'] = $this->decode_imap_text($overview[0]->subject);
-                    $mailbox[$key]['from'] = $this->decode_imap_text($overview[0]->from);
-                    $mailbox[$key]['to'] = $this->decode_imap_text($overview[0]->to);
-                    $mailbox[$key]['date'] = date('m-d-Y H:i', strtotime($overview[0]->date));
-                    $mailbox[$key]['status'] = ($overview[0]->seen) ? 1 : 0;
-                    $mailbox[$key]['body'] = imap_fetchbody($this->stream, $email_id, 1);
+                    print_r($overview);
+//                    $mailbox[$key]['id'] = $overview[0]->uid;
+//                    $mailbox[$key]['subject'] = $this->decode_imap_text($overview[0]->subject);
+//                    $mailbox[$key]['from'] = $this->decode_imap_text($overview[0]->from);
+//                    $mailbox[$key]['to'] = $this->decode_imap_text($overview[0]->to);
+//                    $mailbox[$key]['date'] = date('m-d-Y H:i', strtotime($overview[0]->date));
+//                    $mailbox[$key]['status'] = ($overview[0]->seen) ? 1 : 0;
+//                    $mailbox[$key]['body'] = imap_fetchbody($this->stream, $email_id, 1);
                 }
             }
         }
