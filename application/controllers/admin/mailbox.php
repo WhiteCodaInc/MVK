@@ -60,34 +60,35 @@ class Mailbox extends CI_Controller {
 
         $imap_obj = imap_check($this->stream);
         if (!$imap_obj) {
-            $data['email'] = array();
+            $emails = array();
         } else if (!$imap_obj->Nmsgs) {
-            $data['email'] = array();
+            $emails = array();
         } else {
             imap_reopen($this->stream, $url);
             $emails = imap_search($this->stream, 'ALL');
             if (is_array($emails)) {
                 rsort($emails);
                 $data = array();
+                $emails = array();
                 foreach ($emails as $key => $email_id) {
                     $overview = imap_fetch_overview($this->stream, $email_id, 0);
-                    $data['email'][$key]['id'] = $overview[0]->uid;
-                    $data['email'][$key]['subject'] = $this->decode_imap_text($overview[0]->subject);
-                    $data['email'][$key]['from'] = $this->decode_imap_text($overview[0]->from);
-                    $data['email'][$key]['to'] = $this->decode_imap_text($overview[0]->to);
-                    $data['email'][$key]['date'] = date('m-d-Y H:i', strtotime($overview[0]->date));
-                    $data['email'][$key]['status'] = ($overview[0]->seen) ? 1 : 0;
-                    $data['email'][$key]['body'] = imap_fetchbody($this->stream, $email_id, 1);
+                    $emails[$key]['id'] = $overview[0]->uid;
+                    $emails[$key]['subject'] = $this->decode_imap_text($overview[0]->subject);
+                    $emails[$key]['from'] = $this->decode_imap_text($overview[0]->from);
+                    $emails[$key]['to'] = $this->decode_imap_text($overview[0]->to);
+                    $emails[$key]['date'] = date('m-d-Y H:i', strtotime($overview[0]->date));
+                    $emails[$key]['status'] = ($overview[0]->seen) ? 1 : 0;
+                    $emails[$key]['body'] = imap_fetchbody($this->stream, $email_id, 1);
                 }
             } else {
-                $data['email'] = array();
+                $emails = array();
             }
         }
         $data['folder'] = $this->getInboxFolder();
         $threads = array();
-        foreach ($data['email'] as $value) {
+        foreach ($emails as $value) {
             $flag = TRUE;
-            foreach ($data['email'] as $val) {
+            foreach ($emails as $val) {
                 if ($val['subject'] == "Re: " . $value['subject']) {
                     $flag = FALSE;
                     break;
@@ -98,9 +99,7 @@ class Mailbox extends CI_Controller {
             }
         }
         $data['threads'] = $threads;
-        echo '<pre>';
-        print_r($data);
-        die();
+
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
