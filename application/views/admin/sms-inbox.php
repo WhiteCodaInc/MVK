@@ -176,7 +176,7 @@ switch ($msg) {
         function trClick() {
             $('#inbox-data-table tbody tr').bind('click', function () {
                 var position = $(this).position();
-                console.log(position.top);
+                console.log(position.bottom);
                 $('.effect').css('bottom', position.bottom - 400);
                 $msg = $(this).find('td.status > span').text();
                 if ($msg == "Unread") {
