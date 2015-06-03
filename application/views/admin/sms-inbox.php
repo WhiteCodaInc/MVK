@@ -184,7 +184,7 @@ switch ($msg) {
                 $(".effect").hide();
                 var from = $(this).attr('id');
                 $('#from').val(from);
-                var loadMsg = "<div id='loadMsg' class='reply'><img src='<?= base_url() ?>assets/dashboard/img/load.GIF' alt='' /></div>";
+                var loadMsg = "<div id='loadMsg' class='reply'><img src='<?= base_url() ?>assets/admin/img/load.GIF' alt='' /></div>";
                 $('#chat-box').html(loadMsg);
                 $.ajax({
                     type: 'POST',
