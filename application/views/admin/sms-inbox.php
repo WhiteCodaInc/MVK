@@ -151,8 +151,6 @@ switch ($msg) {
 
 <!-- page script -->
 <script type="text/javascript">
-
-
     $(function () {
         $("#inbox-data-table").dataTable({
             aLengthMenu: [
@@ -163,45 +161,59 @@ switch ($msg) {
             //aaSorting: [[1, 'asc']]
         });
     });
-    $(function () {
-
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        trClick();
         function scrollDown() {
             $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
         }
-
         function runEffect() {
             var options = {};
             // run the effect
             $(".effect").toggle("slide", options, 500);
         }
-        $('#inbox-data-table tbody tr').click(function () {
-            $msg = $(this).find('td.status > span').text();
-            if ($msg == "Unread") {
-                $(this).find('td.status > span').removeClass('btn-danger');
-                $(this).find('td.status > span').addClass('btn-warning');
-                $(this).find('td.status > span').text("Read");
-            }
-
-            $(".effect").hide();
-            var from = $(this).attr('id');
-            $('#from').val(from);
-            var loadMsg = "<div id='loadMsg' class='reply'><img src='<?= base_url() ?>assets/admin/img/load.GIF' alt='' /></div>";
-            $('#chat-box').html(loadMsg);
+        function trClick() {
+            $('#inbox-data-table tbody tr').bind('click', function () {
+                $msg = $(this).find('td.status > span').text();
+                if ($msg == "Unread") {
+                    $(this).find('td.status > span').removeClass('btn-danger');
+                    $(this).find('td.status > span').addClass('btn-warning');
+                    $(this).find('td.status > span').text("Read");
+                }
+                $(".effect").hide();
+                var from = $(this).attr('id');
+                $('#from').val(from);
+                var loadMsg = "<div id='loadMsg' class='reply'><img src='<?= base_url() ?>assets/dashboard/img/load.GIF' alt='' /></div>";
+                $('#chat-box').html(loadMsg);
+                $.ajax({
+                    type: 'POST',
+                    data: {from: from},
+                    url: "<?= site_url() ?>admin/sms/viewconversation",
+                    success: function (data, textStatus, jqXHR) {
+                        $('#chat-box').html(data);
+                        scrollDown();
+                    }
+                });
+                runEffect();
+            });
+        }
+        setInterval(function () {
             $.ajax({
-                type: 'POST',
-                data: {from: from},
-                url: "<?= site_url() ?>admin/sms/viewconversation",
+                url: "<?= site_url() ?>admin/sms/smsNotification",
                 success: function (data, textStatus, jqXHR) {
-                    $('#chat-box').html(data);
-                    scrollDown();
+                    $('li.sms-notification').html(data);
                 }
             });
-            runEffect();
-        });
-    });
-</script>
-<script type="text/javascript">
-    $(document).ready(function () {
+            $.ajax({
+                url: "<?= site_url() ?>admin/sms/inbox?type=ajax",
+                success: function (data, textStatus, jqXHR) {
+                    $('#inbox-data-table tbody').html(data);
+                    trClick();
+                }
+            });
+        }, 30000);
+
         $('button[name="send"]').bind('click', function () {
             var from = $('#from').val();
             var msg = $('#reply').val();
@@ -217,6 +229,7 @@ switch ($msg) {
                         alertify.error("SMS Sending Failed..!");
                     } else {
                         $('#inbox-data-table tbody').html(data);
+                        trClick();
                         //-------------------chat-Box----------------------//
                         $clone = $('#chat-box').children('div.out:first').clone();
                         $time = "<i class='fa fa-clock-o'></i>";

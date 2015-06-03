@@ -17,7 +17,7 @@
 
     $admin_img_src = ($avatar != "") ?
             "http://mikhailkuznetsov.s3.amazonaws.com/" . $avatar :
-            base_url() . 'assets/dashboard/img/default-avatar.png';
+            base_url() . 'assets/admin/img/default-avatar.png';
     ?>
     <a href="<?= site_url() ?>admin/dashboard" class="logo">
         <!-- Add the class icon to your logo image or logo icon to add the margining -->
@@ -35,7 +35,7 @@
         <div class="navbar-right">
             <ul class="nav navbar-nav">
                 <!-- Messages: style can be found in dropdown.less-->
-                <li class="dropdown messages-menu">
+                <li class="dropdown messages-menu sms-notification">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope"></i>
                         <span class="label label-success">
@@ -52,7 +52,7 @@
                                     <?php
                                     $img_src = ($sms->contact_avatar != "") ?
                                             "http://mikhailkuznetsov.s3.amazonaws.com/" . $sms->contact_avatar :
-                                            base_url() . 'assets/dashboard/img/default-avatar.png';
+                                            base_url() . 'assets/admin/img/default-avatar.png';
                                     ?>
                                     <li><!-- start message -->
                                         <a id="<?= $sms->sid ?>" href="<?= site_url() . 'admin/sms/inbox/' ?>">

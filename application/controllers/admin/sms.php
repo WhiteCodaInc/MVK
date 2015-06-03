@@ -62,42 +62,48 @@ class Sms extends CI_Controller {
             }
         }
         $data['inbox'] = $this->objsms->getInbox();
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        if ($this->input->get('ver') != "mobile") {
-            $this->load->view('admin/sms-inbox', $data);
+        if ($this->input->get('type') == "ajax") {
+            $this->load->view('admin/sms-inbox-view', $data);
         } else {
-            $this->load->view('admin/sms-inbox-mob', $data);
+            $this->load->view('admin/admin_header');
+            $this->load->view('admin/admin_top');
+            $this->load->view('admin/admin_navbar');
+            if ($this->input->get('ver') != "mobile") {
+                $this->load->view('admin/sms-inbox', $data);
+            } else {
+                $this->load->view('admin/sms-inbox-mob', $data);
+            }
+            $this->load->view('admin/admin_footer');
         }
-        $this->load->view('admin/admin_footer');
     }
 
     function isExists($msg) {
-        $where = array(
-            'from' => $msg->from
-        );
-        $query = $this->db->get_where('inbox', $where);
-        if ($query->num_rows() == 1) {
-            if ($query->row()->from == $msg->from && $query->row()->sid != $msg->sid) {
-                $this->db->delete('inbox', array('from' => $msg->from));
-                $flag = TRUE;
-            } else {
-                $flag = FALSE;
-            }
-        } else {
-            $flag = TRUE;
-        }
-        if ($flag) {
-            $userInfo = $this->objsms->getProfilePics($msg->from);
-            $set = array(
-                'from' => $msg->from,
-                'sid' => $msg->sid,
-                'body' => $msg->body,
-                'date_sent' => $msg->date_sent,
-                'contact_id' => $userInfo->contact_id
+        $userInfo = $this->objsms->getProfilePics($msg->from);
+        if (count($userInfo)) {
+            $where = array(
+                'from' => $msg->from
             );
-            $this->db->insert('inbox', $set);
+            $query = $this->db->get_where('inbox', $where);
+            if ($query->num_rows() == 1) {
+                if ($query->row()->from == $msg->from && $query->row()->sid != $msg->sid) {
+                    $this->db->delete('inbox', array('from' => $msg->from));
+                    $flag = TRUE;
+                } else {
+                    $flag = FALSE;
+                }
+            } else {
+                $flag = TRUE;
+            }
+            if ($flag) {
+                $set = array(
+                    'from' => $msg->from,
+                    'sid' => $msg->sid,
+                    'body' => $msg->body,
+                    'date_sent' => $msg->date_sent,
+                    'contact_id' => $userInfo->contact_id
+                );
+                $this->db->insert('inbox', $set);
+            }
         }
     }
 
@@ -266,7 +272,9 @@ class Sms extends CI_Controller {
             $flag = FALSE;
         }
         if ($this->common->sendSMS($to, $body)) {
-            $this->objsms->updateInbox($to, $body);
+            $set = array('status' => 0, 'body' => $body);
+            $where = array('from' => $to);
+            $this->objsms->updateStatus($set, $where);
             if ($flag && !isset($post['ver'])) {
                 $data['inbox'] = $this->objsms->getInbox();
                 $this->load->view('admin/sms-inbox-view', $data);
@@ -302,6 +310,9 @@ class Sms extends CI_Controller {
         foreach ($messages as $sms) {
             $msg[] = $sms;
         }
+        $set = array('status' => 2);
+        $where = array('from' => $from, 'status' => 1);
+        $this->objsms->updateStatus($set, $where);
         $data['adminInfo'] = $this->common->getAdminInfo();
         $data['messages'] = array_reverse($msg);
         $data['contactInfo'] = $this->objsms->getProfilePics($from);
@@ -318,7 +329,9 @@ class Sms extends CI_Controller {
         $data['adminInfo'] = $this->common->getAdminInfo();
         $data['messages'] = array_reverse($msg);
         $data['contactInfo'] = $this->objsms->getProfilePics('+' . trim($from));
-
+        $set = array('status' => 2);
+        $where = array('from' => '+' . trim($from), 'status' => 1);
+        $this->objsms->updateStatus($set, $where);
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -327,7 +340,13 @@ class Sms extends CI_Controller {
     }
 
     function updateStatus($sid) {
-        $this->objsms->updateStatus($sid);
+        $where['sid'] = $sid;
+        $set['status'] = 2;
+        $this->objsms->updateStatus($set, $where);
+    }
+
+    function smsNotification() {
+        $this->load->view('admin/sms-notification-view');
     }
 
 }
