@@ -107,13 +107,13 @@
 <?php if (isset($coupen)): ?>
             $('select[name="disc_type"]').val("<?= $coupen->disc_type ?>");
             $('select[name="coupen_validity"]').val("<?= $coupen->coupen_validity ?>");
-            $('select[name="coupen_validity"]').trigger('change');
+            if ("<?= $coupen->coupen_validity ?>" == "2")
+                $('.month-duration').show();
 
 <?php endif; ?>
 
     });
     $(document).ready(function () {
-
         var c_code = 1, c_amt = 1, c_use = 1, c_month = 1;
         $('#addCoupen').click(function () {
             $('.coupen-submit').trigger('click');
@@ -179,7 +179,7 @@
         });
         $('#coupenForm').submit(function () {
 //            alert(c_code + " " + c_amt + " " + c_month + " " + c_use);
-            if ((c_code == 0 || c_amt == 0 || c_month == 0 || c_use == 0)) {
+            if ((c_code === 0 || c_amt === 0 || c_month === 0 || c_use === 0)) {
                 return false;
             }
         });
