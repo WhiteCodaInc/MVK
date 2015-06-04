@@ -180,9 +180,7 @@ switch ($msg) {
             $('#inbox-data-table tbody tr').bind('click', function () {
                 var position = $(this).offset();
                 var top = position.top - ($(this).height() * 4);
-                if (top < 0) {
-                    top = 0;
-                }
+                (top < 0) ? top = 0 : "";
                 $('.effect').css('top', top);
                 $msg = $(this).find('td.status > span').text();
                 if ($msg == "Unread") {
