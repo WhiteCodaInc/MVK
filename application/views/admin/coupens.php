@@ -14,8 +14,8 @@
             <i class="fa fa-plus"></i>&nbsp;
             Create New Coupen
         </a>
-        <button value="Active" class="add btn btn-danger btn-sm" id="Active" type="button" >Active</button>
-        <button value="Deactive" class="remove btn btn-danger btn-sm" id="Deactive" type="button" >Deactive</button>
+        <button value="Active" class="add btn btn-info btn-sm" id="Active" type="button" >Active</button>
+        <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactive</button>
         <button value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
     </section>
 
