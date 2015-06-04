@@ -72,7 +72,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input name="expire_date" value="<?= isset($coupen) ? date('d-m-Y', strtotime($coupen->expire_date)) : '' ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
+                                    <input name="expiry_date" value="<?= isset($coupen) ? date('d-m-Y', strtotime($coupen->expiry_date)) : '' ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
                                 </div><!-- /.input group -->
                             </div><!-- /.form group -->
                             <div class="form-group">
