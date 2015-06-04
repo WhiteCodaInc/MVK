@@ -141,6 +141,10 @@ switch ($msg) {
 <?php if ($msg): ?>
         alertify.<?= $t ?>("<?= $m ?>");
 <?php endif; ?>
+<?php if (isset($coupen)): ?>
+        $('select[name="disc_type"]').val("<?= $coupen->disc_type ?>");
+        $('select[name="coupen_validity"]').val("<?= $coupen->coupen_validity ?>");
+<?php endif; ?>
 </script>
 
 <!-- DATA TABES SCRIPT -->
