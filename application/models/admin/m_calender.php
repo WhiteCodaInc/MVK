@@ -246,14 +246,14 @@ class M_calender extends CI_Model {
             //print_r($res);
             //print_r($set);
             //die();
-
+            echo '<pre>';
+            echo $flag . '<br>';
+            print_r($set);
+            die();
             if ($flag) {
-
                 if ($set['end_type'] == "never")
                     $set['occurance'] = NULL;
-                echo '<pre>';
-                print_r($set);
-                die();
+
                 $res = array_merge($res, $set);
                 $res['refer_id'] = $res['event_id'];
                 unset($res['event_id']);
