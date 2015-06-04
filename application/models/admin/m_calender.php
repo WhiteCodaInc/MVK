@@ -218,8 +218,8 @@ class M_calender extends CI_Model {
             unset($set['smsbody']);
             unset($set['emailbody']);
 
-            //print_r($res);
-            //print_r($set);
+//            print_r($res);
+//            print_r($set);
             if ($res['is_repeat'] == 0 && is_null($res['refer_id'])) {
                 if ($set['is_repeat']) {
                     $flag = TRUE;
@@ -251,11 +251,11 @@ class M_calender extends CI_Model {
             //print_r($res);
             //print_r($set);
             //die();
-//            echo '<pre>';
-//            print_r($res);
-//            echo ($flag) ? "TRUE<br>" : "FALSE<br>";
-//            print_r($set);
-//            die();
+            echo '<pre>';
+            print_r($res);
+            echo ($flag) ? "TRUE<br>" : "FALSE<br>";
+            print_r($set);
+            die();
             if ($flag) {
                 $res = array_merge($res, $set);
                 $res['refer_id'] = $res['event_id'];
