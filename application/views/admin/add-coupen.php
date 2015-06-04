@@ -63,7 +63,7 @@
                             </div>
                             <div class="form-group month-duration" style="display: none">
                                 <label>Month</label>
-                                <input type="text" name="month_duration" value="<?= isset($coupen) ? $coupen->month_duration : NULL ?>" placeholder="Month" class="form-control"  />
+                                <input type="text" name="month_duration" value="<?= isset($coupen) ? $coupen->month_duration : '' ?>" placeholder="Month" class="form-control" disabled="" required=""  />
                                 <span class="error msgduration"></span>
                             </div>
                             <div class="form-group">
@@ -153,10 +153,10 @@
             var validity = $(this).val();
             if (validity == "2") {
                 $('.month-duration').show();
-                $('.month-duration').prop('required', true);
+                $('.month-duration').prop('disabled', false);
             } else {
                 $('.month-duration').hide();
-                $('.month-duration').prop('required', false);
+                $('.month-duration').prop('disabled', true);
             }
         });
         $('input[name="month_duration"]').focusout(function () {
