@@ -32,15 +32,15 @@
                                 <label>Coupen Code</label>
                                 <input type="text" name="coupen_code" value="<?= isset($coupen) ? $coupen->coupen_code : '' ?>" placeholder="Coupen Code" class="form-control"  />
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-6" style="padding-left: 0">
+                            <div class="row m-bot15">
+                                <div class="col-md-6">
                                     <label>Discount Type</label>
                                     <select name="disc_type" class="form-control">
                                         <option value="F">Flate</option>
                                         <option value="P">Percentage</option>
                                     </select>
                                 </div>
-                                <div class="col-md-6" style="padding-right: 0">
+                                <div class="col-md-6">
                                     <label>Amount</label>
                                     <input type="text" name="disc_amount" value="<?= isset($coupen) ? $coupen->disc_amount : '' ?>" placeholder="Amount" class="form-control"  />
                                 </div>
