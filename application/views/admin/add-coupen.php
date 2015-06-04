@@ -32,7 +32,7 @@
                                 <label>Coupen Code</label>
                                 <input type="text" name="coupen_code" value="<?= isset($coupen) ? $coupen->coupen_code : '' ?>" placeholder="Coupen Code" class="form-control"  />
                             </div>
-                            <div class="row m-bot15">
+                            <div class="row">
                                 <div class="col-md-6">
                                     <label>Discount Type</label>
                                     <select name="disc_type" class="form-control">
@@ -45,6 +45,7 @@
                                     <input type="text" name="disc_amount" value="<?= isset($coupen) ? $coupen->disc_amount : '' ?>" placeholder="Amount" class="form-control"  />
                                 </div>
                             </div>
+                            <br/>
                             <div class="form-group">
                                 <label>Coupen Validity</label>
                                 <select name="coupen_validity" class="form-control">
