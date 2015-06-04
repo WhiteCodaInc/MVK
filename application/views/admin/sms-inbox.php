@@ -179,8 +179,11 @@ switch ($msg) {
         function trClick() {
             $('#inbox-data-table tbody tr').bind('click', function () {
                 var position = $(this).offset();
-                console.log(position.top - $(this).height());
-                $('.effect').css('top', position.top - $(this).height() * 2);
+                var top = position.top - ($(this).height() * 4);
+                if (top < 0) {
+                    top = 0;
+                }
+                $('.effect').css('top', top);
                 $msg = $(this).find('td.status > span').text();
                 if ($msg == "Unread") {
                     $(this).find('td.status > span').removeClass('btn-danger');
