@@ -43,10 +43,10 @@ class M_coupens extends CI_Model {
         return TRUE;
     }
 
-    function setAction($type,$ids) {
+    function setAction($type, $ids) {
         $msg = "";
-        
-        $this->db->where_in('coupen_id', implode(',', $ids));
+
+        $this->db->where('coupen_id in (' . implode(',', $ids) . ')');
         switch ($type) {
             case "Active":
                 $this->db->update('coupens', array('status' => 1));
