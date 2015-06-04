@@ -43,10 +43,25 @@ class M_coupens extends CI_Model {
         return TRUE;
     }
 
-    function setAction() {
+    function setAction($type) {
+        $msg = "";
         $ids = $this->input->post('coupen');
-        foreach ($ids as $value) {
-            $this->db->delete('coupens', array('coupen_id' => $value));
+        echo '<pre>';
+        print_r($ids);
+        die();
+        switch ($type) {
+            case "Active":
+                break;
+            case "Deactive":
+                break;
+            case "Delete":
+                foreach ($ids as $value) {
+                    $this->db->delete('coupens', array('coupen_id' => $value));
+                }
+                $msg = "D";
+                break;
+            default:
+                break;
         }
     }
 

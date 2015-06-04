@@ -111,6 +111,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
+                            <input type="hidden" id="actionType" name="actionType" value="" />
                         </div><!-- /.box-body -->
                     </form>
                 </div><!-- /.box -->

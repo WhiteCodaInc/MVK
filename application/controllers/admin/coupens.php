@@ -65,10 +65,12 @@ class Coupens extends CI_Controller {
 
     function action() {
         $type = $this->input->post('actionType');
-        if ($type == "Delete") {
-            $this->objcoupen->setAction();
+        if ($type == "Delete" || $type == "Active" || $type == "Deactive") {
+            $msg = $this->objcoupen->setAction($type);
+            header('location:' . site_url() . 'admin/coupens?msg=' . $msg);
+        } else {
+            header('location:' . site_url() . 'admin/coupens');
         }
-        header('location:' . site_url() . 'admin/coupens?msg=D');
     }
 
 }
