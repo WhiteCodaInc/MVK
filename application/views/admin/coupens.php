@@ -77,7 +77,7 @@
                                                             "Disc For {$value->month_duration} Month" : "Life Time");
                                             ?>
                                             <td><?= $validity ?></td>
-                                            <td><?= date('d-m-Y', strtotime($value->expire_date)) ?></td>
+                                            <td><?= date('d-m-Y', strtotime($value->expiry_date)) ?></td>
                                             <td><?= $value->no_of_use ?></td>
                                             <td>
                                                 <?php if ($value->status): ?>
