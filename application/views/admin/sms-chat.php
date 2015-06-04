@@ -49,4 +49,3 @@ foreach ($messages as $sms) {
     }
 }
 ?>
-</div><!-- /.chat -->
