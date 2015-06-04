@@ -43,16 +43,18 @@ class M_coupens extends CI_Model {
         return TRUE;
     }
 
-    function setAction($type) {
+    function setAction($type,$ids) {
         $msg = "";
-        $ids = $this->input->post('coupen');
-        echo '<pre>';
-        print_r($ids);
-        die();
+        
+        $this->db->where_in('coupen_id', implode(',', $ids));
         switch ($type) {
             case "Active":
+                $this->db->update('coupens', array('status' => 1));
+                $msg = "A";
                 break;
             case "Deactive":
+                $this->db->update('coupens', array('status' => 0));
+                $msg = "DA";
                 break;
             case "Delete":
                 foreach ($ids as $value) {
@@ -60,9 +62,8 @@ class M_coupens extends CI_Model {
                 }
                 $msg = "D";
                 break;
-            default:
-                break;
         }
+        return $msg;
     }
 
 }
