@@ -255,7 +255,7 @@ $img_src = ($avatar != "") ?
                     </li>
                 <?php endif; ?>
                 <li class="" id="11">
-                    <a href="<?= site_url() ?>admin/coupen">
+                    <a href="<?= site_url() ?>admin/coupens">
                         <i class="fa fa-angle-double-right"></i> <span>Coupens</span>
                     </a>
                 </li>
