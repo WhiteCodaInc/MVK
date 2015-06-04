@@ -107,7 +107,7 @@
     });
     $(document).ready(function () {
 
-        var c_code = 1, c_amt = 1, c_use = 1;
+        var c_code = 1, c_amt = 1, c_use = 1, c_month = 1;
         $('#addCoupen').click(function () {
             $('.coupen-submit').trigger('click');
         });
@@ -147,6 +147,28 @@
             (validity == "2") ?
                     $('.month-duration').show() :
                     $('.month-duration').hide();
+        });
+        $('input[name="month_duration"]').focusout(function () {
+            var month = $(this).val();
+            var rgex_month = /^\d+$/;
+            if (!rgex_month.test(month) || month <= 0) {
+                $('.msgduration').text("Minimum 1 Month Required..!");
+                c_month = 0;
+            } else {
+                c_month = 1;
+                $('.msgduration').empty();
+            }
+        });
+        $('input[name="no_of_use"]').focusout(function () {
+            var use = $(this).val();
+            var rgex_use = /^\d+$/;
+            if (!rgex_use.test(use) || use <= 0) {
+                $('.msgduration').text("Value Must be Greater Than 0");
+                c_month = 0;
+            } else {
+                c_month = 1;
+                $('.msgduration').empty();
+            }
         });
         $('#coupenForm').submit(function () {
 
