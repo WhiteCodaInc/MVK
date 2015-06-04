@@ -30,7 +30,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Coupen Code</label>
-                                <input type="text" name="coupen_code" value="<?= isset($coupen) ? $coupen->coupen_code : '' ?>" placeholder="Coupen Name" autofocus="autofocus" class="form-control"  />
+                                <input type="text" name="coupen_code" value="<?= isset($coupen) ? $coupen->coupen_code : '' ?>" placeholder="Coupen Code" autofocus="autofocus" class="form-control"  />
                             </div>
                             <div class="form-group">
                                 <label>Discount Type</label>
