@@ -163,11 +163,11 @@
             var use = $(this).val();
             var rgex_use = /^\d+$/;
             if (!rgex_use.test(use) || use <= 0) {
-                $('.msgduration').text("Value Must be Greater Than 0");
+                $('.msguse').text("Value Must be Greater Than 0");
                 c_month = 0;
             } else {
                 c_month = 1;
-                $('.msgduration').empty();
+                $('.msguse').empty();
             }
         });
         $('#coupenForm').submit(function () {
