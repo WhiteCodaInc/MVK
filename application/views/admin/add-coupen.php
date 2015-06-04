@@ -30,18 +30,20 @@
                             </div>
                             <div class="form-group">
                                 <label>Coupen Code</label>
-                                <input type="text" name="coupen_code" value="<?= isset($coupen) ? $coupen->coupen_code : '' ?>" placeholder="Coupen Code" autofocus="autofocus" class="form-control"  />
+                                <input type="text" name="coupen_code" value="<?= isset($coupen) ? $coupen->coupen_code : '' ?>" placeholder="Coupen Code" class="form-control"  />
                             </div>
                             <div class="form-group">
-                                <label>Discount Type</label>
-                                <select name="disc_type" class="form-control">
-                                    <option value="F">Flate</option>
-                                    <option value="P">Percentage</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Amount</label>
-                                <input type="text" name="disc_amount" value="<?= isset($coupen) ? $coupen->disc_amount : '' ?>" placeholder="Amount" autofocus="autofocus" class="form-control"  />
+                                <div class="col-md-6">
+                                    <label>Discount Type</label>
+                                    <select name="disc_type" class="form-control">
+                                        <option value="F">Flate</option>
+                                        <option value="P">Percentage</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Amount</label>
+                                    <input type="text" name="disc_amount" value="<?= isset($coupen) ? $coupen->disc_amount : '' ?>" placeholder="Amount" class="form-control"  />
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Coupen Validity</label>
@@ -53,7 +55,7 @@
                             </div>
                             <div class="form-group month-duration" style="display: none">
                                 <label>Month</label>
-                                <input type="text" name="month_duration" value="<?= isset($coupen) ? $coupen->month_duration : '' ?>" placeholder="Month" autofocus="autofocus" class="form-control"  />
+                                <input type="text" name="month_duration" value="<?= isset($coupen) ? $coupen->month_duration : '' ?>" placeholder="Month" class="form-control"  />
                             </div>
                             <div class="form-group">
                                 <label>Valid Till</label>
@@ -67,7 +69,6 @@
                             <div class="form-group">
                                 <label>User For</label>
                                 <input type="text" name="no_of_use" value="<?= isset($coupen) ? $coupen->no_of_use : '' ?>" placeholder="Number Of Use" class="form-control"  />
-                                Times
                             </div>
                         </div><!-- /.box-body -->
                         <?php if (isset($coupen)): ?>
