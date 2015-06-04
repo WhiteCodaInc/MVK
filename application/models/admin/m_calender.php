@@ -202,10 +202,6 @@ class M_calender extends CI_Model {
         $flag = FALSE;
         $set = $this->input->post();
 
-        echo '<pre>';
-        print_r($set);
-        die();
-
         $eid = $set['eventid'];
         unset($set['eventid']);
         $query = $this->db->get_where('schedule', array('event_id' => $eid));
@@ -252,6 +248,9 @@ class M_calender extends CI_Model {
             //die();
 
             if ($flag) {
+                echo '<pre>';
+                print_r($set);
+                die();
                 $res = array_merge($res, $set);
                 $res['refer_id'] = $res['event_id'];
                 unset($res['event_id']);
