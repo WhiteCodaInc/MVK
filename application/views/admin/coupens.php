@@ -44,25 +44,50 @@
                                         <th style="padding: 10px;">
                                             <input type="checkbox"/>
                                         </th>
-                                        <th class="hidden-xs hidden-sm">Group Id</th>
-                                        <th>Group Name</th>
-                                        <th>Edit</th>
+                                        <th class="hidden-xs hidden-sm">Coupen Name</th>
+                                        <th>Coupen Code</th>
+                                        <th>Discount</th>
+                                        <th>Coupen Validity</th>
+                                        <th>Valid Till</th>
+                                        <th>No. of Use</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($groups as $value) { ?>
+                                    <?php foreach ($coupens as $value) { ?>
                                         <tr>
                                             <td>
                                                 <div>
                                                     <label>
-                                                        <input type="checkbox" name="group[]" value="<?= $value->group_id ?>"/>
+                                                        <input type="checkbox" name="coupen[]" value="<?= $value->coupen_id ?>"/>
                                                     </label>
                                                 </div>
                                             </td>
-                                            <td class="hidden-xs hidden-sm"><?= $value->group_id ?></td>
-                                            <td><?= $value->group_name ?></td>
+                                            <td class="hidden-xs hidden-sm"><?= $value->coupen_name ?></td>
+                                            <td><?= $value->coupen_code ?></td>
+                                            <?php
+                                            $disc = ($value->disc_type == "F") ?
+                                                    "$ {$value->disc_amount}" : "{$value->disc_amount} %";
+                                            ?>
+                                            <td><?= $disc ?></td>
+                                            <?php
+                                            $validity = ($value->coupen_validity == "1") ?
+                                                    "One Time" : (($value->coupen_validity == "2") ?
+                                                            "Disc For {$value->month_duration} Month" : "Life Time");
+                                            ?>
+                                            <td><?= $validity ?></td>
+                                            <td><?= date('d-m-Y', strtotime($value->expire_date)) ?></td>
+                                            <td><?= $value->no_of_use ?></td>
                                             <td>
-                                                <a href="<?= site_url() ?>admin/coupens/editCoupen/<?= $value->group_id ?>" class="btn bg-navy btn-xs">
+                                                <?php if ($value->status): ?>
+                                                    <span class="btn btn-success btn-xs">Active</span>
+                                                <?php else: ?>
+                                                    <span class="btn btn-danger btn-xs">Deactive</span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <a href="<?= site_url() ?>admin/coupens/editCoupen/<?= $value->coupen_id ?>" class="btn bg-navy btn-xs">
                                                     <i class="fa fa-edit"></i>
                                                     Edit
                                                 </a>
@@ -73,9 +98,14 @@
                                 <tfoot>
                                     <tr>
                                         <th></th>
-                                        <th class="hidden-xs hidden-sm">Group Id</th>
-                                        <th>Group Name</th>
-                                        <th>Edit</th>
+                                        <th class="hidden-xs hidden-sm">Coupen Name</th>
+                                        <th>Coupen Code</th>
+                                        <th>Discount</th>
+                                        <th>Coupen Validity</th>
+                                        <th>Valid Till</th>
+                                        <th>No. of Use</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </tfoot>
                             </table>
