@@ -87,12 +87,12 @@
             </div>
             <div class="col-md-5" id="chatbox">
                 <!-- Chat box -->
-                <div style="display:none;height: 600px" class="box box-success effect">
+                <div style="display:noneF" class="box box-success effect">
                     <div class="box-header">
                         <i class="fa fa-comments-o"></i>
                         <h3 class="box-title">Conversation</h3>
                     </div>
-                    <div class="box-body chat" id="chat-box">
+                    <div class="box-body chat" style="height: 600px" id="chat-box">
 
                     </div>
                     <div class="box-footer">
