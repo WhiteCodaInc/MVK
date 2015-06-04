@@ -101,7 +101,7 @@
                                             <thead >
                                                 <tr>
                                                     <th style="padding: 10px;">
-                                                        <input type="checkbox"/>
+                                                        <input style="z-index: 0" type="checkbox"/>
                                                     </th>
                                                     <th>From</th>
                                                     <th>Subject</th>
