@@ -161,13 +161,6 @@ switch ($msg) {
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-
-<?php if (isset($coupen)): ?>
-            alert();
-            $('select[name="disc_type"]').val("<?= $coupen->disc_type ?>");
-            $('select[name="coupen_validity"]').val("<?= $coupen->coupen_validity ?>");
-<?php endif; ?>
-
         $('button.delete').click(function (e) {
             var agroup = "";
             var act = $(this).val();

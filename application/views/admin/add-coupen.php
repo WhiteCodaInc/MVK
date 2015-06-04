@@ -104,6 +104,11 @@
             autoclose: true,
             todayHighlight: true
         });
+<?php if (isset($coupen)): ?>
+            $('select[name="disc_type"]').val("<?= $coupen->disc_type ?>");
+            $('select[name="coupen_validity"]').val("<?= $coupen->coupen_validity ?>");
+<?php endif; ?>
+
     });
     $(document).ready(function () {
 
