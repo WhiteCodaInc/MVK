@@ -107,6 +107,8 @@
 <?php if (isset($coupen)): ?>
             $('select[name="disc_type"]').val("<?= $coupen->disc_type ?>");
             $('select[name="coupen_validity"]').val("<?= $coupen->coupen_validity ?>");
+            $('select[name="coupen_validity"]').trigger('change');
+
 <?php endif; ?>
 
     });
