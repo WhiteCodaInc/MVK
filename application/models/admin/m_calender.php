@@ -221,7 +221,7 @@ class M_calender extends CI_Model {
 //            print_r($res);
 //            print_r($set);
             if ($res['is_repeat'] == 0 && is_null($res['refer_id'])) {
-                if ($set['is_repeat']) {
+                if ($set['is_repeat'] && $set['end_type'] == "after") {
                     $flag = TRUE;
                 } else {
                     $set['occurance'] = NULL;
