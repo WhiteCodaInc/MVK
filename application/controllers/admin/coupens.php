@@ -49,7 +49,7 @@ class Coupens extends CI_Controller {
     }
 
     function editCoupen($cid) {
-        $data['groups'] = $this->objcoupen->getCoupen($cid);
+        $data['coupen'] = $this->objcoupen->getCoupen($cid);
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');

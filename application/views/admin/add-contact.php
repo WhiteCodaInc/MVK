@@ -115,7 +115,6 @@
         }).on('changeDate', function (ev) {
             $('input[name="birthday"]').focusout();
         });
-        ;
     });
     $(document).ready(function () {
 
