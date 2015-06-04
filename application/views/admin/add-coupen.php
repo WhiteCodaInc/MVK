@@ -63,12 +63,12 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input name="expire_date" value="<?= isset($coupen) ? date('d-m-Y', strtotime($coupen->expire_date)) : '' ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
+                                    <input name="expire_date" value="<?= isset($coupen) ? date('d-m-Y', strtotime($coupen->expire_date)) : '' ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
                                 </div><!-- /.input group -->
                             </div><!-- /.form group -->
                             <div class="form-group">
                                 <label>User For</label>
-                                <input type="text" name="no_of_use" value="<?= isset($coupen) ? $coupen->no_of_use : '' ?>" placeholder="Number Of Use" class="form-control"  />
+                                <input type="text" name="no_of_use" value="<?= isset($coupen) ? $coupen->no_of_use : '' ?>" placeholder="Number Of Use" class="form-control" required="" />
                             </div>
                             <div class="box-footer" style="display: none">
                                 <button type="submit" class="coupen-submit"></button>
