@@ -112,7 +112,7 @@
             $('.coupen-submit').trigger('click');
         });
         $('input[name="coupen_code"]').focusout(function () {
-            var code = $(this).val();
+            var code = $(this).val().trim();
             var rgex_code = /^[A-Za-z0-9]+$/;
             if (code != "" && !rgex_code.test(code)) {
                 $('.msgcode').text("Please Enter Valid Coupen Code..!");
@@ -133,7 +133,7 @@
                 if (dtype == "F" && amt < 0) {
                     $('.msgamt').text("Your Amount Must be Greater Than 0..!");
                     c_amt = 0;
-                } else if (dtype == "P" && amt < 0 && amt > 100) {
+                } else if (dtype == "P" && (amt < 0 || amt > 100)) {
                     $('.msgamt').text("Your Percentage Value Must Between  0 to 100..!");
                     c_amt = 0;
                 } else {
