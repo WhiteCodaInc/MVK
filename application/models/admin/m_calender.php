@@ -250,11 +250,11 @@ class M_calender extends CI_Model {
             //print_r($res);
             //print_r($set);
             //die();
-            echo '<pre>';
-            print_r($res);
-            echo ($flag) ? "TRUE<br>" : "FALSE<br>";
-            print_r($set);
-            die();
+//            echo '<pre>';
+//            print_r($res);
+//            echo ($flag) ? "TRUE<br>" : "FALSE<br>";
+//            print_r($set);
+//            die();
             if ($flag) {
                 $res = array_merge($res, $set);
                 $res['refer_id'] = $res['event_id'];
