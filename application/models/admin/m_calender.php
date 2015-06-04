@@ -227,7 +227,7 @@ class M_calender extends CI_Model {
                     $set['occurance'] = NULL;
                     $set['end_type'] = NULL;
                 }
-                die("RES[IS_REPEAT] : 0 && RES[IS_REPEAT] == NULL");
+//                die("RES[IS_REPEAT] : 0 && RES[IS_REPEAT] == NULL");
             } else if ($res['is_repeat'] == 1 && ($set['is_repeat'] == 0 || $set['end_type'] == "never")) {
                 $this->db->delete('schedule', array('refer_id' => $eid));
                 $set['occurance'] = NULL;
@@ -242,21 +242,21 @@ class M_calender extends CI_Model {
                     $set['occurance'] = NULL;
                     $flag = FALSE;
                 }
-                die("IS REPEAT : 1 && SET[IS_REPEAT] == 1");
+//                die("IS REPEAT : 1 && SET[IS_REPEAT] == 1");
             } else if ($res['is_repeat'] == 0 && $set['is_repeat'] == 0 && !is_null($res['refer_id'])) {
                 $set['occurance'] = NULL;
                 $set['end_type'] = NULL;
                 $flag = FALSE;
-                die("RES[IS REPEAT] : 0 && SET[IS_REPEAT] == 0 && RES[REFER_ID] != NULL");
+//                die("RES[IS REPEAT] : 0 && SET[IS_REPEAT] == 0 && RES[REFER_ID] != NULL");
             }
             //print_r($res);
             //print_r($set);
             //die();
-            echo '<pre>';
-            print_r($res);
-            echo ($flag) ? "TRUE<br>" : "FALSE<br>";
-            print_r($set);
-            die();
+//            echo '<pre>';
+//            print_r($res);
+//            echo ($flag) ? "TRUE<br>" : "FALSE<br>";
+//            print_r($set);
+//            die();
             if ($flag) {
                 $res = array_merge($res, $set);
                 $res['refer_id'] = $res['event_id'];
