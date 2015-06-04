@@ -1,3 +1,8 @@
+<style type="text/css">
+    .error{
+        color: red
+    }
+</style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -26,10 +31,12 @@
                             <div class="form-group">
                                 <label>Coupen Name</label>
                                 <input type="text" name="coupen_name" value="<?= isset($coupen) ? $coupen->coupen_name : '' ?>" placeholder="Coupen Name" autofocus="autofocus" class="form-control" required=""/>
+                                <span class="error msgcname"></span>
                             </div>
                             <div class="form-group">
                                 <label>Coupen Code</label>
                                 <input type="text" name="coupen_code" value="<?= isset($coupen) ? $coupen->coupen_code : '' ?>" placeholder="Coupen Code" class="form-control" required="" />
+                                <span class="error msgcode"></span>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -42,6 +49,7 @@
                                 <div class="col-md-6">
                                     <label>Amount</label>
                                     <input type="text" name="disc_amount" value="<?= isset($coupen) ? $coupen->disc_amount : '' ?>" placeholder="Amount" class="form-control" required="" />
+                                    <span class="error msgamt"></span>
                                 </div>
                             </div>
                             <br/>
@@ -56,6 +64,7 @@
                             <div class="form-group month-duration" style="display: none">
                                 <label>Month</label>
                                 <input type="text" name="month_duration" value="<?= isset($coupen) ? $coupen->month_duration : '' ?>" placeholder="Month" class="form-control" required="" />
+                                <span class="error msgduration"></span>
                             </div>
                             <div class="form-group">
                                 <label>Valid Till</label>
@@ -69,6 +78,7 @@
                             <div class="form-group">
                                 <label>User For</label>
                                 <input type="text" name="no_of_use" value="<?= isset($coupen) ? $coupen->no_of_use : '' ?>" placeholder="Number Of Use" class="form-control" required="" />
+                                <span class="error msguse"></span>
                             </div>
                             <div class="box-footer" style="display: none">
                                 <button type="submit" class="coupen-submit"></button>
@@ -96,11 +106,44 @@
         });
     });
     $(document).ready(function () {
+
+        var c_code = 1, c_amt = 1, c_use = 1;
         $('#addCoupen').click(function () {
             $('.coupen-submit').trigger('click');
         });
+        $('input[name="coupen_code"]').focusout(function () {
+            var code = $(this).val();
+            var rgex_code = /^[A-Za-z0-9]+$/;
+            if (code != "" && !rgex_code.test(code)) {
+                $('.msgcode').text("Please Enter Valid Coupen Code..!");
+                c_code = 0;
+            } else {
+                $('.msgcode').empty();
+                c_code = 1;
+            }
+        });
+        $('input[name="disc_amount"]').focusout(function () {
+            var amt = $(this).val();
+            var dtype = $('select[name="disc_type"]').val();
+            var rgex_amt = /^\d+$/;
+            if (amt != "" && !rgex_amt.test(amt)) {
+                $('.msgamt').text("Please Enter Valid Amount..!");
+                c_amt = 0;
+            } else {
+                if (dtype == "F" && amt < 0) {
+                    $('.msgamt').text("Your Amount Must be Greater Than 0..!");
+                    c_amt = 0;
+                } else if (dtype == "P" && amt < 0 && amt > 100) {
+                    $('.msgamt').text("Your Percentage Value Must Between  0 to 100..!");
+                    c_amt = 0;
+                } else {
+                    $('.msgamt').empty();
+                    c_amt = 1;
+                }
+            }
+        });
         $('#coupenForm').submit(function () {
-            return false;
+
         });
     });
 </script>
