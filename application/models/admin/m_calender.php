@@ -201,6 +201,11 @@ class M_calender extends CI_Model {
     function updateEvent() {
         $flag = FALSE;
         $set = $this->input->post();
+
+        echo '<pre>';
+        print_r($set);
+        die();
+
         $eid = $set['eventid'];
         unset($set['eventid']);
         $query = $this->db->get_where('schedule', array('event_id' => $eid));
