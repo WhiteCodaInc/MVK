@@ -8,7 +8,6 @@
             <?= isset($coupen) ? 'Update Existing Coupen' : 'Create New Coupen' ?>
         </button>
     </section>
-
     <!-- Main content -->
     <section class="content">
         <div class="row">
@@ -26,11 +25,11 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label>Coupen Name</label>
-                                <input type="text" name="coupen_name" value="<?= isset($coupen) ? $coupen->coupen_name : '' ?>" placeholder="Coupen Name" autofocus="autofocus" class="form-control" />
+                                <input type="text" name="coupen_name" value="<?= isset($coupen) ? $coupen->coupen_name : '' ?>" placeholder="Coupen Name" autofocus="autofocus" class="form-control" required=""/>
                             </div>
                             <div class="form-group">
                                 <label>Coupen Code</label>
-                                <input type="text" name="coupen_code" value="<?= isset($coupen) ? $coupen->coupen_code : '' ?>" placeholder="Coupen Code" class="form-control"  />
+                                <input type="text" name="coupen_code" value="<?= isset($coupen) ? $coupen->coupen_code : '' ?>" placeholder="Coupen Code" class="form-control" required="" />
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -42,7 +41,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label>Amount</label>
-                                    <input type="text" name="disc_amount" value="<?= isset($coupen) ? $coupen->disc_amount : '' ?>" placeholder="Amount" class="form-control"  />
+                                    <input type="text" name="disc_amount" value="<?= isset($coupen) ? $coupen->disc_amount : '' ?>" placeholder="Amount" class="form-control" required="" />
                                 </div>
                             </div>
                             <br/>
@@ -56,7 +55,7 @@
                             </div>
                             <div class="form-group month-duration" style="display: none">
                                 <label>Month</label>
-                                <input type="text" name="month_duration" value="<?= isset($coupen) ? $coupen->month_duration : '' ?>" placeholder="Month" class="form-control"  />
+                                <input type="text" name="month_duration" value="<?= isset($coupen) ? $coupen->month_duration : '' ?>" placeholder="Month" class="form-control" required="" />
                             </div>
                             <div class="form-group">
                                 <label>Valid Till</label>
@@ -70,6 +69,9 @@
                             <div class="form-group">
                                 <label>User For</label>
                                 <input type="text" name="no_of_use" value="<?= isset($coupen) ? $coupen->no_of_use : '' ?>" placeholder="Number Of Use" class="form-control"  />
+                            </div>
+                            <div class="box-footer" style="display: none">
+                                <button type="submit" class="coupen-submit"></button>
                             </div>
                         </div><!-- /.box-body -->
                         <?php if (isset($coupen)): ?>
@@ -95,7 +97,10 @@
     });
     $(document).ready(function () {
         $('#addCoupen').click(function () {
-            $('#coupenForm').submit();
+            $('.coupen-submit').trigger('click');
+        });
+        $('#coupenForm').submit(function () {
+            return false;
         });
     });
 </script>
