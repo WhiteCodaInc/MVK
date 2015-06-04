@@ -164,9 +164,9 @@
             var rgex_use = /^\d+$/;
             if (!rgex_use.test(use) || use <= 0) {
                 $('.msguse').text("Value Must be Greater Than 0..!");
-                c_month = 0;
+                c_use = 0;
             } else {
-                c_month = 1;
+                c_use = 1;
                 $('.msguse').empty();
             }
         });
