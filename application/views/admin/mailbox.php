@@ -124,7 +124,7 @@
                                                     ?>
                                                     <tr id="<?= ++$cnt ?>" class="<?= $trid ?>" style="<?= (!$mail[0]['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>">
                                                         <td class="small-col">
-                                                            <input type="checkbox" name="email_id[]" value="<?= $emailids ?>" />
+                                                            <input type="checkbox" name="email_id[]" value="<?= $emailids ?>" style="z-index: 0" />
                                                         </td>
                                                         <td class="name">
                                                             <a style="font-weight: 600" data-toggle="modal" data-target="#mail-body">
