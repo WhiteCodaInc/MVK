@@ -142,6 +142,12 @@
                 }
             }
         });
+        $('select[name="coupen_validity"]').change(function () {
+            var validity = $(this).val();
+            (validity == "2") ?
+                    $('.month-duration').show() :
+                    $('.month-duration').hide();
+        });
         $('#coupenForm').submit(function () {
 
         });
