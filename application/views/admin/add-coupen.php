@@ -153,10 +153,10 @@
             var validity = $(this).val();
             if (validity == "2") {
                 $('.month-duration').show();
-                $('.month-duration').prop('disabled', false);
+                $('input[name="month_duration"]').prop('disabled', false);
             } else {
                 $('.month-duration').hide();
-                $('.month-duration').prop('disabled', true);
+                $('input[name="month_duration"]').prop('disabled', true);
             }
         });
         $('input[name="month_duration"]').focusout(function () {
