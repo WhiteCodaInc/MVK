@@ -247,7 +247,7 @@ class M_calender extends CI_Model {
             //print_r($set);
             //die();
             echo '<pre>';
-            echo $flag . '<br>';
+            echo ($flag) ? "TRUE<br>" : "FALSE<br>";
             print_r($set);
             die();
             if ($flag) {
