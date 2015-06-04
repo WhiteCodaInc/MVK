@@ -66,9 +66,7 @@ class Mailbox extends CI_Controller {
         } else {
             imap_reopen($this->stream, $url);
             $emails = imap_search($this->stream, 'ALL');
-            echo '<pre>';
-            print_r($emails);
-            die();
+
             if (is_array($emails)) {
                 rsort($emails);
                 $data = array();
@@ -86,9 +84,10 @@ class Mailbox extends CI_Controller {
                 $mailbox = array();
             }
         }
+        echo '<pre>';
+        print_r($mailbox);
         $data['folder'] = $this->getInboxFolder();
         $data['threads'] = $this->makeThreads($mailbox);
-        echo '<pre>';
         print_r($data);
         die();
         $this->load->view('admin/admin_header');
