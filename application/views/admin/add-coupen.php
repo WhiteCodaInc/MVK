@@ -171,8 +171,10 @@
             }
         });
         $('#coupenForm').submit(function () {
-            alert(c_code + " " + c_amt + " " + c_month + " " + c_use);
-            return false;
+//            alert(c_code + " " + c_amt + " " + c_month + " " + c_use);
+            if ((c_code == 0 || c_amt == 0 || c_month == 0 || c_use == 0)) {
+                return false;
+            }
         });
     });
 </script>
