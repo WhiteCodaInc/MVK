@@ -11,10 +11,12 @@
             Coupens
         </h1>
         <a href="<?= site_url() ?>admin/coupens/addCoupen" class="create btn btn-success btn-sm">
-            <i class="fa fa-plus"></i>
+            <i class="fa fa-plus"></i>&nbsp;
             Create New Coupen
         </a>
-        <button style="margin-left: 10px" value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <button value="Active" class="add btn btn-danger btn-sm" id="Active" type="button" >Active</button>
+        <button value="Deactive" class="remove btn btn-danger btn-sm" id="Deactive" type="button" >Deactive</button>
+        <button value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
     </section>
 
     <!-- Main content -->
@@ -152,15 +154,29 @@ switch ($msg) {
 <script type="text/javascript">
     $(function () {
         $("#coupen-data-table").dataTable({
+            aLengthMenu: [
+                [25, 50, 100, 200, -1],
+                [25, 50, 100, 200, "All"]
+            ],
             aoColumnDefs: [{
                     bSortable: false,
-                    aTargets: [0, 3]
-                }]
+                    aTargets: [0, 1, 2, 3, 4, 7, 8]
+                }],
+            iDisplayLength: -1,
+            aaSorting: [[5, 'desc']]
         });
     });
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
+        $('button.add').click(function (e) {
+            action($(this).val());
+            e.preventDefault();
+        });
+        $('button.remove').click(function (e) {
+            action($(this).val());
+            e.preventDefault();
+        });
         $('button.delete').click(function (e) {
             var agroup = "";
             var act = $(this).val();
