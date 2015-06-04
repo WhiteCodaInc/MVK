@@ -248,8 +248,12 @@ class M_calender extends CI_Model {
             //die();
 
             if ($flag) {
+
                 if ($set['end_type'] == "never")
                     $set['occurance'] = NULL;
+                echo '<pre>';
+                print_r($set);
+                die();
                 $res = array_merge($res, $set);
                 $res['refer_id'] = $res['event_id'];
                 unset($res['event_id']);
