@@ -31,6 +31,7 @@ class M_coupens extends CI_Model {
     }
 
     function createCoupen($set) {
+        $set['expiry_date'] = date('Y-m-d', strtotime($set['expiry_date']));
         $this->db->insert('coupens', $set);
         return TRUE;
     }
