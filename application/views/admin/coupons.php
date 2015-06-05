@@ -137,7 +137,7 @@ switch ($msg) {
     case "DA":
         $m = "Coupon(s) Successfully Deactivated..!";
         $t = "error";
-    case "A":
+    case "":
         $m = "Coupon(s) Successfully Activated..!";
         $t = "success";
         break;
