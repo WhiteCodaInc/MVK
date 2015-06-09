@@ -686,7 +686,7 @@
                                 <input type="text" class="form-control"  id="users" />
                             </div>
                         </div>
-                        <div class="col-md-7" style="margin-top: 20px">
+                        <div class="col-md-7" style="margin-top: 30px">
                             <span style="color: red" class="msgChoose"></span>
                         </div>
                     </div>
