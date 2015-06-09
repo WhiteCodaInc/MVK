@@ -53,71 +53,74 @@ class Trigger extends CI_Controller {
         echo "HOUR : " . $this->hour . '<br>';
         echo "MINUTE : " . $this->minute . '<br>';
         echo "SECOND : " . $this->second . '<br>';
-        die();
+
         foreach ($res as $value) {
+            echo "HOUR : " . $value->h . '<br>';
+            echo "MINUTE : " . $value->s . '<br>';
             if ($this->hour == $value->h && $this->minute == $value->m) {
                 echo "<br>-------------Event ID : {$value->event_id} Sucssfully Sent...! ----------------<br>";
-                switch ($value->group_type) {
-                    case 'individual':
-                        if (!in_array($value->user_id, $blackList)) {
-                            $contact = $this->objcontact->getContactInfo($value->user_id);
-                            $tag = $this->common->setToken($contact);
-                            if ($value->event_type == "sms") {
-                                $body = $this->parser->parse_string($value->body, $tag, TRUE);
-                                if ($this->sendSMS($contact->phone, $body, $value->notify)) {
-                                    $this->objtrigger->updateStatus($value->event_id);
-                                }
-                            } else if ($value->event_type == "email") {
-                                if ($this->sendMail($contact, $tag, $value, $value->notify)) {
-                                    $this->objtrigger->updateStatus($value->event_id);
-                                }
-                            }
-                        }
-                        break;
-                    case 'simple':
-                        $res = $this->objbuilder->getGroupContact($value->group_id);
-                        $cids = $res[1];
-                        foreach ($cids as $cid) {
-                            if (!in_array($cid, $blackList)) {
-                                $contact = $this->objcontact->getContactInfo($cid);
-                                $tag = $this->common->setToken($contact);
-                                if ($value->event_type == "sms") {
-                                    $body = $this->parser->parse_string($value->body, $tag, TRUE);
-                                    if ($this->sendSMS($contact->phone, $body, $value->notify)) {
-                                        $this->objtrigger->updateStatus($value->event_id);
-                                    }
-                                } else if ($value->event_type == "email") {
-                                    if ($this->sendMail($contact, $tag, $value, $value->notify)) {
-                                        $this->objtrigger->updateStatus($value->event_id);
-                                    }
-                                }
-                            }
-                        }
-                        break;
-                    case 'sms':
-                        $cids = $this->objbuilder->getSubGroupContact($value->group_id);
-                        foreach ($cids as $cid) {
-                            if (!in_array($cid, $blackList)) {
-                                $contact = $this->objcontact->getContactInfo($cid);
-                                $tag = $this->common->setToken($contact);
-                                if ($value->event_type == "sms") {
-                                    $body = $this->parser->parse_string($value->body, $tag, TRUE);
-                                    if ($this->sendSMS($contact->phone, $body, $value->notify)) {
-                                        $this->objtrigger->updateStatus($value->event_id);
-                                    }
-                                } else if ($value->event_type == "email") {
-                                    if ($this->sendMail($contact, $tag, $value, $value->notify)) {
-                                        $this->objtrigger->updateStatus($value->event_id);
-                                    }
-                                }
-                            }
-                        }
-                        break;
-                    default:
-                        break;
-                }
+//                switch ($value->group_type) {
+//                    case 'individual':
+//                        if (!in_array($value->user_id, $blackList)) {
+//                            $contact = $this->objcontact->getContactInfo($value->user_id);
+//                            $tag = $this->common->setToken($contact);
+//                            if ($value->event_type == "sms") {
+//                                $body = $this->parser->parse_string($value->body, $tag, TRUE);
+//                                if ($this->sendSMS($contact->phone, $body, $value->notify)) {
+//                                    $this->objtrigger->updateStatus($value->event_id);
+//                                }
+//                            } else if ($value->event_type == "email") {
+//                                if ($this->sendMail($contact, $tag, $value, $value->notify)) {
+//                                    $this->objtrigger->updateStatus($value->event_id);
+//                                }
+//                            }
+//                        }
+//                        break;
+//                    case 'simple':
+//                        $res = $this->objbuilder->getGroupContact($value->group_id);
+//                        $cids = $res[1];
+//                        foreach ($cids as $cid) {
+//                            if (!in_array($cid, $blackList)) {
+//                                $contact = $this->objcontact->getContactInfo($cid);
+//                                $tag = $this->common->setToken($contact);
+//                                if ($value->event_type == "sms") {
+//                                    $body = $this->parser->parse_string($value->body, $tag, TRUE);
+//                                    if ($this->sendSMS($contact->phone, $body, $value->notify)) {
+//                                        $this->objtrigger->updateStatus($value->event_id);
+//                                    }
+//                                } else if ($value->event_type == "email") {
+//                                    if ($this->sendMail($contact, $tag, $value, $value->notify)) {
+//                                        $this->objtrigger->updateStatus($value->event_id);
+//                                    }
+//                                }
+//                            }
+//                        }
+//                        break;
+//                    case 'sms':
+//                        $cids = $this->objbuilder->getSubGroupContact($value->group_id);
+//                        foreach ($cids as $cid) {
+//                            if (!in_array($cid, $blackList)) {
+//                                $contact = $this->objcontact->getContactInfo($cid);
+//                                $tag = $this->common->setToken($contact);
+//                                if ($value->event_type == "sms") {
+//                                    $body = $this->parser->parse_string($value->body, $tag, TRUE);
+//                                    if ($this->sendSMS($contact->phone, $body, $value->notify)) {
+//                                        $this->objtrigger->updateStatus($value->event_id);
+//                                    }
+//                                } else if ($value->event_type == "email") {
+//                                    if ($this->sendMail($contact, $tag, $value, $value->notify)) {
+//                                        $this->objtrigger->updateStatus($value->event_id);
+//                                    }
+//                                }
+//                            }
+//                        }
+//                        break;
+//                    default:
+//                        break;
+//                }
             }
         }
+        die();
     }
 
     function sendSMS($to, $body, $notify) {
