@@ -88,38 +88,39 @@
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div>
-            <div class="col-md-5" id="chatbox">
-                <!-- Chat box -->
-                <div style="display:none" class="box box-success effect">
-                    <div class="box-header">
-                        <i class="fa fa-comments-o"></i>
-                        <h3 class="box-title">Conversation</h3>
-                    </div>
-                    <div class="box-body chat" style="height: 600px" id="chat-box">
-
-                    </div>
-                    <div class="box-footer">
-                        <form id="replyForm" method="post">
-                            <div class="form-group">
-                                <textarea id="reply" name="msg" class="form-control" rows="3" placeholder="Type message..."></textarea>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <button name="send" type="button" class="btn btn-success">Send</button>
-                                </div>
-                                <!--<div class="col-md-2">
-    <button id="test" type="button" class="btn btn-danger">Test</button>
-</div>-->
-                                <div style="display:none;" id="loadReply" class="col-md-2">
-                                    <img src="<?= base_url() ?>assets/admin/img/load.GIF" alt="" />
-                                </div>
-                            </div>
-                            <input id="from" name="to" value="" type="hidden" />
-                        </form>
-                    </div>
+        </div>
+        <div id="chatbox">
+            <!-- Chat box -->
+            <div style="display:none" class="box box-success effect">
+                <div class="box-header">
+                    <i class="fa fa-comments-o"></i>
+                    <h3 class="box-title">Conversation</h3>
                 </div>
-                <!-- /.box (chat box) -->
+                <div class="box-body chat" style="height: 600px" id="chat-box">
+
+                </div>
+                <div class="box-footer">
+                    <form id="replyForm" method="post">
+                        <div class="form-group">
+                            <textarea id="reply" name="msg" class="form-control" rows="3" placeholder="Type message..."></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button name="send" type="button" class="btn btn-success">Send</button>
+                            </div>
+                            <!--<div class="col-md-2">
+<button id="test" type="button" class="btn btn-danger">Test</button>
+</div>-->
+                            <div style="display:none;" id="loadReply" class="col-md-2">
+                                <img src="<?= base_url() ?>assets/admin/img/load.GIF" alt="" />
+                            </div>
+                        </div>
+                        <input id="from" name="to" value="" type="hidden" />
+                    </form>
+                </div>
             </div>
+            <!-- /.box (chat box) -->
+        </div>
         </div>
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
