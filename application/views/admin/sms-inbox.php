@@ -12,6 +12,9 @@
         left: 50%;
     }
     .slimScrollDiv,#chat-box{
+        width: 34%;
+        position: absolute;
+        right: 10px;
         height: 600px !important;
     }
 </style>
