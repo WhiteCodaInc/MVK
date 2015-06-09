@@ -928,7 +928,7 @@
                 if (!validateContact(user)) {
                     $msg = (event_type == "notification" || event_type == "sms") ?
                             "Can not SMS this user because no phone number is assigned!" :
-                            "Can not Email this user because no phone number is assigned!";
+                            "Can not Email this user because no email address is assigned!";
                     $('.msgChoose').text($msg);
                 } else {
                     $('.msgChoose').empty();
