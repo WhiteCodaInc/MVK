@@ -40,7 +40,7 @@ class Trigger extends CI_Controller {
         echo "FULL TIME : {$datetime}<br>";
 
         $this->date = date('Y-m-d', strtotime($datetime));
-        $this->hour = date('H', strtotime($datetime));
+        $this->hour = date('H', strtotime($datetime)) - 1;
         $this->minute = date('i', strtotime($datetime));
         $this->second = date('s', strtotime($datetime));
 
