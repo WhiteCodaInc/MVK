@@ -55,6 +55,7 @@ class Trigger extends CI_Controller {
         echo "SECOND : " . $this->second . '<br>';
 
         foreach ($res as $value) {
+            echo "<br>-------------Event ID : {$value->event_id}----------------<br>";
             echo "HOUR : " . $value->h . '<br>';
             echo "MINUTE : " . $value->m . '<br>';
             if ($this->hour == $value->h && $this->minute == $value->m) {
