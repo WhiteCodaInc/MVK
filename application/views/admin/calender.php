@@ -679,7 +679,7 @@
                         </div>
                     </div>
                     <br/>
-                    <div class="row">
+                    <div class="row choose">
                         <div class="col-md-5">
                             <label>Choose <span id="lbl_select">Contact </span></label>
                             <div class="form-group" id="user-tag">
