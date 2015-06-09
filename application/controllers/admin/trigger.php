@@ -49,10 +49,10 @@ class Trigger extends CI_Controller {
 
 
 //        print_r($res);
-//        echo "DATE : " . $this->date . '<br>';
-//        echo "HOUR : " . $this->hour . '<br>';
-//        echo "MINUTE : " . $this->minute . '<br>';
-//        echo "SECOND : " . $this->second . '<br>';
+        echo "DATE : " . $this->date . '<br>';
+        echo "HOUR : " . $this->hour . '<br>';
+        echo "MINUTE : " . $this->minute . '<br>';
+        echo "SECOND : " . $this->second . '<br>';
 
         foreach ($res as $value) {
 
