@@ -40,7 +40,7 @@ class Trigger extends CI_Controller {
 
         $blackList = $this->objcontact->getBlackList();
         $res = $this->objtrigger->getEvents($this->date);
-
+        
         foreach ($res as $value) {
             if ($this->hour == $value->h && $this->minute == $value->m) {
                 switch ($value->group_type) {
