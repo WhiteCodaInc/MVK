@@ -938,6 +938,7 @@
     }
 
     $('input[name="assign"]').change(function () {
+        $('.msgChoose').empty();
         var user = $('#user').val();
         var event_type = $('input[name="event_type"]:checked').val();
         var type = (event_type == "sms" || event_type == "notification") ? "sms" : "email";
