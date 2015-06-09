@@ -307,14 +307,14 @@ switch ($msg) {
     $(function () {
         $("#contact-data-table").dataTable({
             aLengthMenu: [
-                [10, 50, 100, 200, -1],
-                [10, 50, 100, 200, "All"]
+                [25, 50, 100, 200, -1],
+                [25, 50, 100, 200, "All"]
             ],
             aoColumnDefs: [{
                     bSortable: false,
                     aTargets: [0, 1, 3, 4, 7, 8]
                 }],
-            iDisplayLength: 10,
+            iDisplayLength: -1,
             aaSorting: [[2, 'asc']]
         });
     });
