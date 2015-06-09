@@ -31,7 +31,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="row">
+        <div class="row" style="float: left">
             <div class="col-xs-7" >
                 <div class="box">
                     <div class="box-header">
