@@ -25,7 +25,6 @@
         });
         $('.paging_bootstrap').on('click', function () {
             $('.icheckbox_minimal').iCheck('uncheck');
-            alert();
         });
     });
 </script>
