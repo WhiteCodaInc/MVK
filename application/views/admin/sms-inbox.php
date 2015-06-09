@@ -12,10 +12,12 @@
         left: 50%;
     }
     .slimScrollDiv,#chat-box{
+        height: 600px !important;
+    }
+    #chatbox{
         width: 34%;
         position: absolute;
         right: 10px;
-        height: 600px !important;
     }
 </style>
 <!-- Right side column. Contains the navbar and content of the page -->
