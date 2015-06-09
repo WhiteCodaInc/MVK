@@ -164,9 +164,6 @@ class Common {
     function sendSMS($to, $body) {
         $adminInfo = $this->getAdminInfo();
         try {
-            echo '<pre>';
-            print_r($adminInfo);
-            die();
             $msg = $this->_CI->twilio->account->messages->create(
                     array(
                         'To' => $to,
