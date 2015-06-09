@@ -899,7 +899,7 @@
         contact = ar1;
         ids = ar2;
         $('#users').autocomplete({
-            source: ar1,
+            source: contact,
             minLength: 0,
             scroll: true
         }).focus(function () {
