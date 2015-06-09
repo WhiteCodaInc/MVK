@@ -175,7 +175,8 @@ switch ($msg) {
     $(document).ready(function () {
         trClick();
         function scrollDown() {
-            $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+            $("#chat-box").animate({scrollTop: $('#chat-box')[0].scrollHeight}, 1000);
+//            $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
         }
         function runEffect() {
             var options = {};
