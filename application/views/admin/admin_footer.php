@@ -25,6 +25,10 @@
         });
         $('.paging_bootstrap').on('click', function () {
             $('.icheckbox_minimal').iCheck('uncheck');
+            $("input[type='checkbox']:not(.simple), input[type='radio']:not(.simple)").iCheck({
+                checkboxClass: 'icheckbox_minimal',
+                radioClass: 'iradio_minimal'
+            });
         });
     });
 </script>
