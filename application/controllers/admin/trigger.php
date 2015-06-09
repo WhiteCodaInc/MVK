@@ -32,7 +32,7 @@ class Trigger extends CI_Controller {
     function index() {
         // UM =  - to UTC 
         // UP = UTC to + 
-        $this->timezone = "UTC";
+        $this->timezone = "UM8";
         $datetime = date('Y-m-d H:i:s', gmt_to_local(time(), $this->timezone, TRUE));
         $this->date = date('Y-m-d', strtotime($datetime));
         $this->hour = date('H', strtotime($datetime));
