@@ -175,8 +175,14 @@ switch ($msg) {
     $(document).ready(function () {
         trClick();
         function scrollDown() {
-            $("#chat-box").animate({scrollTop: $('#chat-box')[0].scrollHeight}, 1000);
+//            $("#chat-box").animate({scrollTop: $('#chat-box')[0].scrollHeight}, 1000);
 //            $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+            var itemContainer = $("#chat-box");
+            itemContainer.slimScroll({
+                height: '200px',
+                start: 'bottom',
+                alwaysVisible: true
+            });
         }
         function runEffect() {
             var options = {};
