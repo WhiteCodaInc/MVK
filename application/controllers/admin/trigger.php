@@ -48,7 +48,7 @@ class Trigger extends CI_Controller {
         $res = $this->objtrigger->getEvents($this->date);
 
 
-        print_r($res);
+//        print_r($res);
         echo "DATE : " . $this->date . '<br>';
         echo "HOUR : " . $this->hour . '<br>';
         echo "MINUTE : " . $this->minute . '<br>';
