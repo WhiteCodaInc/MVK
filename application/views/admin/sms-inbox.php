@@ -11,9 +11,9 @@
         top: 40%;
         left: 50%;
     }
-    .slimScrollDiv,#chat-box{
-        height: 600px !important;
-    }
+    /*    .slimScrollDiv,#chat-box{
+            height: 600px !important;
+        }*/
 </style>
 <!-- Right side column. Contains the navbar and content of the page -->
 <aside class="right-side">
