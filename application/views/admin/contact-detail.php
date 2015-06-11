@@ -2,6 +2,9 @@
     #contact-data-table tr td,#contact-data-table tr th{
         text-align: center;
     }
+    .dataTables_filter {
+        display: none;
+    }
 </style>
 <!-- Right side column. Contains the navbar and content of the page -->
 <aside class="right-side">
@@ -27,6 +30,12 @@
         <a class="btn btn-primary btn-sm create" href="<?= site_url() ?>admin/import">
             <span> Import Google Contact</span>
         </a>
+        <div style="float:right;width: 25%;">
+            <div style="float: left;padding: 8px;width: 20%;"><label>Search:</label></div>
+            <div style="float: left;width: 78%;">
+                <input class="form-control" type="text" id="searchbox" style="float: left;">
+            </div>
+        </div> 
     </section>
     <!-- Main content -->
     <section class="content">
