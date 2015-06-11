@@ -314,7 +314,7 @@ switch ($msg) {
 <!-- page script -->
 <script type="text/javascript">
     $(function () {
-        $("#contact-data-table").dataTable({
+        oTable = $("#contact-data-table").dataTable({
             aLengthMenu: [
                 [25, 50, 100, 200, -1],
                 [25, 50, 100, 200, "All"]
@@ -325,6 +325,9 @@ switch ($msg) {
                 }],
             iDisplayLength: -1,
             aaSorting: [[2, 'asc']]
+        });
+        $("#searchbox").on("keyup search input paste cut", function () {
+            oTable.fnFilter(this.value);
         });
     });
 </script>
