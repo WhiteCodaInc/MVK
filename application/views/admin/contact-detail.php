@@ -336,7 +336,10 @@ switch ($msg) {
         $('#page_length').change(function () {
             var length = parseInt($(this).val());
             console.log(length);
-            oTable.page.len(length).draw();
+//            oTable.page.len(length).draw();
+            var oSettings = oTable.fnSettings();
+            oSettings._iDisplayLength = length;
+            oTable.fnPageChange("first");
         });
     });
 </script>
