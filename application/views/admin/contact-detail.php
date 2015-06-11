@@ -35,7 +35,7 @@
                     <div style="float: left;width: 78%;">-->
         <input class="form-control" type="text" id="searchbox" placeholder="Search" style="float: left;">
         <!--</div>-->
-        </div> 
+        <!--</div>--> 
     </section>
     <!-- Main content -->
     <section class="content">
