@@ -5,7 +5,7 @@
     /*    .dataTables_filter {
             display: none;
         }*/
-    .dataTables_wrapper:first-child{
+    .dataTables_wrapper:first-child('div.row'){
         display: none
     }
 </style>
