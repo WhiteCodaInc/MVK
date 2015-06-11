@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/admin/css/checkbox.css"/>
 <style type="text/css">
     .error{
         color: red
@@ -15,6 +16,23 @@
     </section>
     <!-- Main content -->
     <section class="content">
+        <?php
+        $error = $this->session->userdata('error');
+        $this->session->unset_userdata('error');
+        ?>
+        <?php if ($error): ?>
+            <div  class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div style="background-color: mistyrose !important;border-color: mintcream;color: red !important;" class="alert alert-danger alert-dismissable">
+                        <i class="fa fa-ban"></i>
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <b>Error!</b> <?= $error ?> 
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        <?php endif; ?>
         <div class="row">
             <div class="col-md-3"></div>
             <!-- left column -->
@@ -33,16 +51,22 @@
                                 <input type="text" name="coupon_name" value="<?= isset($coupon) ? $coupon->coupon_name : '' ?>" placeholder="Coupon Name" autofocus="autofocus" class="form-control" required=""/>
                                 <span class="error msgcname"></span>
                             </div>
-                            <div class="form-group">
-                                <label>Coupon Code</label>
-                                <input type="text" name="coupon_code" value="<?= isset($coupon) ? $coupon->coupon_code : '' ?>" placeholder="Coupon Code" class="form-control" required="" />
-                                <span class="error msgcode"></span>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <label>Coupon Code</label>
+                                    <input type="text" name="coupon_code" value="<?= isset($coupon) ? $coupon->coupon_code : '' ?>" placeholder="Coupon Code" class="form-control" required="" />
+                                    <span class="error msgcode"></span>
+                                </div>
+                                <div class="col-md-3" style="margin-top: 25px">
+                                    <button type="button" class="btn btn-primary" id="randomCode">Generate</button>
+                                </div>
                             </div>
+                            <br/>
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Discount Type</label>
                                     <select name="disc_type" class="form-control">
-                                        <option value="F">Flate</option>
+                                        <option value="F">Flate Rate</option>
                                         <option value="P">Percentage</option>
                                     </select>
                                 </div>
@@ -54,7 +78,7 @@
                             </div>
                             <br/>
                             <div class="form-group">
-                                <label>Coupon Validity</label>
+                                <label>Duration in Month</label>
                                 <select name="coupon_validity" class="form-control">
                                     <option value="1">One Time</option>
                                     <option value="2">Disc For x Month</option>
@@ -67,7 +91,20 @@
                                 <span class="error msgduration"></span>
                             </div>
                             <div class="form-group">
-                                <label>Valid Till</label>
+                                <div style="float: left;padding-right: 20px;">
+                                    <input  type="radio" value="expire" name="expire" class="simple" checked="">
+                                    <span class="lbl padding-8">
+                                        Expire On
+                                    </span>
+                                </div>
+                                <div>
+                                    <input type="radio" value="never" name="expire" class="simple">                          
+                                    <span class="lbl padding-8">
+                                        Never Expired
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group expiry-date">
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
@@ -76,7 +113,7 @@
                                 </div><!-- /.input group -->
                             </div><!-- /.form group -->
                             <div class="form-group">
-                                <label>User For</label>
+                                <label>Redemption</label>
                                 <input type="text" name="no_of_use" value="<?= isset($coupon) ? $coupon->no_of_use : '' ?>" placeholder="Number Of Use" class="form-control" required="" />
                                 <span class="error msguse"></span>
                             </div>
@@ -111,11 +148,22 @@
                 $('.month-duration').show();
                 $('input[name="month_duration"]').prop('disabled', false);
             }
-
 <?php endif; ?>
 
     });
     $(document).ready(function () {
+
+        $('input[name="expire"]').change(function () {
+            var val = $('input[name="expire"]:checked').val();
+            if (val == "expire") {
+                $('input[name="expiry_date"]').prop('disabled', false);
+                $('.expiry-date').show();
+            } else {
+                $('input[name="expiry_date"]').prop('disabled', true);
+                $('.expiry-date').hide();
+            }
+        });
+
         var c_code = 1, c_amt = 1, c_use = 1, c_month = 1;
         $('#addCoupon').click(function () {
             $('.coupon-submit').trigger('click');
@@ -132,15 +180,40 @@
             }
         });
 
-        $('input[name="coupon_code"]').focusout(function () {
+        $('#randomCode').on('click', function () {
+            $.ajax({
+                type: 'POST',
+                url: "<?= site_url() ?>admin/coupons/getCouponCode",
+                success: function (data, textStatus, jqXHR) {
+                    $('input[name="coupon_code"]').val(data);
+                    c_code = 1;
+                    $('.msgcode').empty();
+                }
+            });
+        });
+        $('input[name="coupon_code"]').on('focusout', function () {
             var code = $(this).val().trim();
-            var rgex_code = /^[A-Za-z0-9]+$/;
+            var rgex_code = /^[A-Z0-9]+$/;
             if (code != "" && !rgex_code.test(code)) {
                 $('.msgcode').text("Please Enter Valid Coupon Code..!");
                 c_code = 0;
+                return false;
             } else {
                 $('.msgcode').empty();
-                c_code = 1;
+                $.ajax({
+                    type: 'POST',
+                    data: {code: code},
+                    url: "<?= site_url() ?>admin/coupons/isExistCouponCode",
+                    success: function (data, textStatus, jqXHR) {
+                        if (data == "1") {
+                            $('.msgcode').text("Coupon Code already exists..!");
+                            c_code = 0;
+                        } else {
+                            $('.msgcode').empty();
+                            c_code = 1;
+                        }
+                    }
+                });
             }
         });
 
@@ -155,8 +228,8 @@
                 if (dtype == "F" && amt < 0) {
                     $('.msgamt').text("Your Amount Must be Greater Than 0..!");
                     c_amt = 0;
-                } else if (dtype == "P" && (amt < 1 || amt > 100)) {
-                    $('.msgamt').text("Percentage Value Must Between  1 to 100..!");
+                } else if (dtype == "P" && (amt < 1 || amt >= 100)) {
+                    $('.msgamt').text("Percentage Value Must Between  1 to 99..!");
                     c_amt = 0;
                 } else {
                     $('.msgamt').empty();
@@ -199,7 +272,6 @@
                 $('.msguse').empty();
             }
         });
-
         $('#couponForm').submit(function () {
 //            alert(c_code + " " + c_amt + " " + c_month + " " + c_use);
             if ((c_code === 0 || c_amt === 0 || c_month === 0 || c_use === 0)) {

@@ -39,7 +39,6 @@
 
                     <form name="checkForm" id="checkForm" action="" method="post">
                         <div class="box-body table-responsive" id="data-panel">
-
                             <table id="coupon-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -49,11 +48,10 @@
                                         <th class="hidden-xs hidden-sm">Coupon Name</th>
                                         <th>Coupon Code</th>
                                         <th>Discount</th>
-                                        <th>Coupon Validity</th>
-                                        <th>Valid Till</th>
-                                        <th>No. of Use</th>
+                                        <th>Duration</th>
+                                        <th>Expires On</th>
+                                        <th>Max Redemption</th>
                                         <th>Status</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -63,6 +61,7 @@
                                                 <div>
                                                     <label>
                                                         <input type="checkbox" name="coupon[]" value="<?= $value->coupon_id ?>"/>
+                                                        <input type="hidden" name="code[]" value="<?= $value->coupon_code ?>"/>
                                                     </label>
                                                 </div>
                                             </td>
@@ -79,7 +78,7 @@
                                                             "Disc For {$value->month_duration} Month" : "Life Time");
                                             ?>
                                             <td><?= $validity ?></td>
-                                            <td><?= date('d-m-Y', strtotime($value->expiry_date)) ?></td>
+                                            <td><?= ($value->expiry_date) ? date('d-m-Y', strtotime($value->expiry_date)) : 'Never Expired' ?></td>
                                             <td><?= $value->no_of_use ?></td>
                                             <td>
                                                 <?php if ($value->status): ?>
@@ -87,12 +86,6 @@
                                                 <?php else: ?>
                                                     <span class="btn btn-danger btn-xs">Deactive</span>
                                                 <?php endif; ?>
-                                            </td>
-                                            <td>
-                                                <a href="<?= site_url() ?>admin/coupons/editCoupon/<?= $value->coupon_id ?>" class="btn bg-navy btn-xs">
-                                                    <i class="fa fa-edit"></i>
-                                                    Edit
-                                                </a>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -103,11 +96,10 @@
                                         <th class="hidden-xs hidden-sm">Coupon Name</th>
                                         <th>Coupon Code</th>
                                         <th>Discount</th>
-                                        <th>Coupon Validity</th>
-                                        <th>Valid Till</th>
-                                        <th>No. of Use</th>
+                                        <th>Duration</th>
+                                        <th>Expires On</th>
+                                        <th>Max Redemption</th>
                                         <th>Status</th>
-                                        <th>Action</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -126,6 +118,10 @@ switch ($msg) {
     case "I":
         $m = "Coupon Successfully Created..!";
         $t = "success";
+        break;
+    case "IF":
+        $m = "Coupon has not been created..!";
+        $t = "error";
         break;
     case "U":
         $m = "Coupon Successfully Updated..!";
@@ -169,7 +165,7 @@ switch ($msg) {
             ],
             aoColumnDefs: [{
                     bSortable: false,
-                    aTargets: [0, 1, 2, 3, 4, 7, 8]
+                    aTargets: [0, 1, 2, 3, 4, 7]
                 }],
             iDisplayLength: -1,
             aaSorting: [[5, 'desc']]

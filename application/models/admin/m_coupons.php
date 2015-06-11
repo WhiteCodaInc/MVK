@@ -31,7 +31,10 @@ class M_coupons extends CI_Model {
     }
 
     function createCoupon($set) {
-        $set['expiry_date'] = date('Y-m-d', strtotime($set['expiry_date']));
+        if ($set['expire'] == "expire") {
+            $set['expiry_date'] = date('Y-m-d', strtotime($set['expiry_date']));
+        }
+        unset($set['expire']);
         $this->db->insert('coupons', $set);
         return TRUE;
     }
@@ -39,14 +42,16 @@ class M_coupons extends CI_Model {
     function updateCoupon($set) {
         $gid = $set['couponid'];
         unset($set['couponid']);
-        $set['expiry_date'] = date('Y-m-d', strtotime($set['expiry_date']));
+        if ($set['expire'] == "expire") {
+            $set['expiry_date'] = date('Y-m-d', strtotime($set['expiry_date']));
+        }
+        unset($set['expire']);
         $this->db->update('coupons', $set, array('coupon_id' => $gid));
         return TRUE;
     }
 
     function setAction($type, $ids) {
         $msg = "";
-
         $this->db->where('coupon_id in (' . implode(',', $ids) . ')');
         switch ($type) {
             case "Active":
@@ -58,13 +63,16 @@ class M_coupons extends CI_Model {
                 $msg = "DA";
                 break;
             case "Delete":
-                foreach ($ids as $value) {
-                    $this->db->delete('coupons', array('coupon_id' => $value));
-                }
+                $this->db->delete('coupons');
                 $msg = "D";
                 break;
         }
         return $msg;
+    }
+
+    function isExistCoupon($code) {
+        $query = $this->db->get_where('coupons', array('coupon_code' => $code));
+        return ($query->num_rows()) ? TRUE : FALSE;
     }
 
 }
