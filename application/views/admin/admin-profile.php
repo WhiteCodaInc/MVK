@@ -129,19 +129,6 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box" >
-                    <div class="box-header">
-                        <h3 class="box-title">Profile Detail</h3>
-                    </div><!-- /.box-header -->
-                    <div class="row">
-                        <div class="col-xs-12" style="margin-left: 1% ">
-<!--                            <a href="<?= site_url() ?>admin/admin_profile/addProfile" class="btn btn-success btn-sm create">
-                                <i class="fa fa-plus"></i>
-                                Create New Admin Profile
-                            </a>
-                            <button style="margin-left: 10px" value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>-->
-                        </div>
-                    </div>
-
                     <form name="checkForm" id="checkForm" action="" method="post">
                         <div class="box-body table-responsive" id="data-panel">
 
