@@ -2,9 +2,6 @@
     #contact-data-table tr td,#contact-data-table tr th{
         text-align: center;
     }
-    /*    .dataTables_filter {
-            display: none;
-        }*/
     .dataTables_wrapper > div.row:first-child{
         display: none
     }

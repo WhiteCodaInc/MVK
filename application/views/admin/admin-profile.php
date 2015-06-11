@@ -3,6 +3,9 @@
     #profile-data-table tr td,#profile-data-table tr th{
         text-align: center;
     }
+    .dataTables_wrapper > div.row:first-child{
+        display: none
+    }
 </style>
 <!-- Right side column. Contains the navbar and content of the page -->
 <aside class="right-side">
@@ -16,6 +19,16 @@
             Create New Admin Profile
         </a>
         <button  value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
+        <div class="search" style="float:right;width: 25%">
+            <select id="page_length" class="form-control" style="float: left;width: 30%">
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="-1" selected="">All</option>
+            </select>
+            <input class="form-control" type="text" id="searchbox" placeholder="Search" style="float: left;width: 70%">
+        </div>
     </section>
 
     <!-- Main content -->
@@ -281,7 +294,28 @@ switch ($msg) {
 <!-- page script -->
 <script type="text/javascript">
     $(function () {
-        $("#profile-data-table").dataTable();
+        oTable = $("#profile-data-table").dataTable({
+            aLengthMenu: [
+                [25, 50, 100, 200, -1],
+                [25, 50, 100, 200, "All"]
+            ],
+            aoColumnDefs: [{
+                    bSortable: false,
+                    aTargets: [0, 1, 3, 4, 7, 8]
+                }],
+            iDisplayLength: -1,
+            aaSorting: [[2, 'asc']]
+        });
+        $("#searchbox").on("keyup search input paste cut", function () {
+            oTable.fnFilter(this.value);
+        });
+        $('#page_length').change(function () {
+            var length = parseInt($(this).val());
+            console.log(length);
+            var oSettings = oTable.fnSettings();
+            oSettings._iDisplayLength = length;
+            oTable.fnPageChange("first");
+        });
     });
 </script>
 <script type="text/javascript">
