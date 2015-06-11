@@ -30,15 +30,15 @@
         <a class="btn btn-primary btn-sm create" href="<?= site_url() ?>admin/import">
             <span> Import Google Contact</span>
         </a>
-        <div style="float:right;width: 25%">
-            <input class="form-control" type="text" id="searchbox" placeholder="Search" style="float: right;width: 70%">
-            <select id="page_length" class="form-control" style="float: right;width: 30%">
-                <option value="-1">All</option>
+        <div style="float:left;width: 25%">
+            <select id="page_length" class="form-control" style="float: left;width: 30%">
                 <option value="25">25</option>
                 <option value="50">50</option>
                 <option value="100">100</option>
                 <option value="200">200</option>
+                <option value="-1" selected="">All</option>
             </select>
+            <input class="form-control" type="text" id="searchbox" placeholder="Search" style="float: left;width: 70%">
         </div>
     </section>
     <!-- Main content -->
@@ -336,7 +336,6 @@ switch ($msg) {
         $('#page_length').change(function () {
             var length = parseInt($(this).val());
             console.log(length);
-//            oTable.page.len(length).draw();
             var oSettings = oTable.fnSettings();
             oSettings._iDisplayLength = length;
             oTable.fnPageChange("first");
