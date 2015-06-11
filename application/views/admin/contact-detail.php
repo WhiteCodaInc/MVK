@@ -30,7 +30,7 @@
         <a class="btn btn-primary btn-sm create" href="<?= site_url() ?>admin/import">
             <span> Import Google Contact</span>
         </a>
-        <div style="float:left;width: 25%">
+        <div class="search" style="float:right;width: 25%">
             <select id="page_length" class="form-control" style="float: left;width: 30%">
                 <option value="25">25</option>
                 <option value="50">50</option>
