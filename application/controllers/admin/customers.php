@@ -32,7 +32,6 @@ class Customers extends CI_Controller {
     }
 
     function index() {
-
         $data['customers'] = $this->objcustomer->getCustomerDetail();
         $data['groups'] = $this->objgroup->getCustomerGroups();
         $data['zodiac'] = $this->common->getZodiacs();
