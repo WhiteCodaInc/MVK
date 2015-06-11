@@ -32,7 +32,7 @@
         </a>
         <div style="float:right;width: 25%">
             <input class="form-control" type="text" id="searchbox" placeholder="Search" style="float: right;width: 70%">
-            <select name='length_change' id='length_change' class="form-control" style="float: right;width: 30%">
+            <select id="page_length" class="form-control" style="float: right;width: 30%">
                 <option value="-1">All</option>
                 <option value="25">25</option>
                 <option value="50">50</option>
@@ -328,13 +328,15 @@ switch ($msg) {
                     aTargets: [0, 1, 3, 4, 7, 8]
                 }],
             iDisplayLength: -1,
-            aaSorting: [[2, 'asc']],
-            fnServerParams: function (aoData) {
-                aoData.push({name: "length_change", value: $('#length_change').val()});
-            }
+            aaSorting: [[2, 'asc']]
         });
         $("#searchbox").on("keyup search input paste cut", function () {
             oTable.fnFilter(this.value);
+        });
+        $('#page_length').change(function () {
+            var length = parseInt($(this).val());
+            console.log(length);
+            oTable.page.len(length).draw();
         });
     });
 </script>
