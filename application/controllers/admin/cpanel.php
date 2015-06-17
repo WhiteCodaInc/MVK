@@ -152,8 +152,8 @@ class Cpanel extends CI_Controller {
                     foreach ($emails as $email_id) {
                         $overview = imap_fetch_overview($this->stream, $email_id, 0);
                         $mailbox[$cnt]['id'] = $value->account_id;
-                        $mailbox[$cnt]['subject'] = $this->decode_imap_text($overview[0]->subject);
-                        $mailbox[$cnt]['from'] = $this->decode_imap_text($overview[0]->from);
+                        $mailbox[$cnt]['subject'] = $overview[0]->subject;
+                        $mailbox[$cnt]['from'] = $overview[0]->from;
                         $mailbox[$cnt]['date'] = date('m-d-Y H:i', strtotime($overview[0]->date));
                         $cnt++;
                     }
