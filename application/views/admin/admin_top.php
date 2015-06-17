@@ -100,6 +100,8 @@
                                                     "http://mikhailkuznetsov.s3.amazonawsF.com/" . $comment->affiliate_avatar :
                                                     base_url() . 'assets/admin/img/default-avatar.png';
                                         }
+                                    } else {
+                                        $img_src = base_url() . 'assets/admin/img/default-avatar.png';
                                     }
                                     ?>
                                     <li><!-- start message -->
