@@ -219,7 +219,6 @@ class Common {
             'notification' => 1
         );
         $this->_CI->db->select('count(*) as total');
-        $this->_CI->db->where('user_id !=', 'NULL');
         $query = $this->_CI->db->get_where('blog_comment', $where);
         return $query->row()->total;
     }
