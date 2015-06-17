@@ -110,7 +110,7 @@
                                                 <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="Customer Image"/>
                                             </div>
                                             <h4>
-                                                <?= $comment->fname . ' ' . $comment->lname ?>
+                                                <?= $comment->name ?>
                                                 <small><i class="fa fa-clock-o"></i></small>
                                             </h4>
                                             <p><?= substr($comment->comment, 0, 50); ?></p>
