@@ -7,20 +7,18 @@
     <li>
         <!-- inner menu: contains the actual data -->
         <ul class="menu unreadSMS">
-            <?php foreach ($emails as $email) {
-                print_r($email) ?>
-
-                <!--                <li> start message 
-                                    <a href="<?= site_url() . 'admin/mailbox/login/' . $email->id ?>">
-                <?php $arr = explode("/", $string, 2); ?>
-                                        <h4 style="margin: 0">
-    <?= $arr[0] ?>
-                                            <small><i class="fa fa-clock-o"></i><?= $email->date ?></small>
-                                        </h4>
-                                        <p style="margin: 0"><?= $email->subject ?></p>
-                                    </a>
-                                </li> end message -->
-<?php } ?>
+            <?php foreach ($emails as $email) { ?>
+                <li><!-- start message -->
+                    <a href="<?= site_url() . 'admin/mailbox/login/' . $email['id'] ?>">
+                        <?php $arr = explode("/", $email['form'], 2); ?>
+                        <h4 style="margin: 0">
+                            <?= $arr[0] ?>
+                            <small><i class="fa fa-clock-o"></i><?= $email['date'] ?></small>
+                        </h4>
+                        <p style="margin: 0"><?= $email['subject'] ?></p>
+                    </a>
+                </li><!-- end message -->
+            <?php } ?>
         </ul>
     </li>
     <li class="footer"><a href="#">See All Comments</a></li>
