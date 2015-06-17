@@ -131,14 +131,12 @@
                         <span class="label label-success ebadge">0</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">You have 0 comments</li>
+                        <li class="header">You have 0 emails</li>
                         <li>
                             <!-- inner menu: contains the actual data -->
-                            <ul class="menu">
-
-                            </ul>
+                            <ul class="menu"></ul>
                         </li>
-                        <li class="footer"><a href="#">See All Comments</a></li>
+                        <li class="footer"><a href="#">See All Emails</a></li>
                     </ul>
                 </li>
                 <!-- ENd Email -->
