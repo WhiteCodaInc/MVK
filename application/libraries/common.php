@@ -214,11 +214,31 @@ class Common {
         return $query->row()->total;
     }
 
+    function getTotalUnreadComment() {
+        $where = array(
+            'notification' => 1
+        );
+        $this->_CI->db->select('count(*) as total');
+        $this->_CI->db->where('user_id !=', 'NULL');
+        $query = $this->_CI->db->get_where('blog_comment', $where);
+        return $query->row()->total;
+    }
+
     function getUnreadMsg() {
         $this->_CI->db->select('*');
         $this->_CI->db->from('inbox as I');
         $this->_CI->db->join('contact_detail as C', 'I.contact_id = C.contact_id');
         $this->_CI->db->where('status', 1);
+        $query = $this->_CI->db->get();
+        return $query->result();
+    }
+
+    function getUnreadComment() {
+        $this->_CI->db->select('*');
+        $this->_CI->db->from('blog_comment as B');
+        $this->_CI->db->join('customer_detail as C', 'B.user_id = C.customer_id');
+        $this->_CI->db->where('status', 1);
+        $this->_CI->db->where('user_id !=', 'NULL');
         $query = $this->_CI->db->get();
         return $query->result();
     }

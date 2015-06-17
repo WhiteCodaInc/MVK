@@ -34,7 +34,7 @@
         </a>
         <div class="navbar-right">
             <ul class="nav navbar-nav">
-                <!-- Messages: style can be found in dropdown.less-->
+                <!-- SMS Inbox Messages -->
                 <li class="dropdown messages-menu sms-notification">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope"></i>
@@ -70,6 +70,44 @@
                             </ul>
                         </li>
                         <li class="footer"><a href="<?= site_url() . 'admin/sms/inbox' ?>">See All Messages</a></li>
+                    </ul>
+                </li>
+                <!-- Bog Comments -->
+                <li class="dropdown messages-menu comments">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-envelope"></i>
+                        <span class="label label-success">
+                            <?= $this->common->getTotalUnreadComment() ?>
+                        </span>
+                    </a>
+                    <?php $comments = $this->common->getUnreadComment(); ?>
+                    <ul class="dropdown-menu">
+                        <li class="header">You have <?= $this->common->getTotalUnreadComment() ?> messages</li>
+                        <li>
+                            <!-- inner menu: contains the actual data -->
+                            <ul class="menu unreadSMS">
+                                <?php foreach ($comments as $comment) { ?>
+                                    <?php
+                                    $img_src = ($comment->customer_avatar != "") ?
+                                            "http://mikhailkuznetsov.s3.amazonaws.com/" . $comment->customer_avatar :
+                                            base_url() . 'assets/admin/img/default-avatar.png';
+                                    ?>
+                                    <li><!-- start message -->
+                                        <a href="<?= site_url() . 'admin/comment' ?>">
+                                            <div class="pull-left">
+                                                <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="Customer Image"/>
+                                            </div>
+                                            <h4>
+                                                <?= $comment->fname . ' ' . $comment->lname ?>
+                                                <small><i class="fa fa-clock-o"></i></small>
+                                            </h4>
+                                            <p><?= substr($customer->comment, 0, 50); ?></p>
+                                        </a>
+                                    </li><!-- end message -->
+                                <?php } ?>
+                            </ul>
+                        </li>
+                        <li class="footer"><a href="<?= site_url() . 'admin/comment' ?>">See All Messages</a></li>
                     </ul>
                 </li>
                 <li class="dropdown user user-menu">
