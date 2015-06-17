@@ -162,6 +162,7 @@
         });
 
         $('.comments').on('click', function () {
+            console.log($('.totalC').text());
             if ($('.totalC').text().trim() != "0") {
                 $.post("<?= site_url() ?>admin/comment/updateStatus");
             }
