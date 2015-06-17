@@ -88,9 +88,19 @@
                             <ul class="menu unreadSMS">
                                 <?php foreach ($comments as $comment) { ?>
                                     <?php
-                                    $img_src = ($comment->customer_avatar != "") ?
-                                            "http://mikhailkuznetsov.s3.amazonaws.com/" . $comment->customer_avatar :
-                                            base_url() . 'assets/admin/img/default-avatar.png';
+                                    if ($comment->user_id != NULL) {
+                                        if ($comment->type == "customer") {
+                                            $cInfo = $this->common->getCustomerInfo($comment->user_id);
+                                            $img_src = ($comment->customer_avatar != "") ?
+                                                    "http://mikhailkuznetsov.s3.amazonaws.com/" . $comment->customer_avatar :
+                                                    base_url() . 'assets/admin/img/default-avatar.png';
+                                        } else {
+                                            $aInfo = $this->common->getAffiliateInfo($comment->user_id);
+                                            $img_src = ($comment->affiliate_avatar != "") ?
+                                                    "http://mikhailkuznetsov.s3.amazonawsF.com/" . $comment->affiliate_avatar :
+                                                    base_url() . 'assets/admin/img/default-avatar.png';
+                                        }
+                                    }
                                     ?>
                                     <li><!-- start message -->
                                         <a href="<?= site_url() . 'admin/comment' ?>">
@@ -101,7 +111,7 @@
                                                 <?= $comment->fname . ' ' . $comment->lname ?>
                                                 <small><i class="fa fa-clock-o"></i></small>
                                             </h4>
-                                            <p><?= substr($customer->comment, 0, 50); ?></p>
+                                            <p><?= substr($comment->comment, 0, 50); ?></p>
                                         </a>
                                     </li><!-- end message -->
                                 <?php } ?>

@@ -235,9 +235,8 @@ class Common {
     function getUnreadComment() {
         $this->_CI->db->select('*');
         $this->_CI->db->from('blog_comment as B');
-        $this->_CI->db->join('customer_detail as C', 'B.user_id = C.customer_id');
-        $this->_CI->db->where('status', 1);
-        $this->_CI->db->where('user_id !=', 'NULL');
+        $this->_CI->db->limit(1);
+        $this->_CI->db->order_by('date', 'desc');
         $query = $this->_CI->db->get();
         return $query->result();
     }
