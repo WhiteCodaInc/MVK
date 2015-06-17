@@ -76,7 +76,7 @@
                 <li class="dropdown messages-menu comments">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-tasks"></i>
-                        <span class="label label-success totalC">
+                        <span class="label label-success cbadge">
                             <?= $this->common->getTotalUnreadComment() ?>
                         </span>
                     </a>
@@ -162,8 +162,8 @@
         });
 
         $('.comments').on('click', function () {
-            console.log($('.totalC').text());
-            if ($('.totalC').text().trim() != "0") {
+            console.log($('.cbadge').text());
+            if ($('.cbadge').text().trim() != "0") {
                 $.post("<?= site_url() ?>admin/comment/updateStatus");
             }
         });
