@@ -235,7 +235,7 @@ class Common {
     function getUnreadComment() {
         $this->_CI->db->select('*');
         $this->_CI->db->from('blog_comment as B');
-        $this->_CI->db->limit(1);
+        $this->_CI->db->limit(5);
         $this->_CI->db->order_by('date', 'desc');
         $query = $this->_CI->db->get();
         return $query->result();
