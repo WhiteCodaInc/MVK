@@ -3,7 +3,7 @@
     <span class="label label-success ebadge"><?= count($emails) ?></span>
 </a>
 <ul class="dropdown-menu">
-    <li class="header">You have <span class="totalC"><?= count($emails) ?></span> comments</li>
+    <li class="header">You have <span class="totalC"><?= count($emails) ?></span> emails</li>
     <li>
         <!-- inner menu: contains the actual data -->
         <ul class="menu unreadSMS">
@@ -21,6 +21,6 @@
             <?php } ?>
         </ul>
     </li>
-    <li class="footer"><a href="#">See All Comments</a></li>
+    <li class="footer"><a href="#">See All emails</a></li>
 </ul>
 
