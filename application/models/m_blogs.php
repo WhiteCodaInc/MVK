@@ -108,6 +108,9 @@ class M_blogs extends CI_Model {
                     'joined_url' => $set['joined_url']
                 );
                 $this->db->insert('customer_detail', $customer);
+//                $insertid = $this->db->insert_id();
+//                $set['user_id'] = $insertid;
+//                $set['type'] = $this->type;
                 $this->common->addMailMember($set['name'], $set['email'], 'Commentator');
             }
         }
