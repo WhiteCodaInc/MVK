@@ -161,7 +161,10 @@ class Cpanel extends CI_Controller {
                 imap_close($this->stream);
             }
         }
-        print_r($mailbox);
+        $data['emails'] = $mailbox;
+        print_r($data);
+        die();
+        $this->load->view('admin/email-notify', $data);
     }
 
 }
