@@ -162,7 +162,7 @@
         });
 
         $('.comments').on('click', function () {
-            if ($('.totalC').text() != "0")
+            if ($('.totalC').text() != "0" && $('.comments').hasClass('open'))
                 $.post("<?= site_url() ?>admin/comment/updateStatus");
             $('.totalC').text('0');
         });
