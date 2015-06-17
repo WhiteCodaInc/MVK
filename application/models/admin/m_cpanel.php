@@ -24,6 +24,7 @@ class M_cpanel extends CI_Model {
         $query = $this->db->get('cpanel_email_account');
         return $query->result();
     }
+    
 
     function getProfileAccount() {
 

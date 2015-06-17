@@ -66,7 +66,6 @@ class Mailbox extends CI_Controller {
         } else {
             imap_reopen($this->stream, $url);
             $emails = imap_search($this->stream, 'ALL');
-
             if (is_array($emails)) {
                 rsort($emails);
                 $data = array();

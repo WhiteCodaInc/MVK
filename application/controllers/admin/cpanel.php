@@ -34,8 +34,6 @@ class Cpanel extends CI_Controller {
 
     function index() {
         $account = $this->objcpanel->getAccounts();
-        //echo "<pre>";
-        // print_r($account);
         foreach ($account as $key => $value) {
             if ($this->openInbox($value->email, $value->password)) {
                 $account[$key]->unread = $this->getUnread();
@@ -46,8 +44,6 @@ class Cpanel extends CI_Controller {
                 $account[$key]->total = 0;
             }
         }
-        // print_r($account);
-        // die();
         $data['account'] = $account;
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
@@ -139,6 +135,33 @@ class Cpanel extends CI_Controller {
 //        $pageNo = 1;
 //        $result = $cpmm->listEmails($pageSize, $pageNo);
 //        print_r($result);
+    }
+
+    function getTotalUnreadEmail() {
+        $account = $this->objcpanel->getProfileAccount();
+        $data = array();
+        $mailbox = array();
+        $totalUnread = 0;
+        $cnt = 0;
+        foreach ($account as $value) {
+            if ($this->openInbox($value->email, $value->password)) {
+                $emails = imap_search($this->stream, 'UNSEEN');
+                if (is_array($emails)) {
+                    $totalUnread += count($emails);
+                    rsort($emails);
+                    foreach ($emails as $email_id) {
+                        $overview = imap_fetch_overview($this->stream, $email_id, 0);
+                        $mailbox[$cnt]['id'] = $value->account_id;
+                        $mailbox[$cnt]['subject'] = $this->decode_imap_text($overview[0]->subject);
+                        $mailbox[$cnt]['from'] = $this->decode_imap_text($overview[0]->from);
+                        $mailbox[$cnt]['date'] = date('m-d-Y H:i', strtotime($overview[0]->date));
+                        $cnt++;
+                    }
+                }
+                imap_close($this->stream);
+            }
+        }
+        print_r($mailbox);
     }
 
 }
