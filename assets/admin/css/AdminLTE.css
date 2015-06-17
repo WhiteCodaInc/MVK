@@ -1000,6 +1000,8 @@ body > .header .logo .icon {
     margin: 0 0 0 45px;
     font-size: 12px;
     color: #888888;
+    word-break: break-all;
+    white-space: normal;
 }
 .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a:before,
 .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a:after {
