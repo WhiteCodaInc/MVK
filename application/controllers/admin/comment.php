@@ -56,4 +56,8 @@ class Comment extends CI_Controller {
         header('location:' . site_url() . 'admin/comment?msg=' . $msg);
     }
 
+    function updateStatus() {
+        $this->objcomment->updateStatus();
+    }
+
 }

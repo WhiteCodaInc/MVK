@@ -87,4 +87,8 @@ class M_comment extends CI_Model {
         return $msg;
     }
 
+    function updateStatus() {
+        $this->db->update('blog_comment', array('notification' => 0));
+    }
+
 }

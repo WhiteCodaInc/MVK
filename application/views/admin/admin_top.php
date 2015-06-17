@@ -76,13 +76,13 @@
                 <li class="dropdown messages-menu comments">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-tasks"></i>
-                        <span class="label label-success">
+                        <span class="label label-success totalC">
                             <?= $this->common->getTotalUnreadComment() ?>
                         </span>
                     </a>
                     <?php $comments = $this->common->getUnreadComment(); ?>
                     <ul class="dropdown-menu">
-                        <li class="header">You have <?= $this->common->getTotalUnreadComment() ?> comments</li>
+                        <li class="header">You have <span class="totalC"><?= $this->common->getTotalUnreadComment() ?></span> comments</li>
                         <li>
                             <!-- inner menu: contains the actual data -->
                             <ul class="menu unreadSMS">
@@ -159,6 +159,11 @@
         $('ul.unreadSMS > li > a').on('click', function () {
             var id = $(this).attr('id');
             $.post("<?= site_url() ?>admin/sms/updateStatus/" + id);
+        });
+
+        $('.comments').on('click', function () {
+            $('.totalC').text('0');
+            $.post("<?= site_url() ?>admin/comment/updateStatus");
         });
     });
 </script>
