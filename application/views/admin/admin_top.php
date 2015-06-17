@@ -82,7 +82,7 @@
                     </a>
                     <?php $comments = $this->common->getUnreadComment(); ?>
                     <ul class="dropdown-menu">
-                        <li class="header">You have <?= $this->common->getTotalUnreadComment() ?> messages</li>
+                        <li class="header">You have <?= $this->common->getTotalUnreadComment() ?> comments</li>
                         <li>
                             <!-- inner menu: contains the actual data -->
                             <ul class="menu unreadSMS">
@@ -119,7 +119,7 @@
                                 <?php } ?>
                             </ul>
                         </li>
-                        <li class="footer"><a href="<?= site_url() . 'admin/comment' ?>">See All Messages</a></li>
+                        <li class="footer"><a href="<?= site_url() . 'admin/comment' ?>">See All Comments</a></li>
                     </ul>
                 </li>
                 <li class="dropdown user user-menu">
