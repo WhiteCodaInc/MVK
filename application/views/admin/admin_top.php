@@ -86,7 +86,7 @@
                         <li class="header">You have <span class="totalC"><?= $this->common->getTotalUnreadComment() ?></span> comments</li>
                         <li>
                             <!-- inner menu: contains the actual data -->
-                            <ul class="menu unreadSMS">
+                            <ul class="menu">
                                 <?php foreach ($comments as $comment) { ?>
                                     <?php
                                     if ($comment->user_id != NULL) {

@@ -13,7 +13,7 @@
                         <?php $arr = explode("/", $email['from'], 2); ?>
                         <h4 style="margin: 0">
                             <?= $arr[0] ?>
-                            <small><i class="fa fa-clock-o"></i><?= $email['date'] ?></small>
+                            <small style="float: right"><i class="fa fa-clock-o"></i><?= $email['date'] ?></small>
                         </h4>
                         <p style="margin: 0"><?= $email['subject'] ?></p>
                     </a>
