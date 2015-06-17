@@ -10,7 +10,7 @@
             <?php foreach ($emails as $email) { ?>
                 <li><!-- start message -->
                     <a href="<?= site_url() . 'admin/mailbox/login/' . $email['id'] ?>">
-                        <?php $arr = explode("/", $email['form'], 2); ?>
+                        <?php $arr = explode("/", $email['from'], 2); ?>
                         <h4 style="margin: 0">
                             <?= $arr[0] ?>
                             <small><i class="fa fa-clock-o"></i><?= $email['date'] ?></small>
