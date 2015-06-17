@@ -111,7 +111,7 @@
                                             </div>
                                             <h4>
                                                 <?= $comment->name ?>
-                                                <small><i class="fa fa-clock-o"></i><?= $comment->date ?></small>
+                                                <small><i class="fa fa-clock-o"></i><?= date('m-d-Y H:i', strtotime($comment->date)) ?></small>
                                             </h4>
                                             <p><?= substr($comment->comment, 0, 50); ?></p>
                                         </a>
