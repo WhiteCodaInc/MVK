@@ -126,7 +126,7 @@
                                                 <?php } ?>
                                             </td>
                                             <td class="hidden-xs hidden-sm" >
-                                                <a href="http://localhost/front-end/blogs/single_post/<?= $value->blog_id ?>" class="name">
+                                                <a href="http://mikhailkuznetsov.com/blogs/single_post/<?= $value->blog_id ?>" class="name">
                                                     View Blog Post
                                                 </a>
                                             </td>
