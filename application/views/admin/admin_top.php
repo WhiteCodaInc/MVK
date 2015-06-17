@@ -75,7 +75,7 @@
                 <!-- Bog Comments -->
                 <li class="dropdown messages-menu comments">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-envelope"></i>
+                        <i class="fa fa-tasks"></i>
                         <span class="label label-success">
                             <?= $this->common->getTotalUnreadComment() ?>
                         </span>
