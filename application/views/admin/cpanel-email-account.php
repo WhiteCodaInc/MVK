@@ -14,7 +14,9 @@
             <i class="fa fa-plus"></i>
             Create New Email Account
         </a>
-        <button style="margin-left: 10px" value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <button  value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <button  value="Add" class="add btn btn-info btn-sm" id="Add" type="button" >Add Header Notification</button>
+        <button  value="Remove" class="remove btn btn-warning btn-sm" id="Remove" type="button" >Remove Header Notification</button>
     </section>
 
     <!-- Main content -->
