@@ -43,32 +43,32 @@
                                         <li class="header">Folders</li>
                                         <li class="<?= ($type == "") ? "active" : "" ?>">
                                             <a href="<?= site_url() ?>admin/mailbox/inbox">
-                                                <i class="fa fa-inbox"></i> Inbox <?= ($folder[0]) ? "({$folder[0]})" : "" ?>
+                                                <i class="fa fa-inbox"></i> Inbox <?= (isset($folder[0]) && $folder[0]) ? "({$folder[0]})" : "" ?>
                                             </a>
                                         </li>
                                         <li class="<?= ($type == "Drafts") ? "active" : "" ?>">
                                             <a href="<?= site_url() ?>admin/mailbox/inbox/Drafts">
-                                                <i class="fa fa-pencil-square-o"></i> Drafts <?= ($folder[1]) ? "({$folder[1]})" : "" ?>
+                                                <i class="fa fa-pencil-square-o"></i> Drafts <?= (isset($folder[1]) && $folder[1]) ? "({$folder[1]})" : "" ?>
                                             </a>
                                         </li>
                                         <li class="<?= ($type == "Sent") ? "active" : "" ?>">
                                             <a href="<?= site_url() ?>admin/mailbox/inbox/Sent">
-                                                <i class="fa fa-mail-forward"></i> Sent <?= ($folder[4]) ? "({$folder[4]})" : "" ?>
+                                                <i class="fa fa-mail-forward"></i> Sent <?= (isset($folder[4]) && $folder[4]) ? "({$folder[4]})" : "" ?>
                                             </a>
                                         </li>
                                         <li class="<?= ($type == "Trash") ? "active" : "" ?>">
                                             <a href="<?= site_url() ?>admin/mailbox/inbox/Trash">
-                                                <i class="fa fa-trash-o"></i> Trash <?= ($folder[2]) ? "({$folder[2]})" : "" ?>
+                                                <i class="fa fa-trash-o"></i> Trash <?= (isset($folder[2]) && $folder[2]) ? "({$folder[2]})" : "" ?>
                                             </a>
                                         </li>
                                         <li class="<?= ($type == "Archive") ? "active" : "" ?>">
                                             <a href="<?= site_url() ?>admin/mailbox/inbox/Archive">
-                                                <i class="fa fa-folder"></i> Archive <?= ($folder[5]) ? "({$folder[5]})" : "" ?>
+                                                <i class="fa fa-folder"></i> Archive <?= (isset($folder[5]) && $folder[5]) ? "({$folder[5]})" : "" ?>
                                             </a>
                                         </li>
                                         <li class="<?= ($type == "Junk") ? "active" : "" ?>">
                                             <a href="<?= site_url() ?>admin/mailbox/inbox/Junk">
-                                                <i class="fa fa-folder"></i> Junk <?= ($folder[3]) ? "({$folder[3]})" : "" ?>
+                                                <i class="fa fa-folder"></i> Junk <?= (isset($folder[3]) && $folder[3]) ? "({$folder[3]})" : "" ?>
                                             </a>
                                         </li>
                                     </ul>
