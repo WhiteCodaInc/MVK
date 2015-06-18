@@ -100,6 +100,12 @@ switch ($msg) {
     case "D":
         $m = "Email Account(s) Successfully Deleted..!";
         $t = "error";
+    case "A":
+        $m = "Email Account(s) Successfully Added Into Header Notification..!";
+        $t = "success";
+    case "R":
+        $m = "Email Account(s) Successfully Removed From The Header Notification..!";
+        $t = "error";
         break;
     default:
         $m = 0;
