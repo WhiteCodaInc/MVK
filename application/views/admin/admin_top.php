@@ -173,16 +173,16 @@
     </nav>
 </header>
 <script>
-    $(document).ready(function () {
-        $(function () {
-            $.ajax({
-                type: 'POST',
-                url: "<?= site_url() ?>admin/cpanel/getTotalUnreadEmail",
-                success: function (data, textStatus, jqXHR) {
-                    $('.email-notify').html(data);
-                }
-            });
+    $(function () {
+        $.ajax({
+            type: 'POST',
+            url: "<?= site_url() ?>admin/cpanel/getTotalUnreadEmail",
+            success: function (data, textStatus, jqXHR) {
+                $('.email-notify').html(data);
+            }
         });
+    });
+    $(document).ready(function () {
         $('ul.unreadSMS > li > a').on('click', function () {
             var id = $(this).attr('id');
             $.post("<?= site_url() ?>admin/sms/updateStatus/" + id);
