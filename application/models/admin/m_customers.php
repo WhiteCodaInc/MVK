@@ -211,7 +211,6 @@ class M_customers extends CI_Model {
     }
 
     function setAction() {
-
         $ids = $this->input->post('customer');
         foreach ($ids as $value) {
             $this->db->delete('customer_detail', array('customer_id' => $value));

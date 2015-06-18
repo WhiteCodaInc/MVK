@@ -24,7 +24,6 @@ class M_cpanel extends CI_Model {
         $query = $this->db->get('cpanel_email_account');
         return $query->result();
     }
-    
 
     function getProfileAccount() {
 
@@ -51,11 +50,21 @@ class M_cpanel extends CI_Model {
         return TRUE;
     }
 
-    function delete() {
-        $ids = $this->input->post('account');
-        foreach ($ids as $value) {
-            $this->db->delete('cpanel_email_account', array('account_id' => $value));
+    function setAction($type, $ids) {
+        if (is_array($ids))
+            $this->db->where('account_id in(' . implode(',', $ids) . ')');
+        switch ($type) {
+            case "Add":
+                $this->db->update('cpanel_email_account', array('notification' => 1));
+                break;
+            case "Remove":
+                $this->db->update('cpanel_email_account', array('notification' => 0));
+                break;
+            case "Delete":
+                $this->db->delete('cpanel_email_account', array('account_id' => $ids));
+                break;
         }
+        return TRUE;
     }
 
 }

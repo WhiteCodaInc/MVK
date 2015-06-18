@@ -73,6 +73,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
+                            <input type="hidden" id="actionType" name="actionType" value="" />
                         </div><!-- /.box-body -->
                     </form>
                 </div><!-- /.box -->
@@ -129,9 +130,18 @@ switch ($msg) {
 <script type="text/javascript">
     $(document).ready(function () {
 
+        $('button.add').click(function (e) {
+            action($(this).val());
+            e.preventDefault();
+        });
+        $('button.remove').click(function (e) {
+            action($(this).val());
+            e.preventDefault();
+        });
+
         $('button.delete').click(function (e) {
             var bcat = "";
-            //var act = $(this).val();
+            var act = $(this).val();
             $('#account-data-table tbody tr').each(function () {
                 if ($(this).children('td:first').find('div.checked').length) {
                     $txt = $(this).children('td:nth-child(2)').text();
@@ -143,7 +153,7 @@ switch ($msg) {
 
             alertify.confirm("Are you sure want to delete Email Account(s):<br/>" + bcat, function (e) {
                 if (e) {
-                    action();
+                    action(act);
                     return true;
                 }
                 else {
@@ -151,8 +161,9 @@ switch ($msg) {
                 }
             });
         });
-        function action() {
-            $('#checkForm').attr('action', "<?= site_url() ?>admin/cpanel/delete");
+        function action(actiontype) {
+            $('#actionType').val(actiontype);
+            $('#checkForm').attr('action', "<?= site_url() ?>admin/cpanel/action");
             $('#checkForm').submit();
         }
     });

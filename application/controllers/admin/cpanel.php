@@ -98,17 +98,31 @@ class Cpanel extends CI_Controller {
         header('location:' . site_url() . 'admin/cpanel');
     }
 
-    function delete() {
-        $ids = $this->input->post('account');
-        foreach ($ids as $value) {
-            $accountInfo = $this->objcpanel->getAccount($value);
-            $result = $this->cpmm->deleteEmail($accountInfo->email);
-            if ($result) {
-                $this->objcpanel->delete($value);
+    function action() {
+        $msg = "";
+        $post = $this->input->post();
+        $type = $post['actionType'];
+        if ($type == "Delete") {
+            foreach ($post['account'] as $value) {
+                $accountInfo = $this->objcpanel->getAccount($value);
+                $result = $this->cpmm->deleteEmail($accountInfo->email);
+                if ($result) {
+                    $this->objcpanel->setAction($type, $value);
+                }
+                $msg = "D";
             }
+        } else if ($type == "Add" || $type == "Remove") {
+            $this->objcpanel->setAction($type, $post['account']);
+            $msg = ($type == "Add") ? "A" : "R";
+        } else {
+            $msg = "";
         }
-        $this->session->set_flashdata('msg', "D");
-        header('location:' . site_url() . 'admin/cpanel');
+        if ($msg != "") {
+            $this->session->set_flashdata('msg', $msg);
+            header('location:' . site_url() . 'admin/cpanel');
+        } else {
+            header('location:' . site_url() . 'admin/cpanel');
+        }
     }
 
     function getUnread() {
