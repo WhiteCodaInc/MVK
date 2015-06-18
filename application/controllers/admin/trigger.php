@@ -34,13 +34,16 @@ class Trigger extends CI_Controller {
         // UM =  - to UTC 
         // UP = UTC to + 
         $this->timezone = "UM8";
-        $datetime = date('Y-m-d H:i:s', gmt_to_local(time(), $this->timezone, TRUE));
+//        $datetime = date('Y-m-d H:i:s', gmt_to_local(time(), $this->timezone, TRUE));
+        $datetime = "2015-06-18 00:10:05";
         echo "{$this->session->userdata('email')}<br>";
         echo "<pre>";
         echo "FULL TIME : {$datetime}<br>";
 
         $this->date = date('Y-m-d', strtotime($datetime));
         $this->hour = date('H', strtotime($datetime)) - 1;
+        if ($this->hour == -1)
+            $this->hour = 23;
         $this->minute = date('i', strtotime($datetime));
         $this->second = date('s', strtotime($datetime));
 
@@ -53,7 +56,7 @@ class Trigger extends CI_Controller {
         echo "HOUR : " . $this->hour . '<br>';
         echo "MINUTE : " . $this->minute . '<br>';
         echo "SECOND : " . $this->second . '<br>';
-
+        die();
         foreach ($res as $value) {
 
             if ($this->hour == $value->h && $this->minute == $value->m) {
