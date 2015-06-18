@@ -25,6 +25,11 @@ class M_cpanel extends CI_Model {
         return $query->result();
     }
 
+    function getNotificationAccount() {
+        $query = $this->db->get_where('cpanel_email_account', array('notification' => 1));
+        return $query->result();
+    }
+
     function getProfileAccount() {
 
         $adminInfo = $this->common->getAdminInfo();
