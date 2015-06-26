@@ -30,21 +30,16 @@ class Import extends CI_Controller {
         $this->client->setRedirectUri($this->config->item('redirect_uri', 'googlecontact'));
         $this->client->setDeveloperKey($this->config->item('api_key', 'googlecontact'));
         $this->client->setScopes("http://www.google.com/m8/feeds/");
+        $this->client->setApprovalPrompt('auto');
     }
 
     function index() {
-        $this->client->setApprovalPrompt('auto');
-        $data['url'] = $this->client->createAuthUrl();
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/import', $data);
-        $this->load->view('admin/admin_footer');
+        header('location:' . $this->client->createAuthUrl());
     }
 
     public function contacts() {
         if ($this->input->get('error') == "access_denied") {
-            header('location:' . site_url() . 'admin/import');
+            header('location:' . site_url() . 'admin/dashboard');
         }
         $authcode = $this->input->get('code');
         $clientid = $this->client->getClientId();
@@ -87,56 +82,50 @@ class Import extends CI_Controller {
 
         //extracting access_token from response string
         $responseToken = json_decode($result);
+        if (isset($responseToken->access_token)) {
 
-        $accesstoken = $responseToken->access_token;
-        if ($accesstoken != "")
-            $this->session->set_userdata('token', $accesstoken);
+            $url = 'https://www.google.com/m8/feeds/contacts/default/full?max-results=' . $max_result . '&alt=json&v=3.0&oauth_token=' . $this->session->userdata('token');
 
-        //passing accesstoken to obtain contact details
-        $url = 'https://www.google.com/m8/feeds/contacts/default/full?max-results=' . $max_result . '&alt=json&v=3.0&oauth_token=' . $this->session->userdata('token');
+            $response = $this->curl_file_get_contents($url);
+            $contacts = json_decode($response, true);
 
-        $response = $this->curl_file_get_contents($url);
-        $contacts = json_decode($response, true);
+            $gc = array();
+            foreach ($contacts['feed']['entry'] as $cnt) {
+                $name = $cnt['title']['$t'];
+                $email = (isset($cnt['gd$email'])) ? $cnt['gd$email']['0']['address'] : '';
+                $phone = (isset($cnt['gd$phoneNumber'])) ? $cnt['gd$phoneNumber']['0']['$t'] : '';
+                $gc[] = array('name' => $name, 'email' => $email, 'phone' => $phone);
+            }
+            $data['gc'] = $gc;
+            $data['url'] = $this->client->createAuthUrl();
+            $data['flag'] = TRUE;
 
-        //echo '<pre>';
-        //print_r($contacts);
-        // die();
 
-        $gc = array();
-        foreach ($contacts['feed']['entry'] as $cnt) {
-            $name = $cnt['title']['$t'];
-            $email = (isset($cnt['gd$email'])) ? $cnt['gd$email']['0']['address'] : '';
-            $phone = (isset($cnt['gd$phoneNumber'])) ? $cnt['gd$phoneNumber']['0']['$t'] : '';
-            $gc[] = array('name' => $name, 'email' => $email, 'phone' => $phone);
+            $this->load->view('admin/admin_header');
+            $this->load->view('admin/import', $data);
+            $this->load->view('admin/admin_footer');
+        } else {
+            header('location:' . site_url() . 'admin/import');
         }
-        $data['gc'] = $gc;
-        $data['url'] = $this->client->createAuthUrl();
-        $data['flag'] = TRUE;
-
-
-        $this->load->view('admin/admin_header');
-        //$this->load->view('admin/admin_top');
-        //$this->load->view('admin/admin_navbar');
-        $this->load->view('admin/import', $data);
-        $this->load->view('admin/admin_footer');
     }
 
     function addContacts() {
         $post = $this->input->post();
-        foreach ($post['contact'] as $value) {
-            $name = explode(' ', $post['name'][$value]);
-            $set = array(
-                'fname' => $name[0],
-                'lname' => $name[1]
-            );
-            ($post['email'][$value]) ? $set['email'] = $post['email'][$value] : '';
-            ($post['phone'][$value]) ? $set['phone'] = $post['phone'][$value] : '';
-
-            //print_r($set);
-            $this->db->insert('contact_detail', $set);
+        if (isset($post['contact']) && count($post['contact']) > 0) {
+            foreach ($post['contact'] as $value) {
+                $name = explode(' ', $post['name'][$value]);
+                $set = array(
+                    'fname' => (isset($name[0])) ? $name[0] : '',
+                    'lname' => (isset($name[1])) ? $name[1] : ''
+                );
+                ($post['email'][$value]) ? $set['email'] = $post['email'][$value] : '';
+                ($post['phone'][$value]) ? $set['phone'] = $post['phone'][$value] : '';
+                $this->db->insert('contact_detail', $set);
+            }
+            header('location:' . site_url() . 'admin/contacts');
+        } else {
+            header('location:' . site_url() . 'admin/import');
         }
-        //die();
-        header('location:' . site_url() . 'admin/contacts');
     }
 
     function curl_file_get_contents($url) {
