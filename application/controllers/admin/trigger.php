@@ -129,9 +129,12 @@ class Trigger extends CI_Controller {
 
     function sendSMS($to, $body, $notify) {
         if ($notify == "me") {
+            echo "NOTIFY ME<br>";
             $adminInfo = $this->common->getAdminInfo(2);
             $to = $adminInfo->phone;
             echo "SESSION : " . $to . '<br>';
+        } else {
+            echo "NOTIFY THEM<br>";
         }
         echo "TO : " . $to . '<br>';
         echo "BODY : " . $body . '<br>';

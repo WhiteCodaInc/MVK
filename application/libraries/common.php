@@ -169,9 +169,9 @@ class Common {
 
     function sendSMS($to, $body) {
         if ($this->profile_id) {
-            $adminInfo = $this->common->getAdminInfo();
+            $adminInfo = $this->getAdminInfo();
         } else {
-            $adminInfo = $this->common->getAdminInfo(2);
+            $adminInfo = $this->getAdminInfo(2);
         }
         try {
             $msg = $this->_CI->twilio->account->messages->create(
