@@ -1523,7 +1523,7 @@
                         $('#e_notify_me').trigger('click');
                     }
                     if (data.group_type == "individual") {
-                        $('.e_user_name').text(data.name);
+                        $('.e_user_name').text(data.name+" ");
                         $url = (data.contact_avatar != null) ?
                                 "http://mikhailkuznetsov.s3.amazonaws.com/" + data.contact_avatar :
                                 "<?= base_url() . 'assets/admin/img/default-avatar.png' ?>";
@@ -1537,7 +1537,7 @@
                     } else {
                         $('#event_status').css('margin', '0');
                         $('#event_empty').css('margin', '0');
-                        $('.e_user_name').text(data.group_name);
+                        $('.e_user_name').text(data.group_name+" ");
                         $('#e_user_img').css('display', 'none');
                     }
                     $('#e_event_name').text(data.event);
