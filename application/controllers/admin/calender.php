@@ -395,22 +395,6 @@ class Calender extends CI_Controller {
         }
     }
 
-    function delete($id) {
-        $calId = $this->getCalenderId();
-        if ($calId) {
-            try {
-                $this->service->events->delete($calId, $id);
-                return TRUE;
-            } catch (Google_Exception $exc) {
-//                $error = $exc->getMessage();
-//                echo $error;
-                return FALSE;
-            }
-        } else {
-            return FALSE;
-        }
-    }
-
     function updateGoogleEvent($post) {
         $eventInfo = $this->objcalender->getEventInfo($post['eventid']);
         if ($eventInfo->google_event_id != "") {
@@ -541,6 +525,37 @@ class Calender extends CI_Controller {
                     return $city['timezone_id'];
                 }
             }
+        }
+    }
+
+    function delete($id) {
+        $calId = $this->getCalenderId();
+        if ($calId) {
+            try {
+                $this->service->events->delete($calId, $id);
+                return TRUE;
+            } catch (Google_Exception $exc) {
+//                $error = $exc->getMessage();
+//                echo $error;
+                return FALSE;
+            }
+        } else {
+            return FALSE;
+        }
+    }
+
+    function clear() {
+        $calId = $this->getCalenderId();
+        if ($calId) {
+            try {
+                $this->service->calendars->clear("vishaltesting9@gmail.com");
+                return TRUE;
+            } catch (Google_Exception $exc) {
+                $error = $exc->getMessage();
+                echo $error;
+            }
+        } else {
+            echo 'NOT CONNECTED';
         }
     }
 
