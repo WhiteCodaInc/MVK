@@ -40,7 +40,7 @@ class M_calender extends CI_Model {
         return $res;
     }
 
-    function addEvent($post) {
+    function addEvent($post, $google_event_id = NULL) {
         switch ($post['assign']) {
             case 'all_c':
                 $post['group_type'] = "individual";
@@ -55,15 +55,14 @@ class M_calender extends CI_Model {
             default:
                 break;
         }
-        if (isset($post['userid'])) {
-            $post['user_id'] = $post['userid'];
-            $post['date'] = date('Y-m-d', strtotime($post['date']));
-            unset($post['userid']);
+        if (isset($post['user_id'])) {
+            $post['date'] = $this->common->getMySqlDate($post['date'], "mm-dd-yyyy");
         }
         $post['is_repeat'] = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
         $post['body'] = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
         $post['notification'] = ($post['event_type'] == "notification") ? 0 : 1;
         $post['occurance'] = ($post['occurance'] != "") ? $post['occurance'] : NULL;
+        $post['google_event_id'] = $google_event_id;
         unset($post['assign']);
         unset($post['smsbody']);
         unset($post['emailbody']);
@@ -191,6 +190,14 @@ class M_calender extends CI_Model {
     }
 
     function deleteEvent($eid) {
+
+        $query = $this->db->get_where('schedule', array('event_id' => $eid));
+        if ($query->row()->is_repeat) {
+            $where = array(
+                'refer_id' => $query->row()->event_id
+            );
+            $this->db->delete('schedule', $where);
+        }
         if ($this->db->delete('schedule', array('event_id' => $eid))) {
             return TRUE;
         } else {
@@ -198,10 +205,8 @@ class M_calender extends CI_Model {
         }
     }
 
-    function updateEvent() {
+    function updateEvent($set) {
         $flag = FALSE;
-        $set = $this->input->post();
-
         $eid = $set['eventid'];
         unset($set['eventid']);
         $query = $this->db->get_where('schedule', array('event_id' => $eid));
@@ -209,7 +214,7 @@ class M_calender extends CI_Model {
         $res = $result[0];
         $this->db->trans_start();
         if (isset($set['event'])) {
-            $set['date'] = ($set['date'] != "") ? date('Y-m-d', strtotime($set['date'])) : $res['date'];
+            $set['date'] = ($set['date'] != "") ? $this->common->getMySqlDate($set['date'], "mm-dd-yyyy") : $res['date'];
             $set['is_repeat'] = (isset($set['is_repeat']) && $set['is_repeat'] == "on") ? 1 : 0;
             $set['body'] = ($set['event_type'] == "sms" || $set['event_type'] == "notification") ?
                     $set['smsbody'] :
@@ -276,6 +281,39 @@ class M_calender extends CI_Model {
         } else {
             return FALSE;
         }
+    }
+
+    function getEventInfo($eid) {
+        $where = array(
+            'event_id' => $eid
+        );
+        $query = $this->db->get_where('schedule', $where);
+        return $query->row();
+    }
+
+    function getGoogleEventId($eid) {
+        $where = array(
+            'event_id' => $eid,
+            'google_event_id !=' => ''
+        );
+        $query = $this->db->get_where('schedule', $where);
+        return ($query->num_rows()) ? $query->row() : FALSE;
+    }
+
+    function loadLocalEvent() {
+        $where = array(
+            'refer_id' => NULL,
+            'google_event_id' => NULL
+        );
+        $query = $this->db->get_where('schedule', $where);
+        return $query->result_array();
+    }
+
+    function updateGoogleEvent($gEvent, $lEvent) {
+        $where = array(
+            'event_id' => $lEvent['event_id']
+        );
+        $this->db->update('schedule', array('google_event_id' => $gEvent->id), $where);
     }
 
 }
