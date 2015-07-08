@@ -1029,6 +1029,7 @@
 
     $(document).ready(function () {
 <?php if (isset($contactInfo) && $contactInfo): ?>
+
             $('#create_event').trigger('click');
 <?php elseif (isset($contactInfo) && !$contactInfo): ?>
             alertify.error('User Not Available..!');
@@ -1145,7 +1146,7 @@
             }
             var data = CKEDITOR.instances['e_emailbody'].getData();
             $('#e_emailbody').val(data);
-            $('#' + id).prop('disabled', false);
+            $('#' + id).prop('disabled', true);
             $.ajax({
                 type: 'POST',
                 data: $('#editForm').serialize(),
@@ -1153,11 +1154,13 @@
                 success: function (data, textStatus, jqXHR) {
                     $('#e_discard').trigger('click');
                     $('#' + id).prop('disabled', false);
-                    if (data == 1) {
+                    if (data == "1") {
                         $("#calendar").fullCalendar("refetchEvents");
                         alertify.success("Event has been successfully Updated..!");
-                    } else {
+                    } else if (data == "0") {
                         alertify.error("Event has not been successfully Updated..!");
+                    } else {
+                        alertify.error("This event is connect with Google Calender. Please connect calender with google.");
                     }
                 }
             });
@@ -1166,12 +1169,17 @@
         $('#insert,#n_insert').click(function () {
             var id = $(this).prop('id');
             if (id == "insert") {
-                if ($("#rd_individual").is(':checked')) {
-                    var cnt = $('#users').val();
-                    if (cnt.trim() == "") {
+                if ($("#rd_individual").prop('checked')) {
+                    var cnt = $('#users').val().trim();
+                    if (cnt == "") {
                         alertify.error("Please Select Contact..!");
                         return false;
                     } else if ($.inArray(cnt, contact) == "-1") {
+                        alertify.error("Please Select Valid Contact..!");
+                        return false;
+                    } else if (validateContact(cnt)) {
+                        $('input[name="user_id"]').val(ids[contact.indexOf(cnt)]);
+                    } else {
                         alertify.error("Please Select Valid Contact..!");
                         return false;
                     }
@@ -1189,8 +1197,10 @@
                         var occur = parseInt($('#eventForm input[name="occurance"]').val());
                         if (!/^[0-9]+$/.test(occur)) {
                             alertify.error("Please Enter Valid Occurance Number..!");
+                            return false;
                         } else if (occur <= 0) {
                             alertify.error("Occurance Must be greater than 0..!");
+                            return false;
                         }
                     }
                 }
@@ -1230,13 +1240,8 @@
                 form = "neweventForm";
 <?php else: ?>
                 form = "eventForm";
-                if (validateContact($('#users').val())) {
-                    $('input[name="user_id"]').val(ids[contact.indexOf($('#users').val())]);
-                } else {
-                    return false;
-                }
 <?php endif; ?>
-            $('#' + id).prop('disabled', false);
+            $('#' + id).prop('disabled', true);
             $.ajax({
                 type: 'POST',
                 data: $('#' + form).serialize(),
@@ -1497,7 +1502,7 @@
             var today = $.datepicker.formatDate('yy-mm-dd', new Date());
             if ($(jsEvent.target).is('td.fc-day')) {
                 highlightDay(jsEvent);
-                $('#dt').text(date.format("DD-MM-YYYY"));
+                $('#dt').text(date.format("MM-DD-YYYY"));
                 $('input[name="date"]').val(date.format());
                 $('#eventForm').trigger("reset");
                 $('#all_c').trigger("change");
@@ -1626,8 +1631,12 @@
                     data: {date: new_date, eventid: event.id},
                     url: "<?= site_url() ?>admin/calender/updateEvent",
                     success: function (data, textStatus, jqXHR) {
-                        if (data == 0) {
+                        if (data == "0") {
                             revertFunc();
+                        } else if (data == "1") {
+                            alertify.success("Event has been successfully Updated..!");
+                        } else if (data == "NC") {
+                            alertify.error("This event is connect with Google Calender. Please connect calender with google.");
                         }
                     }
                 });
