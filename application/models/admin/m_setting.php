@@ -48,13 +48,23 @@ class M_setting extends CI_Model {
         }
         return $msg;
     }
-    
+
     function editNumber($param) {
         
     }
 
     function updateAdminProfile($set) {
         $this->db->update('admin_profile', $set, array('class_id' => $set['class_id']));
+    }
+
+    function getCalenderSetting() {
+        $query = $this->db->get('calender_setting');
+        return $query->row();
+    }
+
+    function updateCalenderSetting($set) {
+        $this->db->update('calender_setting', $set);
+        return true;
     }
 
 }
