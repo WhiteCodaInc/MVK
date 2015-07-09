@@ -323,9 +323,6 @@ class Calender extends CI_Controller {
     function addLocalEvent() {
         $calId = $this->getCalenderId();
         if ($this->refresh() && $calId) {
-
-            $flag = TRUE;
-
             $timestamp = "Pacific/Pitcairn";
             date_default_timezone_set($timestamp);
 
@@ -334,6 +331,7 @@ class Calender extends CI_Controller {
             print_r($events);
 //            die();
             foreach ($events as $ev) {
+                $flag = TRUE;
                 $eventDt = $ev['date'] . ' ' . $ev['time'];
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
                 switch ($ev['group_type']) {
