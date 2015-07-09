@@ -332,13 +332,15 @@ class Calender extends CI_Controller {
             $events = $this->objcalender->loadLocalEvent();
             echo '<pre>';
             print_r($events);
-            die();
+
             foreach ($events as $ev) {
                 $eventDt = $ev['date'] . ' ' . $ev['time'];
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
                 switch ($ev['group_type']) {
                     case 'individual':
                         $contactInfo = $this->common->getContactInfo($ev['user_id']);
+                        print_r($contactInfo);
+                        die();
                         if ($contactInfo->email) {
                             $attendee = new Google_EventAttendee();
                             $attendee->setEmail($contactInfo->email);
