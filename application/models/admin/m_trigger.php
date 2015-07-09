@@ -54,9 +54,11 @@ class M_trigger extends CI_Model {
 
     function addNextEvent($eid) {
         $query = $this->db->get_where('schedule', array('event_id' => $eid));
-        $event = $query->row();
-        $nextDt = $this->common->getNextDate($event->date, $event->freq_no . ' ' . $event->freq_type);
-        echo $nextDt;
+        $event = (array) $query->row();
+        echo '<pre>';
+        print_r($event);
+        die();
+        $nextDt = $this->common->getNextDate($event['date'], $event->freq_no . ' ' . $event->freq_type);
     }
 
 }
