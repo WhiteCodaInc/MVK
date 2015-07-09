@@ -411,6 +411,7 @@ class Calender extends CI_Controller {
                         $this->objcalender->updateGoogleEvent($createdEvent, $ev);
                 }
             }
+            die();
             return TRUE;
         } else {
             return FALSE;
