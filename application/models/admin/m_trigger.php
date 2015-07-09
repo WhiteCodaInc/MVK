@@ -60,10 +60,7 @@ class M_trigger extends CI_Model {
         $nextDt = $this->common->getNextDate($event['date'], $event['freq_no'] . ' ' . $event['freq_type']);
         $event['refer_id'] = $event['event_id'];
         $event['date'] = $nextDt;
-        $unset = array('event_id', 'google_event_id', 'register_date');
-//        unset($event['event_id'], $event['register_date']);
-        unset($unset);
-//        echo $nextDt;
+        unset($event['event_id'], $event['google_event_id'], $event['register_date']);
         print_r($event);
         die();
     }
