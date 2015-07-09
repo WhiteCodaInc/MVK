@@ -338,7 +338,7 @@ class Calender extends CI_Controller {
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
                 switch ($ev['group_type']) {
                     case 'individual':
-                        echo '<br>----------------Individual--------------------<br>';
+                        echo "<br>----------------Individual : {$ev['user_id']}--------------------<br>";
                         $contactInfo = $this->common->getContactInfo($ev['user_id']);
                         print_r($contactInfo);
                         if ($contactInfo->email != "") {
@@ -360,7 +360,7 @@ class Calender extends CI_Controller {
                             $contactInfo = $this->common->getContactInfo($cid);
                             print_r($contactInfo);
                             if ($contactInfo->email) {
-                                echo "<br>---------------MEMBER : {$key}----------------<br>";
+                                echo "<br>---------------MEMBER : {$cid}----------------<br>";
                                 echo $contactInfo->fname . ' ' . $contactInfo->lname . '<br>';
                                 echo $contactInfo->email . '<br>';
 
