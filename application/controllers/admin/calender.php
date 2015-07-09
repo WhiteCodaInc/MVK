@@ -53,7 +53,7 @@ class Calender extends CI_Controller {
             header('location:' . site_url() . 'admin/calender?a=sync');
         }
         if (isset($get['a']) && $get['a'] == "sync") {
-            $this->addLocalEvent();
+//            $this->addLocalEvent();
         }
         $data['individual'] = $this->objcontact->getContactDetail();
         $data['template'] = $this->objsmstemplate->getTemplates();
