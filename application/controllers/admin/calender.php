@@ -330,7 +330,7 @@ class Calender extends CI_Controller {
             date_default_timezone_set($timestamp);
 
             $events = $this->objcalender->loadLocalEvent();
-//            echo '<pre>';
+            echo '<pre>';
 //            print_r($events);
 //            die();
             foreach ($events as $ev) {
@@ -338,9 +338,10 @@ class Calender extends CI_Controller {
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
                 switch ($ev['group_type']) {
                     case 'individual':
+                        echo '<br>----------------Individual--------------------<br>';
                         $contactInfo = $this->common->getContactInfo($ev['user_id']);
+                        print_r($contactInfo);
                         if ($contactInfo->email != "") {
-                            echo '<br>----------------Individual--------------------<br>';
                             echo $contactInfo->fname . ' ' . $contactInfo->lname . '<br>';
                             echo $contactInfo->email . '<br>';
 //                            $attendee = new Google_EventAttendee();
@@ -357,6 +358,7 @@ class Calender extends CI_Controller {
                         echo '<br>----------------Group--------------------<br>';
                         foreach ($cids as $key => $cid) {
                             $contactInfo = $this->common->getContactInfo($cid);
+                            print_r($contactInfo);
                             if ($contactInfo->email) {
                                 echo "<br>---------------MEMBER : {$key}----------------<br>";
                                 echo $contactInfo->fname . ' ' . $contactInfo->lname . '<br>';
