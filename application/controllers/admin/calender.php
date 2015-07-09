@@ -341,7 +341,7 @@ class Calender extends CI_Controller {
                         echo "<br>----------------Individual : {$ev['user_id']}--------------------<br>";
                         $contactInfo = $this->common->getContactInfo($ev['user_id']);
                         print_r($contactInfo);
-                        if ($contactInfo->email != "") {
+                        if (is_object($contactInfo) && $contactInfo->email != "") {
                             echo $contactInfo->fname . ' ' . $contactInfo->lname . '<br>';
                             echo $contactInfo->email . '<br>';
 //                            $attendee = new Google_EventAttendee();
