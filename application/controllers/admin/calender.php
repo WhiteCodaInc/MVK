@@ -323,6 +323,9 @@ class Calender extends CI_Controller {
     function addLocalEvent() {
         $calId = $this->getCalenderId();
         if ($this->refresh() && $calId) {
+
+            $flag = TRUE;
+
             $timestamp = "Pacific/Pitcairn";
             date_default_timezone_set($timestamp);
 
@@ -336,9 +339,13 @@ class Calender extends CI_Controller {
                 switch ($ev['group_type']) {
                     case 'individual':
                         $contactInfo = $this->common->getContactInfo($ev['user_id']);
-                        $attendee = new Google_EventAttendee();
-                        $attendee->setEmail($contactInfo->email);
-                        $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
+                        if ($contactInfo->email) {
+                            $attendee = new Google_EventAttendee();
+                            $attendee->setEmail($contactInfo->email);
+                            $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
+                        } else {
+                            $flag = FALSE;
+                        }
                         break;
                     case 'simple':
                         $res = $this->objbuilder->getGroupContact($ev['group_id']);
@@ -346,48 +353,54 @@ class Calender extends CI_Controller {
                         $attendee = array();
                         foreach ($cids as $key => $cid) {
                             $contactInfo = $this->common->getContactInfo($cid);
-                            $attendee[$key] = new Google_EventAttendee();
-                            $attendee[$key]->setEmail($contactInfo->email);
-                            $attendee[$key]->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
+                            if ($contactInfo->email) {
+                                $attendee[$key] = new Google_EventAttendee();
+                                $attendee[$key]->setEmail($contactInfo->email);
+                                $attendee[$key]->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
+                            }
                         }
+                        if (count($attendee) <= 0)
+                            $flag = FALSE;
                         break;
                 }
-                if (!$ev['is_repeat']) {
+                if ($flag) {
+                    if (!$ev['is_repeat']) {
 //                    echo "<br>-----Event ID : {$ev['event_id']}--------<br>";
 //                    print_r($attendee);
 //                    echo $ev_dt . '<br>';
 //                    echo "<br>-------END--------<br>";
-                    $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp);
-                } else {
-                    switch ($ev['freq_type']) {
-                        case "days":
-                            $freq = "DAILY";
-                            break;
-                        case "weeks":
-                            $freq = "WEEKLY";
-                            break;
-                        case "months":
-                            $freq = "MONTHLY";
-                            break;
-                        case "years":
-                            $freq = "YEARLY";
-                            break;
-                    }
-                    if ($ev['end_type'] == "never") {
-                        $recur = "RRULE:FREQ={$freq};INTERVAL={$ev['freq_no']}";
-                    } else if ($ev['end_type'] == "after") {
-                        $recur = "RRULE:FREQ={$freq};INTERVAL={$ev['freq_no']};COUNT={$ev['occurance']}";
+                        $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp);
                     } else {
-                        $recur = NULL;
-                    }
+                        switch ($ev['freq_type']) {
+                            case "days":
+                                $freq = "DAILY";
+                                break;
+                            case "weeks":
+                                $freq = "WEEKLY";
+                                break;
+                            case "months":
+                                $freq = "MONTHLY";
+                                break;
+                            case "years":
+                                $freq = "YEARLY";
+                                break;
+                        }
+                        if ($ev['end_type'] == "never") {
+                            $recur = "RRULE:FREQ={$freq};INTERVAL={$ev['freq_no']}";
+                        } else if ($ev['end_type'] == "after") {
+                            $recur = "RRULE:FREQ={$freq};INTERVAL={$ev['freq_no']};COUNT={$ev['occurance']}";
+                        } else {
+                            $recur = NULL;
+                        }
 //                    echo "<br>-----Event ID : {$ev['event_id']}--------<br>";
 //                    print_r($attendee);
 //                    echo $ev_dt . '<br>';
 //                    echo "<br>-------END--------<br>";
-                    $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp, $recur);
+                        $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp, $recur);
+                    }
+                    if ($createdEvent)
+                        $this->objcalender->updateGoogleEvent($createdEvent, $ev);
                 }
-                if ($createdEvent)
-                    $this->objcalender->updateGoogleEvent($createdEvent, $ev);
             }
             return TRUE;
         } else {
@@ -548,7 +561,7 @@ class Calender extends CI_Controller {
         $calId = $this->getCalenderId();
         if ($calId) {
             try {
-                $this->service->calendars->clear("vishaltesting9@gmail.com");
+                $this->service->calendars->clear($calId);
                 return TRUE;
             } catch (Google_Exception $exc) {
                 $error = $exc->getMessage();
