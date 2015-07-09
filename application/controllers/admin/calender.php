@@ -340,9 +340,12 @@ class Calender extends CI_Controller {
                     case 'individual':
                         $contactInfo = $this->common->getContactInfo($ev['user_id']);
                         if ($contactInfo->email != "") {
-                            $attendee = new Google_EventAttendee();
-                            $attendee->setEmail($contactInfo->email);
-                            $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
+                            echo '<br>----------------Individual--------------------<br>';
+                            echo $contactInfo->fname . ' ' . $contactInfo->lname . '<br>';
+                            echo $contactInfo->email . '<br>';
+//                            $attendee = new Google_EventAttendee();
+//                            $attendee->setEmail($contactInfo->email);
+//                            $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
                         } else {
                             $flag = FALSE;
                         }
@@ -351,14 +354,20 @@ class Calender extends CI_Controller {
                         $res = $this->objbuilder->getGroupContact($ev['group_id']);
                         $cids = $res[1];
                         $attendee = array();
+                        echo '<br>----------------Group--------------------<br>';
                         foreach ($cids as $key => $cid) {
                             $contactInfo = $this->common->getContactInfo($cid);
                             if ($contactInfo->email) {
-                                $attendee[$key] = new Google_EventAttendee();
-                                $attendee[$key]->setEmail($contactInfo->email);
-                                $attendee[$key]->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
+                                echo "<br>---------------MEMBER : {$key}----------------<br>";
+                                echo $contactInfo->fname . ' ' . $contactInfo->lname . '<br>';
+                                echo $contactInfo->email . '<br>';
+
+//                                $attendee[$key] = new Google_EventAttendee();
+//                                $attendee[$key]->setEmail($contactInfo->email);
+//                                $attendee[$key]->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
                             }
                         }
+                        $flag = FALSE;
                         if (count($attendee) <= 0)
                             $flag = FALSE;
                         break;
