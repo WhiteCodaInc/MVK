@@ -12,6 +12,7 @@
  * @author Laxmisoft
  */
 class M_trigger extends CI_Model {
+
     function __construct() {
         parent::__construct();
     }
@@ -49,6 +50,13 @@ class M_trigger extends CI_Model {
     function updateOccurance($eid, $occur) {
         $this->db->update('schedule', array('occurance' => --$occur), array('event_id' => $eid));
         return true;
+    }
+
+    function addNextEvent($eid) {
+        $query = $this->db->get_where('schedule', array('event_id' => $eid));
+        $event = $query->row();
+        $nextDt = $this->common->getNextDate($event->date, $event->freq_no . ' ' . $event->freq_type);
+        echo $nextDt;
     }
 
 }

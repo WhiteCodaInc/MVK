@@ -70,6 +70,8 @@ class Trigger extends CI_Controller {
                             if ($value->event_type == "sms") {
                                 $body = $this->parser->parse_string($value->body, $tag, TRUE);
                                 if ($this->sendSMS($contact->phone, $body, $value->notify)) {
+//                                    if ($value->is_repeat && $value->end_type == "never")
+//                                        $this->objtrigger->addNextEvent($value->event_id);
                                     $this->objtrigger->updateStatus($value->event_id);
                                 } else {
                                     echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
@@ -125,6 +127,10 @@ class Trigger extends CI_Controller {
                 }
             }
         }
+    }
+
+    function add($eventid) {
+        $this->objtrigger->addNextEvent($eventid);
     }
 
     function sendSMS($to, $body, $notify) {
