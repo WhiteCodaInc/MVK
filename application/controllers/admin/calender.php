@@ -330,7 +330,7 @@ class Calender extends CI_Controller {
             date_default_timezone_set($timestamp);
 
             $events = $this->objcalender->loadLocalEvent();
-            echo '<pre>';
+//            echo '<pre>';
 //            print_r($events);
 //            die();
             foreach ($events as $ev) {
@@ -338,15 +338,15 @@ class Calender extends CI_Controller {
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
                 switch ($ev['group_type']) {
                     case 'individual':
-                        echo "<br>----------------Individual : {$ev['user_id']}--------------------<br>";
+//                        echo "<br>----------------Individual : {$ev['user_id']}--------------------<br>";
                         $contactInfo = $this->common->getContactInfo($ev['user_id']);
-                        print_r($contactInfo);
+//                        print_r($contactInfo);
                         if (is_object($contactInfo) && $contactInfo->email != "") {
-                            echo $contactInfo->fname . ' ' . $contactInfo->lname . '<br>';
-                            echo $contactInfo->email . '<br>';
-//                            $attendee = new Google_EventAttendee();
-//                            $attendee->setEmail($contactInfo->email);
-//                            $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
+//                            echo $contactInfo->fname . ' ' . $contactInfo->lname . '<br>';
+//                            echo $contactInfo->email . '<br>';
+                            $attendee = new Google_EventAttendee();
+                            $attendee->setEmail($contactInfo->email);
+                            $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
                         } else {
                             $flag = FALSE;
                         }
@@ -355,21 +355,20 @@ class Calender extends CI_Controller {
                         $res = $this->objbuilder->getGroupContact($ev['group_id']);
                         $cids = $res[1];
                         $attendee = array();
-                        echo '<br>----------------Group--------------------<br>';
+//                        echo '<br>----------------Group--------------------<br>';
                         foreach ($cids as $key => $cid) {
                             $contactInfo = $this->common->getContactInfo($cid);
-                            print_r($contactInfo);
-                            if ($contactInfo->email) {
-                                echo "<br>---------------MEMBER : {$cid}----------------<br>";
-                                echo $contactInfo->fname . ' ' . $contactInfo->lname . '<br>';
-                                echo $contactInfo->email . '<br>';
-
-//                                $attendee[$key] = new Google_EventAttendee();
-//                                $attendee[$key]->setEmail($contactInfo->email);
-//                                $attendee[$key]->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
+//                            print_r($contactInfo);
+                            if (is_object($contactInfo) && $contactInfo->email) {
+//                                echo "<br>---------------MEMBER : {$cid}----------------<br>";
+//                                echo $contactInfo->fname . ' ' . $contactInfo->lname . '<br>';
+//                                echo $contactInfo->email . '<br>';
+                                $attendee[$key] = new Google_EventAttendee();
+                                $attendee[$key]->setEmail($contactInfo->email);
+                                $attendee[$key]->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
                             }
                         }
-                        $flag = FALSE;
+//                        $flag = FALSE;
                         if (count($attendee) <= 0)
                             $flag = FALSE;
                         break;
@@ -413,7 +412,7 @@ class Calender extends CI_Controller {
                         $this->objcalender->updateGoogleEvent($createdEvent, $ev);
                 }
             }
-            die();
+//            die();
             return TRUE;
         } else {
             return FALSE;
