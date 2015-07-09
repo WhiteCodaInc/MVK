@@ -330,20 +330,20 @@ class Calender extends CI_Controller {
             date_default_timezone_set($timestamp);
 
             $events = $this->objcalender->loadLocalEvent();
-//            echo '<pre>';
-//            print_r($events);
+            echo '<pre>';
+            print_r($events);
 //            die();
             foreach ($events as $ev) {
                 $eventDt = $ev['date'] . ' ' . $ev['time'];
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
                 switch ($ev['group_type']) {
                     case 'individual':
-//                        echo "<br>----------------Individual : {$ev['user_id']}--------------------<br>";
+                        echo "<br>----------------Individual : {$ev['user_id']}--------------------<br>";
                         $contactInfo = $this->common->getContactInfo($ev['user_id']);
 //                        print_r($contactInfo);
                         if (is_object($contactInfo) && $contactInfo->email != "") {
-//                            echo $contactInfo->fname . ' ' . $contactInfo->lname . '<br>';
-//                            echo $contactInfo->email . '<br>';
+                            echo $contactInfo->fname . ' ' . $contactInfo->lname . '<br>';
+                            echo $contactInfo->email . '<br>';
                             $attendee = new Google_EventAttendee();
                             $attendee->setEmail($contactInfo->email);
                             $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
@@ -375,11 +375,12 @@ class Calender extends CI_Controller {
                 }
                 if ($flag) {
                     if (!$ev['is_repeat']) {
-//                    echo "<br>-----Event ID : {$ev['event_id']}--------<br>";
-//                    print_r($attendee);
-//                    echo $ev_dt . '<br>';
-//                    echo "<br>-------END--------<br>";
+                        echo "<br>-----Event ID : {$ev['event_id']}--------<br>";
+                        print_r($attendee);
+                        echo $ev_dt . '<br>';
                         $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp);
+                        print_r($createdEvent);
+                        echo "<br>-------END--------<br>";
                     } else {
                         switch ($ev['freq_type']) {
                             case "days":
@@ -412,7 +413,7 @@ class Calender extends CI_Controller {
                         $this->objcalender->updateGoogleEvent($createdEvent, $ev);
                 }
             }
-//            die();
+            die();
             return TRUE;
         } else {
             return FALSE;
