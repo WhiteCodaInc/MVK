@@ -163,6 +163,10 @@ class Trigger extends CI_Controller {
         }
         $subject = $this->parser->parse_string($post->subject, $tag, TRUE);
         $body = $this->parser->parse_string($post->body, $tag, TRUE);
+        echo $email . '<br>';
+        echo $subject . '<br>';
+        echo $body . '<br>';
+        die();
         return $this->common->sendMail($email, $subject, $body);
     }
 
