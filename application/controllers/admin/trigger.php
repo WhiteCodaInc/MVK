@@ -157,6 +157,7 @@ class Trigger extends CI_Controller {
     function sendMail($contact, $tag, $post, $notify) {
         if ($notify == "me") {
             $adminInfo = $this->common->getAdminInfo(2);
+            print_r($adminInfo);
             $email = $adminInfo->email;
         } else {
             $email = $contact->email;
