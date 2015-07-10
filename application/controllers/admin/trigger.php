@@ -81,6 +81,8 @@ class Trigger extends CI_Controller {
                                     if ($value->is_repeat && $value->end_type == "never")
                                         $this->objtrigger->addNextEvent($value->event_id);
                                     $this->objtrigger->updateStatus($value->event_id);
+                                } else {
+                                    echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
                                 }
                             }
                         }
@@ -98,12 +100,16 @@ class Trigger extends CI_Controller {
                                         if ($value->is_repeat && $value->end_type == "never")
                                             $this->objtrigger->addNextEvent($value->event_id);
                                         $this->objtrigger->updateStatus($value->event_id);
+                                    } else {
+                                        echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
                                     }
                                 } else if ($value->event_type == "email") {
                                     if ($this->sendMail($contact, $tag, $value, $value->notify)) {
                                         if ($value->is_repeat && $value->end_type == "never")
                                             $this->objtrigger->addNextEvent($value->event_id);
                                         $this->objtrigger->updateStatus($value->event_id);
+                                    } else {
+                                        echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
                                     }
                                 }
                             }
@@ -121,12 +127,17 @@ class Trigger extends CI_Controller {
                                         if ($value->is_repeat && $value->end_type == "never")
                                             $this->objtrigger->addNextEvent($value->event_id);
                                         $this->objtrigger->updateStatus($value->event_id);
+                                    } else {
+                                        echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
                                     }
                                 } else if ($value->event_type == "email") {
                                     if ($this->sendMail($contact, $tag, $value, $value->notify)) {
                                         if ($value->is_repeat && $value->end_type == "never")
                                             $this->objtrigger->addNextEvent($value->event_id);
                                         $this->objtrigger->updateStatus($value->event_id);
+                                    }
+                                    else {
+                                        echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
                                     }
                                 }
                             }
