@@ -203,6 +203,12 @@
             $('#customerForm').submit();
         });
 
+        $('span.lbl').click(function () {
+            $name = $(this).prev().prop('name');
+            $('input[name="' + $name + '"]').prop('checked', false);
+            $(this).prev().trigger('click');
+        });
+
         $('input[name="birthday"]').change(function () {
             var dt = $(this).val();
             var pastYear = dt.split('-');
