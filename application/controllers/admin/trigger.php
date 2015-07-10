@@ -157,18 +157,17 @@ class Trigger extends CI_Controller {
     function sendMail($contact, $tag, $post, $notify) {
         if ($notify == "me") {
             $adminInfo = $this->common->getAdminInfo(2);
-            print_r($adminInfo);
             $email = $adminInfo->email;
         } else {
             $email = $contact->email;
         }
-        $subject = $this->parser->parse_string($post->subject, $tag, TRUE);
-        $body = $this->parser->parse_string($post->body, $tag, TRUE);
-        echo $email . '<br>';
-        echo $subject . '<br>';
-        echo $body . '<br>';
-        die();
-        return $this->common->sendMail($email, $subject, $body);
+        if ($email != "") {
+            $subject = $this->parser->parse_string($post->subject, $tag, TRUE);
+            $body = $this->parser->parse_string($post->body, $tag, TRUE);
+            return $this->common->sendMail($email, $subject, $body);
+        } else {
+            return FALSE;
+        }
     }
 
 }
