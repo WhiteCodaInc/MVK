@@ -272,7 +272,11 @@ switch ($msg) {
         $('#send').click(function () {
             $('#emailForm').submit();
         });
-
+        $('span.lbl').click(function () {
+            $name = $(this).prev().prop('name');
+            $('input[name="' + $name + '"]').prop('checked', false);
+            $(this).prev().trigger('click');
+        });
         $('#rd_individual').trigger('click');
 
         $('#emailForm').on('submit', function () {

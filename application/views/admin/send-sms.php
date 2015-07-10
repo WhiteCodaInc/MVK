@@ -258,7 +258,11 @@ switch ($msg) {
         $('#send').click(function () {
             $('#smsForm').submit();
         });
-
+        $('span.lbl').click(function () {
+            $name = $(this).prev().prop('name');
+            $('input[name="' + $name + '"]').prop('checked', false);
+            $(this).prev().trigger('click');
+        });
         $('#rd_individual').trigger('click');
         $('#smsForm').submit(function () {
             $('input[name="user_id"]').val(ids[contact.indexOf($('#users').val())]);

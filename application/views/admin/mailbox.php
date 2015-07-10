@@ -474,6 +474,12 @@ switch ($msg) {
 
         $('#rd_individual').trigger('click');
 
+        $('span.lbl').click(function () {
+            $name = $(this).prev().prop('name');
+            $('input[name="' + $name + '"]').prop('checked', false);
+            $(this).prev().trigger('click');
+        });
+
         $('#discard').click(function () {
             $('#msg_txt').hide();
             $('#composeForm').trigger('reset');
