@@ -148,10 +148,14 @@ class Trigger extends CI_Controller {
         } else {
             echo "NOTIFY THEM<br>";
         }
-        echo "TO : " . $to . '<br>';
-        echo "BODY : " . $body . '<br>';
-        echo "<br>-------------Event Sucssfully Sent...! ----------------<br>";
-        return $this->common->sendSMS($to, $body);
+        if ($to != "") {
+            echo "TO : " . $to . '<br>';
+            echo "BODY : " . $body . '<br>';
+            echo "<br>-------------Event Sucssfully Sent...! ----------------<br>";
+            return $this->common->sendSMS($to, $body);
+        } else {
+            return FALSE;
+        }
     }
 
     function sendMail($contact, $tag, $post, $notify) {
