@@ -153,7 +153,7 @@ class Trigger extends CI_Controller {
     function sendSMS($to, $body, $notify) {
         if ($notify == "me") {
             echo "NOTIFY ME<br>";
-            $adminInfo = $this->common->getAdminInfo(5);
+            $adminInfo = $this->common->getAdminInfo(2);
             $to = $adminInfo->phone;
             echo "SESSION : " . $to . '<br>';
         } else {
@@ -171,7 +171,7 @@ class Trigger extends CI_Controller {
 
     function sendMail($contact, $tag, $post, $notify) {
         if ($notify == "me") {
-            $adminInfo = $this->common->getAdminInfo(5);
+            $adminInfo = $this->common->getAdminInfo(2);
             $email = $adminInfo->email;
         } else {
             $email = $contact->email;
