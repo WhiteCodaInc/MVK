@@ -928,7 +928,7 @@
     function chooseContact() {
         $('div.choose input:text').focusout(function () {
             var form = $(this).parents('form').prop('id');
-            
+
             var event_type = $('#' + form + ' input[name="event_type"]:checked').val();
             var user = $('#users').val().trim();
             if (user != "") {
@@ -942,8 +942,7 @@
                             "Can not Email this user because no email address is assigned!";
                     $('.msgChoose').text($msg);
                 } else {
-                    console.log(form);
-                    ('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', false);
+                    $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', false);
 
                     var con = user.split('||');
                     var name = con[0].split(' ');
