@@ -933,7 +933,12 @@
             var user = $('#users').val().trim();
             if (user != "") {
                 if (!validateContact(user)) {
-
+                    
+                    $notify = (event_type == "notification" || event_type == "sms") ?
+                            "This user does not have a valid phone number!" :
+                            "This user does not have a valid email address!";
+                    $('#' + form + ' input[name="notify"]:nth(0)').parent().prop('title', $notify);
+                    
                     $('#' + form + ' input[name="notify"]:nth(0)').removeAttr('checked');
                     $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
 
