@@ -271,12 +271,12 @@ $img_src = ($avatar != "") ?
                 </li>
                 <li class="" id="13">
                     <a href="<?= site_url() ?>admin/plans">
-                        <i class="fa fa-angle-double-right"></i> <span>Payment Plan</span>
+                        <i class="fa fa-angle-double-right"></i> <span>Payment Plan Builder</span>
                     </a>
                 </li>
                 <li class="" id="14">
                     <a href="<?= site_url() ?>admin/offers">
-                        <i class="fa fa-angle-double-right"></i> <span>Offers</span>
+                        <i class="fa fa-angle-double-right"></i> <span>Offer Builder</span>
                     </a>
                 </li>
                 <!--                    <li class="" id="11">
