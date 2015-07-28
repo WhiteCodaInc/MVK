@@ -185,7 +185,7 @@ switch ($msg) {
             var act = $(this).val();
             $('#offer-data-table tbody tr').each(function () {
                 if ($(this).children('td:first').find('div.checked').length) {
-                    $txt = $(this).children('td:nth-child(4)').text();
+                    $txt = $(this).children('td:nth-child(2)').text();
                     offer += $txt.trim() + "<br/>";
                 }
             });
