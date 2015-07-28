@@ -76,7 +76,7 @@
 <!-- CK Editor -->
 <script src="//cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/admin/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
     $(function () {
