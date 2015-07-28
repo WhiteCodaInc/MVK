@@ -95,6 +95,14 @@
                 alertify.error("Enter Offer Name..!");
                 return false;
             }
+            if ($('select[name="product_id"]').val().trim() == "") {
+                alertify.error("Select Product..!");
+                return false;
+            }
+            if ($('select[name="payment_plan_id"]').val().trim() == "") {
+                alertify.error("Select Product Plan..!");
+                return false;
+            }
             $('#offerForm').submit();
         });
     });
