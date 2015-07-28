@@ -34,7 +34,6 @@
     <section class="content-header">
         <h1 style="display: none">
             Calendar
-            <small>Control panel</small>
         </h1>
         <button disabled=""  class="btn btn-success btn-sm create" id="popup" data-toggle="modal" data-target="#compose-modal">
             <i class="fa fa-plus"></i>
@@ -933,12 +932,12 @@
             var user = $('#users').val().trim();
             if (user != "") {
                 if (!validateContact(user)) {
-                    
+
                     $notify = (event_type == "notification" || event_type == "sms") ?
                             "This user does not have a valid phone number!" :
                             "This user does not have a valid email address!";
                     $('#' + form + ' input[name="notify"]:nth(0)').parent().prop('title', $notify);
-                    
+
                     $('#' + form + ' input[name="notify"]:nth(0)').removeAttr('checked');
                     $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
 
