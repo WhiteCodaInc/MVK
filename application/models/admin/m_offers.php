@@ -43,7 +43,7 @@ class M_offers extends CI_Model {
         $oid = $set['offerid'];
         unset($set['offerid']);
         $this->db->update('offers', $set, array('offer_id' => $oid));
-        return TRUE;
+        return "U";
     }
 
     function setAction($type, $ids) {
