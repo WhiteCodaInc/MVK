@@ -264,6 +264,21 @@ $img_src = ($avatar != "") ?
                         <i class="fa fa-angle-double-right"></i> <span>Coupons</span>
                     </a>
                 </li>
+                <li class="" id="12">
+                    <a href="<?= site_url() ?>admin/products">
+                        <i class="fa fa-angle-double-right"></i> <span>Product Builder</span>
+                    </a>
+                </li>
+                <li class="" id="13">
+                    <a href="<?= site_url() ?>admin/plans">
+                        <i class="fa fa-angle-double-right"></i> <span>Payment Plan</span>
+                    </a>
+                </li>
+                <li class="" id="14">
+                    <a href="<?= site_url() ?>admin/offers">
+                        <i class="fa fa-angle-double-right"></i> <span>Offers</span>
+                    </a>
+                </li>
                 <!--                    <li class="" id="11">
                                         <a href="<?= site_url() ?>admin/feedback">
                                             <i class="fa fa-angle-double-right"></i> <span>Feedback/Support</span>
