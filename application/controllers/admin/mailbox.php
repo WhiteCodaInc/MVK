@@ -145,8 +145,6 @@ class Mailbox extends CI_Controller {
                 if ($val['subject'] == "Re: " . $value['subject']) {
                     $flag = FALSE;
                     break;
-                } else {
-                    $flag = TRUE;
                 }
             }
             if ($flag) {
