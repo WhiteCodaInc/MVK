@@ -129,8 +129,6 @@ class Mailbox extends CI_Controller {
                 }
             }
             $threads = $this->makeThreads($mailbox);
-            print_r($threads);
-            die();
             echo json_encode(array_reverse($threads[$subject]));
         } else {
             header('location:' . site_url() . 'admin/mailbox/inbox');
