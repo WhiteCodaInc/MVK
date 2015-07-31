@@ -309,7 +309,7 @@
                                     </h4>
                                 </div>
                                 <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;">
-                                    <div class="box-body">
+                                    <div class="box-body" style="text-align: justify">
                                     </div>
                                 </div>
                             </div>
