@@ -85,9 +85,9 @@ class Mailbox extends CI_Controller {
         }
         $data['folder'] = $this->getInboxFolder();
         $data['threads'] = $this->makeThreads($mailbox);
-        echo '<pre>';
-        print_r($data);
-        die();
+        //        echo '<pre>';
+//        print_r($data);
+//        die();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -139,8 +139,6 @@ class Mailbox extends CI_Controller {
 
     function makeThreads($mailbox) {
         $threads = array();
-        echo '<pre>';
-        print_r($mailbox);
         foreach ($mailbox as $value) {
             $flag = TRUE;
             foreach ($mailbox as $val) {
@@ -153,8 +151,6 @@ class Mailbox extends CI_Controller {
                 $threads[$value['subject']][] = $value;
             }
         }
-        print_r($threads);
-        die();
         return $threads;
     }
 
