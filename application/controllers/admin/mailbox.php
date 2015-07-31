@@ -141,7 +141,6 @@ class Mailbox extends CI_Controller {
         $threads = array();
         echo '<pre>';
         print_r($mailbox);
-        die();
         foreach ($mailbox as $value) {
             $flag = TRUE;
             foreach ($mailbox as $val) {
@@ -154,6 +153,8 @@ class Mailbox extends CI_Controller {
                 $threads[$value['subject']][] = $value;
             }
         }
+        print_r($threads);
+        die();
         return $threads;
     }
 
