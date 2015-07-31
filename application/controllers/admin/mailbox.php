@@ -139,6 +139,9 @@ class Mailbox extends CI_Controller {
 
     function makeThreads($mailbox) {
         $threads = array();
+        echo '<pre>';
+        print_r($mailbox);
+        die();
         foreach ($mailbox as $value) {
             $flag = TRUE;
             foreach ($mailbox as $val) {
