@@ -61,9 +61,11 @@ class Mailbox extends CI_Controller {
         $imap_obj = imap_check($this->stream);
         if (!$imap_obj) {
             $mailbox = array();
-        } else if (!$imap_obj->Nmsgs) {
-            $mailbox = array();
-        } else {
+        }
+//        else if (!$imap_obj->Nmsgs) {
+//            $mailbox = array();
+//        }
+        else {
             imap_reopen($this->stream, $url);
             $emails = imap_search($this->stream, 'ALL');
             if (is_array($emails)) {
@@ -108,9 +110,11 @@ class Mailbox extends CI_Controller {
             $imap_obj = imap_check($this->stream);
             if (!$imap_obj) {
                 $mailbox = array();
-            } else if (!$imap_obj->Nmsgs) {
-                $mailbox = array();
-            } else {
+            }
+//            else if (!$imap_obj->Nmsgs) {
+//                $mailbox = array();
+//            }
+            else {
                 $display = ($post['type'] == "Inbox" || $post['type'] == "Trash") ? 2 : 1;
                 imap_reopen($this->stream, $url);
                 $emails = imap_search($this->stream, 'ALL');
@@ -207,6 +211,9 @@ class Mailbox extends CI_Controller {
                 "Subject: " . $post['email_subject'] . "\r\n" .
                 "To: " . $post['email_to'] . "\r\n" .
                 "Date: " . date('Y-m-d H:i:s') . "\r\n" .
+                "MIME-Version: 1 \r\n" .
+                "Content-Type: text/html;\r\n\tcharset=\"ISO-8859-1\"\r\n" .
+                "Content-Transfer-Encoding: 8bit \r\n" .
                 "\r\n" .
                 $post['message'] .
                 "\r\n"
@@ -244,6 +251,9 @@ class Mailbox extends CI_Controller {
                             "Subject: " . $post['email_subject'] . "\r\n" .
                             "To: " . $user->email . '\r\n' .
                             "Date: " . date('Y-m-d H:i:s') . "\r\n" .
+                            "MIME-Version: 1 \r\n" .
+                            "Content-Type: text/html;\r\n\tcharset=\"ISO-8859-1\"\r\n" .
+                            "Content-Transfer-Encoding: 8bit \r\n" .
                             "\r\n" .
                             $post['message'] .
                             "\r\n"
