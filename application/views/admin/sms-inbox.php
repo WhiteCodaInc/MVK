@@ -188,7 +188,7 @@ switch ($msg) {
                 var position = $(this).offset();
 //                var top = position.top - ($(this).height() * 4);
 //                var top = position.top - $(window).scrollTop();
-                var top = $(window).scrollTop();
+                var top = $(window).scrollTop() - position.top;
                 console.log(top);
                 (top < 0) ? top = 0 : "";
                 $('.effect').css('top', top);
