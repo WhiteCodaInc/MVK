@@ -37,12 +37,14 @@ class Email extends CI_Controller {
             $this->load->model('admin/m_customer_groups', 'objcustomergroup');
             $this->load->model('admin/m_email_template', 'objtemplate');
             $this->load->model('admin/m_list_builder', 'objbuilder');
+            $this->load->model('admin/m_cpanel', 'objcpanel');
         }
     }
 
     function send_email() {
         $data['individual'] = $this->objprofile->getProfiles();
         $data['template'] = $this->objtemplate->getTemplates();
+        $data['accounts'] = $this->objcpanel->getAccounts();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -205,7 +207,7 @@ class Email extends CI_Controller {
     function sendMail($user, $tag, $post) {
         $subject = $this->parser->parse_string($post['subject'], $tag, TRUE);
         $body = $this->parser->parse_string($post['body'], $tag, TRUE);
-        return $this->common->sendMail($user->email, $subject, $body);
+        return $this->common->sendMail($user->email, $subject, $body,NULL,$post['from']);
     }
 
 }

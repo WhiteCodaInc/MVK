@@ -38,13 +38,15 @@ class Common {
         return $query->row();
     }
 
-    function sendMail($to = NULL, $subject, $body, $bcc = NULL) {
+    function sendMail($to = NULL, $subject, $body, $bcc = NULL, $from = NULL) {
         $set = array(
-            'from' => 'Mikhail <info@mikhailkuznetsov.com>',
             'subject' => $subject,
             'html' => $body
         );
         ($to == NULL) ? $set['bcc'] = $bcc : $set['to'] = $to;
+        ($from == NULL) ?
+                        $set['from'] = 'Mikhail <info@mikhailkuznetsov.com>' :
+                        $set['from'] = "Mikhail <$from>";
         $result = $this->mgClient->sendMessage($this->domain, $set);
         if ($result->http_response_code == 200) {
             return TRUE;
