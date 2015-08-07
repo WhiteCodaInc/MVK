@@ -186,7 +186,8 @@ switch ($msg) {
         function trClick() {
             $('#inbox-data-table tbody tr').bind('click', function () {
                 var position = $(this).offset();
-                var top = position.top - ($(this).height() * 4);
+//                var top = position.top - ($(this).height() * 4);
+                var top = $(window).scrollTop();
                 console.log(top);
                 (top < 0) ? top = 0 : "";
                 $('.effect').css('top', top);
