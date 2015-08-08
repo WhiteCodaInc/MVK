@@ -70,7 +70,7 @@ class Trigger extends CI_Controller {
 
                             if (!in_array($value->user_id, $blackList)) {
 
-                                $contact = $this->objcon->getContactInfo($value->user_id);
+                                $contact = $this->objcontact->getContactInfo($value->user_id);
                                 $tag = $this->common->setToken($contact);
 
                                 if ($value->event_type == "sms") {
@@ -103,7 +103,7 @@ class Trigger extends CI_Controller {
                             $cids = $res[1];
                             foreach ($cids as $cid) {
                                 if (!in_array($cid, $blackList)) {
-                                    $contact = $this->objcon->getContactInfo($cid);
+                                    $contact = $this->objcontact->getContactInfo($cid);
                                     $tag = $this->common->setToken($contact);
                                     if ($value->event_type == "sms") {
                                         $body = $this->parser->parse_string($value->body, $tag, TRUE);
@@ -134,7 +134,7 @@ class Trigger extends CI_Controller {
                             $cids = $this->objbuilder->getSubGroupContact($value->group_id);
                             foreach ($cids as $cid) {
                                 if (!in_array($cid, $blackList)) {
-                                    $contact = $this->objcon->getContactInfo($cid);
+                                    $contact = $this->objcontact->getContactInfo($cid);
                                     $tag = $this->common->setToken($contact);
                                     if ($value->event_type == "sms") {
                                         $body = $this->parser->parse_string($value->body, $tag, TRUE);
