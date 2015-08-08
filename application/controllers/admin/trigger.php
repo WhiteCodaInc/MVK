@@ -33,8 +33,8 @@ class Trigger extends CI_Controller {
     function index() {
         // UM =  - to UTC 
         // UP = UTC to + 
-//        $this->timezone = "UM8";
-        $this->timezone = "UP55";
+        $this->timezone = "UM8";
+//        $this->timezone = "UP55";
         $datetime = date('Y-m-d H:i:s', gmt_to_local(time(), $this->timezone, TRUE));
         echo "{$this->session->userdata('email')}<br>";
         echo "<pre>";
