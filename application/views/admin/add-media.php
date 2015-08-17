@@ -52,7 +52,7 @@
                             <?php if (isset($media) && ($media->path != NULL)): ?>
                                 <?php if ($media->type == "picture") { ?>
                                     <?php
-                                    $img_src = "http://mikhailkuznetsov.s3.amazonaws.com/" . $media->path;
+                                    $img_src = "https://d2f058tgxz31a7.cloudfront.net/" . $media->path;
                                     ?>
                                     <div class="row">
                                         <div class="col-md-12">
