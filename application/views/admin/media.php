@@ -278,7 +278,7 @@ switch ($msg) {
         }
         $('a#img').click(function () {
             var mediaid = $(this).parents('tr').attr('id');
-            var name = $('tr#' + mediaid).find('td.name').text();
+            var name = $('#media-data-table tr#' + mediaid).find('td.name').text();
             $img = $(this).children('img').clone();
             $img.removeAttr('style');
             $('#view').html($img);
@@ -289,7 +289,7 @@ switch ($msg) {
         $('button.html').click(function () {
             var type = $(this).val();
             var mediaid = $(this).parents('tr').attr('id');
-            var name = $('tr#' + mediaid).find('td.name').text();
+            var name = $('#media-data-table tr#' + mediaid).find('td.name').text();
             $('.modal-title').text(name);
             switch (type) {
                 case "audio":
@@ -337,18 +337,18 @@ switch ($msg) {
         $('button.link').click(function () {
             var type = $(this).val();
             var mediaid = $(this).parents('tr').attr('id');
-            var name = $('tr#' + mediaid).find('td.name').text();
+            var name = $('#media-data-table tr#' + mediaid).find('td.name').text();
             $('.modal-title').text(name);
             $('#view').html("<textarea class='form-control' rows='2'></textarea>");
             switch (type) {
                 case "audio":
-                    $src = $('tr#' + mediaid).find('audio > source').attr('src');
+                    $src = $('#media-data-table tr#' + mediaid).find('audio > source').attr('src');
                     break;
                 case "picture":
-                    $src = $('tr#' + mediaid).find('img').attr('src');
+                    $src = $('#media-data-table tr#' + mediaid).find('img').attr('src');
                     break;
                 case "video":
-                    $src = $('tr#' + mediaid).find('input[name="path"]').val();
+                    $src = $('#media-data-table tr#' + mediaid).find('input[name="path"]').val();
                     break;
             }
             $('#view textarea').text($src);
@@ -362,7 +362,7 @@ switch ($msg) {
 
         $('.view-video,.view-audio').click(function () {
             var mediaid = $(this).val();
-            var name = $('tr#' + mediaid).find('td.name').text();
+            var name = $('#media-data-table tr#' + mediaid).find('td.name').text();
             $.ajax({
                 type: 'POST',
                 data: {mediaid: mediaid},
