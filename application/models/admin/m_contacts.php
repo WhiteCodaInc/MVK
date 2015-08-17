@@ -68,8 +68,8 @@ class M_contacts extends CI_Model {
         ($lname != "") ? $this->db->like('lname', $lname) : '';
         ($email != "") ? $this->db->like('email', $email) : '';
         ($age != "") ? $where['age'] = $age : '';
-        ($from != "") ? $where['birthday >='] = date('Y-m-d', strtotime($from)) : '';
-        ($to != "") ? $where['birthday <='] = date('Y-m-d', strtotime($to)) : '';
+        ($from != "") ? $where['birthday >='] = $this->common->getMySqlDate($from, "mm-dd-yyyy") : '';
+        ($to != "") ? $where['birthday <='] = $this->common->getMySqlDate($to, "mm-dd-yyyy") : '';
         ($zodiac != "" && $zodiac != "-1") ? $where['zodiac'] = $zodiac : '';
         ($country != "") ? $this->db->like('country', $country) : '';
         ($city != "") ? $this->db->like('city', $city) : '';

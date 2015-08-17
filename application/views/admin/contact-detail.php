@@ -297,7 +297,7 @@ switch ($msg) {
         alertify.<?= $t ?>("<?= $m ?>");
 <?php endif; ?>
     $('.input-daterange').datepicker({
-        format: "dd-mm-yyyy",
+        format: "mm-dd-yyyy",
         todayBtn: "linked",
         autoclose: true,
         todayHighlight: true
