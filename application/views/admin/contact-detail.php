@@ -350,6 +350,7 @@ switch ($msg) {
             $('input[name="city_search"]').val("<?= $data['city_search'] ?>");
             $('input[name="address_search"]').val("<?= $data['address_search'] ?>");
             $('select[name="rating_search"]').val("<?= $data['rating_search'] ?>");
+            $('select[name="sex_search"]').val("<?= $data['sex_search'] ?>");
 <?php } ?>
         $('#contact-data-table tbody tr').each(function () {
             $(this).children('td.sorting_1').find('div.checked');
