@@ -303,7 +303,7 @@ switch ($msg) {
                     }, 500);
                     break;
                 case "picture":
-                    $img = $('tr#' + mediaid).find('img');
+                    $img = $('#media-data-table tr#' + mediaid).find('img');
                     $img.removeAttr('style');
                     $('#view').html("<textarea class='form-control'></textarea>");
                     $('#view textarea').text("<img alt='" + $img.attr('alt') + "' src='" + $img.attr('src') + "' />");
