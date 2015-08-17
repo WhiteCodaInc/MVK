@@ -279,6 +279,11 @@ $img_src = ($avatar != "") ?
                         <i class="fa fa-angle-double-right"></i> <span>Offer Builder</span>
                     </a>
                 </li>
+                <li class="" id="15">
+                    <a href="<?= site_url() ?>admin/media">
+                        <i class="fa fa-angle-double-right"></i> <span>Media Library</span>
+                    </a>
+                </li>
                 <!--                    <li class="" id="11">
                                         <a href="<?= site_url() ?>admin/feedback">
                                             <i class="fa fa-angle-double-right"></i> <span>Feedback/Support</span>
