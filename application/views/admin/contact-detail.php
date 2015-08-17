@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label>Sex</label>
-                                    <select name="sax_search" class="form-control m-bot15">
+                                    <select name="sex_search" class="form-control m-bot15">
                                         <option value="-1">--Select--</option>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
