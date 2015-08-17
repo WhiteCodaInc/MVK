@@ -62,6 +62,7 @@ class M_contacts extends CI_Model {
         $city = $post['city_search'];
         $address = $post['address_search'];
         $rating = $post['rating_search'];
+        $sex = $post['sex_search'];
 
         ($fname != "") ? $this->db->like('fname', $fname) : '';
         ($lname != "") ? $this->db->like('lname', $lname) : '';
@@ -75,6 +76,7 @@ class M_contacts extends CI_Model {
         ($address != "") ? $this->db->like('address', $address) : '';
         ($rating != "" && $rating != "-1") ? $where['rating'] = $rating : '';
         ($group != "" && $group != "-1") ? $where['group_id'] = $group : '';
+        ($sex != "" && $sex != "-1") ? $where['gender'] = $sex : '';
 
         $this->db->select('*');
         $this->db->from('contact_detail as C');
