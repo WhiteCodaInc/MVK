@@ -94,7 +94,8 @@ class Sms extends CI_Controller {
             } else {
                 $flag = TRUE;
             }
-            if ($flag && $msg->sid != "SM10fe2c19dba8f2b8a8aa66d4e22924f4") {
+//            if ($flag && $msg->sid != "SM10fe2c19dba8f2b8a8aa66d4e22924f4") {
+            if ($flag) {
                 $set = array(
                     'from' => $msg->from,
                     'sid' => $msg->sid,
