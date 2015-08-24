@@ -53,8 +53,12 @@ class Media extends CI_Controller {
 
     function createMedia() {
         $post = $this->input->post();
-        $msg = $this->objmedia->createMedia($post);
-        header('location:' . site_url() . 'admin/media?msg=I');
+        if (is_array($post) && count($post)) {
+            $this->objmedia->createMedia($post);
+            echo 'File Upload Succesffully....!';
+        } else {
+            header('location:' . site_url() . 'admin/media');
+        }
     }
 
     function editMedia($mid) {
@@ -68,8 +72,12 @@ class Media extends CI_Controller {
 
     function updateMedia() {
         $post = $this->input->post();
-        $msg = $this->objmedia->updateMedia($post);
-        header('location:' . site_url() . 'admin/media?msg=U');
+        if (is_array($post) && count($post)) {
+            $this->objmedia->updateMedia($post);
+            echo 'File Upload Succesffully....!';
+        } else {
+            header('location:' . site_url() . 'admin/media');
+        }
     }
 
     function action() {
