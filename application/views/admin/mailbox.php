@@ -534,6 +534,7 @@ switch ($msg) {
                     $('.conversation .overlay').hide();
                     var json = JSON.parse(data);
                     $.each(json, function (i, item) {
+                        console.log(i);
                         $acordian = $('#accordion .demo').clone();
                         $acordian.removeClass('demo');
                         $acordian.removeAttr('style');
@@ -543,6 +544,7 @@ switch ($msg) {
                         $acordian.find('#collapseOne').prop('id', "collapse" + item.id);
                         $acordian.find('#time').text(item.date);
                         $('#accordion .demo').before($acordian);
+//                        $("collapse" + item.id).collapse('show');
                     });
                 }
             });
