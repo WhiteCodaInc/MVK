@@ -546,7 +546,7 @@ switch ($msg) {
                         $acordian.find('#time').text(item.date);
                         $('#accordion .demo').before($acordian);
 //                        if (i == json.length - 1)
-                            $("collapse" + item.id).collapse('show');
+                            $("#collapse" + item.id).collapse('show');
                     });
                 }
             });
