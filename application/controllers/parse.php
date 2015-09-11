@@ -27,20 +27,20 @@ class Parse extends CI_Controller {
 
         $post = $this->input->post();
 
-        fwrite($myfile, "<p>--POST {$post} ---\n</p>");
+        fwrite($myfile, "--POST {$post} ---\n");
 
-        fwrite($myfile, "<p>----POST Data-----\n</p>");
+        fwrite($myfile, "----POST Data-----\n");
         if (is_array($post) && count($post)) {
             foreach ($post as $key => $value) {
-                fwrite($myfile, "<p> {$key} : {$value}\n </p>");
+                fwrite($myfile, "{$key} : {$value}\n");
             }
         }
 
         $data = json_decode($post);
-        fwrite($myfile, "<p>----JSON Data-----\n</p>");
+        fwrite($myfile, "----JSON Data-----\n");
         if (is_array($data) && count($data)) {
             foreach ($post as $key => $value) {
-                fwrite($myfile, "<p> {$key} : {$value}\n</p>");
+                fwrite($myfile, "{$key} : {$value}\n");
             }
         }
     }
