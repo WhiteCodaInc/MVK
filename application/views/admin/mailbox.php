@@ -533,9 +533,7 @@ switch ($msg) {
                     $('.conversation .loading-img').hide();
                     $('.conversation .overlay').hide();
                     var json = JSON.parse(data);
-                    console.log(json.length);
                     $.each(json, function (i, item) {
-                        console.log(i);
                         $acordian = $('#accordion .demo').clone();
                         $acordian.removeClass('demo');
                         $acordian.removeAttr('style');
