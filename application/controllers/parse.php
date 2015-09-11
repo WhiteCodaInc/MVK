@@ -21,9 +21,9 @@ class Parse extends CI_Controller {
      * @see http://codeigniter.com/user_guide/general/urls.html
      */
     public function index() {
-        $get = $this->input->get();
+        $post = $this->input->post();
         echo '<pre>';
-        print_r($get);
+        print_r($post);
     }
 
 }
