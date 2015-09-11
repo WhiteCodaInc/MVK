@@ -23,9 +23,16 @@ class Parse extends CI_Controller {
     public function index() {
         echo '<pre>';
 
-        $post = $this->input->post();
         $myfile = fopen(FCPATH . 'data.txt', "a");
+
+        $post = $this->input->post();
+        fwrite($myfile, "----POST Data-----\n");
+        foreach ($post as $key => $value) {
+            fwrite($myfile, "{$key} : {$value}\n");
+        }
+
         $data = json_decode($post);
+        fwrite($myfile, "----JSON Data-----\n");
         foreach ($data as $key => $value) {
             fwrite($myfile, "{$key} : {$value}\n");
         }
