@@ -27,7 +27,7 @@ class Parse extends CI_Controller {
 
         $post = $this->input->post();
 
-        fwrite($myfile, "{$post}\n");
+        fwrite($myfile, "--POST {$post} ---\n");
 
         fwrite($myfile, "----POST Data-----\n");
         foreach ($post as $key => $value) {
