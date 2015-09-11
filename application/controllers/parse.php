@@ -24,15 +24,10 @@ class Parse extends CI_Controller {
         echo '<pre>';
 
         $post = $this->input->post();
-        $get = $this->input->get();
-
-        if (is_array($post)) {
-            echo '-----------POST Method------------<br>';
-            print_r($post);
-        }
-        if (is_array($get)) {
-            echo '-----------GET Method------------<br>';
-            print_r($get);
+        $myfile = fopen(FCPATH . 'data.txt', "a");
+        $data = json_decode($post);
+        foreach ($data as $key => $value) {
+            fwrite($myfile, "{$key} : {$value}\n");
         }
     }
 
