@@ -26,6 +26,9 @@ class Parse extends CI_Controller {
         $myfile = fopen(FCPATH . 'data.txt', "a");
 
         $post = $this->input->post();
+
+        fwrite($myfile, "{$post}\n");
+
         fwrite($myfile, "----POST Data-----\n");
         foreach ($post as $key => $value) {
             fwrite($myfile, "{$key} : {$value}\n");
