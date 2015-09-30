@@ -13,12 +13,10 @@
         <h1 style=" display: none">
             Email Lists
         </h1>
-        <?php if ($p->funi): ?>
-            <a href="<?= site_url() ?>admin/email_list/addEmailList" class="create btn btn-success btn-sm">
-                <i class="fa fa-plus"></i>
-                Create New Email List
-            </a>
-        <?php endif; ?>
+        <a href="<?= site_url() ?>admin/email_list/addEmailList" class="create btn btn-success btn-sm">
+            <i class="fa fa-plus"></i>
+            Create New Email List
+        </a>
     </section>
 
     <!-- Main content -->
@@ -36,9 +34,7 @@
                                 <tr>
                                     <th>Email List Name</th>
                                     <th>No. of Contacts</th>
-                                    <?php if ($p->funu || $p->funv): ?>
-                                        <th>Action</th>
-                                    <?php endif; ?>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,24 +42,18 @@
                                     <tr>
                                         <td><?= $value->name ?></td>
                                         <td><?= $value->total ?></td>
-                                        <?php if ($p->funu || $p->funv): ?>
-                                            <td>
-                                                <?php if ($p->funu): ?>
-                                                    <a href="<?= site_url() ?>admin/email_list/editEmailList/<?= $value->list_id ?>" class="btn bg-navy btn-xs">
-                                                        <i class="fa fa-pencil"></i>
-                                                        Edit
-                                                    </a>
-                                                <?php endif; ?>
-                                                <?php if ($p->funv): ?>
-                                                    <?php if ($value->total > 0): ?>
-                                                        <a href="<?= site_url() ?>admin/email_list/view/<?= $value->list_id ?>" class="btn bg-navy btn-xs">
-                                                            <i class="fa fa-eye"></i>
-                                                            View
-                                                        </a>
-                                                    <?php endif; ?>
-                                                <?php endif; ?>
-                                            </td>
-                                        <?php endif; ?>
+                                        <td>
+                                            <a href="<?= site_url() ?>admin/email_list/editEmailList/<?= $value->list_id ?>" class="btn bg-navy btn-xs">
+                                                <i class="fa fa-pencil"></i>
+                                                Edit
+                                            </a>
+                                            <?php if ($value->total > 0): ?>
+                                                <a href="<?= site_url() ?>admin/email_list/view/<?= $value->list_id ?>" class="btn bg-navy btn-xs">
+                                                    <i class="fa fa-eye"></i>
+                                                    View
+                                                </a>
+                                            <?php endif; ?>
+                                        </td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -71,9 +61,7 @@
                                 <tr>
                                     <th>Email List Name</th>
                                     <th>No. of Contacts</th>
-                                    <?php if ($p->funu || $p->funv): ?>
-                                        <th>Action</th>
-                                    <?php endif; ?>
+                                    <th>Action</th>
                                 </tr>
                             </tfoot>
                         </table>

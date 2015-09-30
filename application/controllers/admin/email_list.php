@@ -13,7 +13,6 @@
  */
 class Email_list extends CI_Controller {
 
-    private $p;
 
     function __construct() {
         parent::__construct();
