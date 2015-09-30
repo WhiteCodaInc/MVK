@@ -68,10 +68,18 @@ and open the template in the editor.
         <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
         <!--Fonts with Icons-->
         <link rel="stylesheet" href="<?= base_url() ?>assets/3dParty/fontello/css/fontello.css"/>
+        
+        <!-- Alertify -->
+        <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/alertify/alertify.core.css"/>
+        <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/alertify/alertify.default.css"/>
 
         <script src="<?= base_url() ?>assets/3dParty/jquery-1.11.0.min.js"></script>
         <script src="<?= base_url() ?>assets/3dParty/bootstrap/js/bootstrap.min.js"></script>
         <script src="<?= base_url() ?>assets/3dParty/autohidingnavbar.js"></script>
+        
+        <!--Alertify-->
+        <script type="text/javascript" src="<?= base_url() ?>assets/alertify/alertify.js"></script>
+        <script type="text/javascript" src="<?= base_url() ?>assets/alertify/alertify.min.js"></script>
     </head>
     <body>
         <?php $name = $this->session->userdata('name'); ?>
