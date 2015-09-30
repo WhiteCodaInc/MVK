@@ -16,6 +16,7 @@ class Login extends CI_Controller {
     //put your code here
     function __construct() {
         parent::__construct();
+        $this->load->library('encryption');
         $this->load->model('m_login', 'objlogin');
     }
 
@@ -27,8 +28,13 @@ class Login extends CI_Controller {
         $this->load->view('footer');
     }
 
-    function signin() {
+    function signin($get = NULL) {
         $post = $this->input->post();
+        if ($get != NULL) {
+            $get = $this->input->get();
+            $post['email'] = $this->encryption->decode($get['u']);
+            $post['password'] = $this->encryption->decode($get['p']);
+        }
         if ($this->objlogin->login($post)) {
             header('location:' . site_url() . 'homepage');
         } else {

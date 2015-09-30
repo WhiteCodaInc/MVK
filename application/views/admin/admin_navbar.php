@@ -284,6 +284,11 @@ $img_src = ($avatar != "") ?
                         <i class="fa fa-angle-double-right"></i> <span>Media Library</span>
                     </a>
                 </li>
+                <li class="" id="16">
+                    <a href="<?= site_url() ?>admin/email_list">
+                        <i class="fa fa-angle-double-right"></i> <span>Funnel Email List</span>
+                    </a>
+                </li>
                 <!--                    <li class="" id="11">
                                         <a href="<?= site_url() ?>admin/feedback">
                                             <i class="fa fa-angle-double-right"></i> <span>Feedback/Support</span>
